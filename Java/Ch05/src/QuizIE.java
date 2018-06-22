@@ -13,7 +13,7 @@ import java.util.Scanner;
 			
 			 do {
 				num = s.nextInt();
-				sum = sum+num;
+				sum = sum + num;
 			} while(num != 0);
 		
 			System.out.println("입력하신 모든 숫자의 합은 " + sum + " 입니다."); 
