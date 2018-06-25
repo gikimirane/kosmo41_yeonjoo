@@ -10,7 +10,7 @@ public class Quiz8 {
 		int sum = 0;
 		int count = 0;
 		
-		System.out.println("¼ıÀÚ 5 °³¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		System.out.println("5 ê°œì˜ ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 
 		do { 
 		       Inputnum = s.nextInt();
@@ -18,13 +18,13 @@ public class Quiz8 {
 		       
 		       if (Inputnum == 0)
 		       {
-		         System.out.println("1 ÀÌ»óÀÇ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		         System.out.println("ì£¼ì˜ : 1 ì´ìƒì˜ ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		         continue;
 		       }
 		       count++;
 		} while(count < 5);
 
-		System.out.println("ÀÔ·ÂÇÏ½Å Á¤¼öÀÇ ÇÕÀº" + sum);
+		System.out.println("ì…ë ¥í•˜ì‹  ìˆ˜ì˜ í•©ì€" + sum);
 
 	
 				

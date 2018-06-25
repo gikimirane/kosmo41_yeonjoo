@@ -2,23 +2,20 @@ import java.util.Scanner;
 
 public class Quiz7 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 	
 		Scanner s = new Scanner(System.in);
 
-		int InputName = 0;
 		int InputKor = 0, InputEng = 0, InputMath = 0;
 
+		System.out.println("ì „ê³¼ëª© ì ìˆ˜ ì…ë ¥ í›„ ìì‹ ì˜ í•™ì ì„ í™•ì¸í•˜ì„¸ìš”");
 
-		System.out.println("Àü°ú¸ñ Á¡¼ö ÀÔ·Â ÈÄ ÀÚ½ÅÀÇ ÇĞÁ¡À» È®ÀÎ ÇÏ¼¼¿ä");
-
-		System.out.println("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
-		InputName = s.nextInt();
-		System.out.println("Ã¹¹øÂ° ±¹¾î Á¡¼ö¸¦ ÀÔ·Â ÇÏ¼¼¿ä");
+		System.out.println("ì²«ë²ˆì§¸ êµ­ì–´ ì ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		InputKor = s.nextInt();
-		System.out.println("µÎ¹øÂ° ¿µ¾î Á¡¼ö¸¦ ÀÔ·Â ÇÏ¼¼¿ä");
+		System.out.println("ë‘ë²ˆì§¸ ì˜ì–´ ì ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		InputEng = s.nextInt();
-		System.out.println("¼¼¹øÂ° ¼öÇĞ Á¡¼ö¸¦ ÀÔ·Â ÇÏ¼¼¿ä");
+		System.out.println("ì„¸ë²ˆì§¸ ìˆ˜í•™ ì ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		InputMath = s.nextInt();
 
 		int sum = 0;
@@ -28,16 +25,15 @@ public class Quiz7 {
 		Aver = sum / 3;
 
 		if(Aver >= 90)
-		System.out.println(InputName + "´ÔÀÇ Æò±ÕÀº" + Aver + "ÀÌ°í ÇĞÁ¡Àº A ÀÔ´Ï´Ù" );
+		System.out.println("í‰ê· ì€" + Aver + "ì´ê³  í•™ì ì€ A ì…ë‹ˆë‹¤." );
 		else if(Aver >= 80)
-		System.out.println(InputName + "´ÔÀÇ Æò±ÕÀº" + Aver + "ÀÌ°í ÇĞÁ¡Àº B ÀÔ´Ï´Ù" );
+		System.out.println("í‰ê· ì€" + + Aver + "ì´ê³  í•™ì ì€ B ì…ë‹ˆë‹¤." );
 		else if(Aver >= 70)
-		System.out.println(InputName + "´ÔÀÇ Æò±ÕÀº" + Aver + "ÀÌ°í ÇĞÁ¡Àº C ÀÔ´Ï´Ù" );
+		System.out.println("í‰ê· ì€" + + Aver + "ì´ê³  í•™ì ì€ C ì…ë‹ˆë‹¤." );
 		else if(Aver >= 50)
-		System.out.println(InputName + "´ÔÀÇ Æò±ÕÀº" + Aver + "ÀÌ°í ÇĞÁ¡Àº D ÀÔ´Ï´Ù" );
+		System.out.println("í‰ê· ì€" + + Aver + "ì´ê³  í•™ì ì€ D ì…ë‹ˆë‹¤." );
 		else 
-		System.out.println(InputName + "´ÔÀÇ Æò±ÕÀº" + Aver + "ÀÌ°í ÇĞÁ¡Àº E ÀÔ´Ï´Ù" );
-
+		System.out.println("í‰ê· ì€" + + Aver + "ì´ê³  í•™ì ì€ F ì…ë‹ˆë‹¤." );
 
 	}
 

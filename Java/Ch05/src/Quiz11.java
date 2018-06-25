@@ -2,31 +2,30 @@ import java.util.Scanner;
 
 public class Quiz11 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		
-
 		int Inputnum = 0;
 		int Fact = 1;
 
 		Scanner s = new Scanner(System.in);
 
-		System.out.println("1 °³ÀÇ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		System.out.println("1 ê°œì˜ ìˆ«ìžë¥¼ ìž…ë ¥í•˜ì„¸ìš”");
 
 		Inputnum = s.nextInt();
 
 		while(Inputnum>0)
-		{
-			if(Inputnum == 1) {
-		System.out.print(Inputnum);
-		break;
-		}
-		System.out.print(Inputnum);
-		System.out.print( "x" );
-		Fact = Fact * Inputnum;
-		Inputnum--;
-		}
-		System.out.println("=" + Fact);
-
+			{
+				if(Inputnum == 1) {
+					System.out.print(Inputnum);
+					break;
+				}
+				System.out.print(Inputnum);
+				System.out.print( "x" );
+				Fact = Fact * Inputnum;
+				Inputnum--;
+			}
+			System.out.println("=" + Fact);
 
 	}
 

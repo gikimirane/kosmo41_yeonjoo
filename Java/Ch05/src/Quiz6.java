@@ -2,18 +2,20 @@ import java.util.Scanner;
 
 public class Quiz6 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		Scanner s = new Scanner(System.in);
 		
-		System.out.println("¼ıÀÚ ÇÑ °³¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-		
-	    int num1 = s.nextInt();
+		System.out.println("í•œ ê°œì˜ ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+		int num1 = s.nextInt();
+	    
+	    System.out.println(num1 + " ì— í•´ë‹¹í•˜ëŠ” êµ¬êµ¬ë‹¨(ì—­ìˆœ)");
 			
 		for (int j=9; j>=2; j--) 
 			{ 
 			System.out.println(num1 + " x " + j + " = " + (num1 * j));		
 			}
 			
-		}
+	 }
 
 }

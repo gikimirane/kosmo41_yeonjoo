@@ -5,36 +5,42 @@ public class Quiz10 {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 
-		int num1 = 0, num2 = 0, sum = 0, add = 0;
+		int num1 = 0, num2 = 0;
+		int sum = 0;
+		int add = 0;
 
-		System.out.println("2 °³ÀÇ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-				num1 = s.nextInt();
-				num2 = s.nextInt();
+		System.out.println("2 ê°œì˜ ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+			num1 = s.nextInt();
+			num2 = s.nextInt();
 
-				if(num1 > num2) {
+			if(num1 > num2) 
+				{
 					for(add=num1; add >= num2; add--)
-			{if(add = num2)
-		{
-		System.out.println(add);
-		break;
-		}
-		sum = sum + add; 
-		System.out.print(add + "+ ");
-		}
-		} else
-		{  for(add = num1; add <= num2; add++)
-		 { if(add = num2)
-		{
-			System.out.println(add);
-		break;
-		}
-		sum = sum + add; 
-			System.out.print(add + " + ");
+					{
+						if(add == num2)
+						{	
+							System.out.println(add);
+							break;
+						}
+						sum = sum + add; 
+						System.out.print(add + " + ");
+					}
+				} else
+			{  
+					for(add = num1; add <= num2; add++)
+					{ 
+						if(add == num2)
+						{
+							System.out.println(add);
+							break;
+						}
+						sum = sum + add; 
+						System.out.print(add + " + ");
+					}
 			}
+			System.out.println("= " + sum);
+
+
 		}
-		System.out.println(" = " + sum);
-
-
-	}
 
 }

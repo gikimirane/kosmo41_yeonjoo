@@ -4,18 +4,20 @@ public class Quiz9 {
 		
 		int nNumber = 1;
 		int sum = 0;
+		
+		System.out.println("1ë¶€í„° 100ì‚¬ì´ì˜ ì§ìˆ˜ëŠ” ");
 
 		do {
 		      if((nNumber % 2 ) == 0)
 		      {
-		System.out.print(nNumber);
-		sum = sum + nNumber;
+		    	 System.out.println(nNumber + " ");
+		    	 sum = sum + nNumber;
 		      }
 		           nNumber++;
 
 		}while(nNumber <= 100);
 
-		System.out.println("1ºÎÅÍ 100 »çÀÌ Â¦¼öÀÇ ÇÕÀº" + sum);
+		System.out.println("1 ë¶€í„° 100 ì‚¬ì´ ì§ìˆ˜ì˜ í•©ì€ " + sum);
 
 
 
