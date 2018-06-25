@@ -1,6 +1,6 @@
 class Calc
-{
-	int add(int a, int b)
+{   //설정명은 동일하지만 내용이 다른 것을 오버로딩이라고 함
+	int add(int a, int b) 
 	{
 		return a + b; 
 	}
