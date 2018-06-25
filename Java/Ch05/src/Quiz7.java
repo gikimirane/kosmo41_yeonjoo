@@ -6,7 +6,7 @@ public class Quiz7 {
 	
 		Scanner s = new Scanner(System.in);
 
-		char InputName = 0;
+		int InputName = 0;
 		int InputKor = 0, InputEng = 0, InputMath = 0;
 
 
