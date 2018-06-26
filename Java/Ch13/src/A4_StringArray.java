@@ -1,6 +1,7 @@
  class A4_StringArray {
 
 	public static void main(String[] args) {
+		
 		String[] sr = new String[7];
 		
 		sr[0] = new String("Java");
