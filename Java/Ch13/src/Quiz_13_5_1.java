@@ -6,6 +6,7 @@ public class Quiz_13_5_1 {
 	{
 		
 		Scanner s = new Scanner(System.in);
+		
 		System.out.println("단어를 입력해주세요");
 		String word = s.next();
 		
@@ -22,7 +23,7 @@ public class Quiz_13_5_1 {
 		for(int i=0; i<nMax2; i++)
 			if(!array_word[i].equals(array_word[nMax1-1-i]))
 			{
-				System.out.println("회문이 아닙니다." + i + ":");
+				System.out.println("회문이 아닙니다.");
 				return;
 			}
 	
