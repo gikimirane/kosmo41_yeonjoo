@@ -3,8 +3,6 @@
 
 // class AAA(서브*자식클래스) extends BBB(슈퍼*부모클래스)
 
-// 슈퍼클래스에 담긴 내용은 공통적인 요소의 정보를 입력해 놓음
-
 class Book
 {
 	String title;

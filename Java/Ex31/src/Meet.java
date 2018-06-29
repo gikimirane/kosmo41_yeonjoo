@@ -6,19 +6,19 @@
 
 // 인터페이스 사용 이유 : "함수"의 구현을 강제 구현 객체의 같은 "동작"을 보장
 	
-interface Greet 
+interface Greet     // 1. 인터페이스 (요소 1) 
 {
 	void greet();
-}					// 1. 인터페이스 1
-					//    인터페이스 2
-interface Talk 
+}					
+					
+interface Talk      //    인터페이스 (요소 2)
 {
 	void talk();
 }
 class Morning implements Greet,Talk 
 {
-	public void greet()					// 2. 인터페이스를 상속받을 때 
-	{									//    Greet,Talk 메서드를 오버라이딩 해야만 함
+	public void greet()					// 2. 인터페이스 요소1,2를 상속받을 때 
+	{									//    Greet,Talk 메서드를 두개 모두 오버라이딩 해야만 함
 		System.out.println("오하요!");  
 	}
 	
