@@ -1,10 +1,15 @@
+//
+// 리터럴 : 자료형을 기반으로 표현 되는 상수를 의미
+//
+// 정수는 무조건 'int'형으로 인식하기로 약속되어 있음
 
 public class IntegerLiterals {
 
 	public static void main(String[] args) {
-		int num1 = 123;
-		int num2 = 0123;
-		int num3 = 0x123;
+		
+		int num1 = 123;     // 10진수 표현
+		int num2 = 0123;    // 8진수 표현
+		int num3 = 0x123;   // 16진수 표현  
 		
 		System.out.println("num1: " + num1);
 		System.out.println("num2: " + num2);

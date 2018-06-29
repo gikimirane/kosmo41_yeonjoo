@@ -1,3 +1,6 @@
+//
+// boolean (true / false) 로 출력
+//
 
 public class Boolean {
 
@@ -10,6 +13,7 @@ public class Boolean {
 		
 		int num1 = 10;
 		int num2 = 20;
+		
 		System.out.println(num1 < num2);
 		System.out.println(num1 > num2);
 	}

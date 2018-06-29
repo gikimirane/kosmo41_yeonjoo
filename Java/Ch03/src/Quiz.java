@@ -3,28 +3,27 @@ import java.util.Scanner;
 public class Quiz {
 
 	public static void main(String[] args) {
+		
 		Scanner s = new Scanner(System.in);
 		
-		System.out.println("Ã¹ ¹øÂ° ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		System.out.println("'1ë²ˆì§¸' ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		
 		int num1 = s.nextInt();
 		
-		System.out.println("µÎ ¹øÂ° ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		System.out.println("'2ë²ˆì§¸' ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		
 		int num2 = s.nextInt();
 		
-		System.out.println("´ç½ÅÀÌ ÀÔ·ÂÇÑ ¼ıÀÚ´Â" + num1 + "," + num2 + " ÀÔ´Ï´Ù.");
+		System.out.println("ì…ë ¥í•˜ì‹  ìˆ«ìì— ëŒ€í•œ ì‚¬ì¹™ì—°ì‚° ê²°ê³¼ ì…ë‹ˆë‹¤.");
 		
-		System.out.println("-----------------------------------------");
-		
-		System.out.println("ÀÔ·ÂÇÏ½Å ¼ıÀÚ¿¡ ´ëÇÑ »çÄ¢¿¬»ê °á°úÀÔ´Ï´Ù.");
+		System.out.println("-------------------------------------------");
 		
 		System.out.println("num1 + num2 = " + (num1 + num2));
 		System.out.println("num1 - num2 = " + (num1 - num2));
 		System.out.println("num1 * num2 = " + (num1 * num2));
 		System.out.println("num1 / num2 = " + (num1 / num2));
 		
-		System.out.println("-----------------------------------------");
+		System.out.println("-------------------------------------------");
 		
 	}
 

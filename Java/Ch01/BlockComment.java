@@ -1,3 +1,7 @@
+//
+// system.out.print의 '출력' 형태 1
+//
+
 /*
  파일이름 : BlockComment.java
  작성자 : 홍길동
@@ -10,8 +14,7 @@ class BlockComment
 	public static void main(String[] args)
 	{
 		/* 다음은 단순한 정수의 출력 */
-		System.out.println(7);
-		
+		System.out.println(7);   //정수출력 		
 		System.out.println(3.15);
 		System.out.println("3 + 5 = " + 8);
 		System.out.println(3.15+ "는 실수입니다.");

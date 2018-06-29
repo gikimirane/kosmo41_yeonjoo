@@ -1,3 +1,7 @@
+//
+// system.out.print의 '출력' 형태 3
+//
+
 // 파일이름 : LineComment.java
 // 작성자 : 홍길동
 // 작성일 : 2019년 7월 25일

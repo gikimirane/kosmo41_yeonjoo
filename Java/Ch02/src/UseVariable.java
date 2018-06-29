@@ -1,3 +1,6 @@
+//
+// 변수 선언
+//
 
 public class UseVariable {
 

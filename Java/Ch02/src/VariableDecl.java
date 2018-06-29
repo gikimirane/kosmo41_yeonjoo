@@ -1,3 +1,6 @@
+//
+// 실수 표현 'double'
+//
 
 public class VariableDecl {
 
