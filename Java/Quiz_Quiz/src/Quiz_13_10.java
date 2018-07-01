@@ -3,41 +3,73 @@ public class Quiz_13_10 {
 
 	public static void main(String[] args) {
 		
-		int[] ar = new int[4];
+		int [][] arr = new int [5][5];
 		
-		ar[0] = 1;
-		ar[1] = 2;
-		ar[2] = 3;
-		ar[3] = 4;
+		int num = 1;
 		
+		for(int i = 0; i < 4; i++)
+		{
+			for(int j = 0; j < 4; j++)
+			{
+				arr[i][j] = num;
+				num++;
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+			
+		}
+		System.out.println("------------");	
+	
+	 /*	for(int j = 0; j < 4; j++)
+		{
+			for(int i = 0; i < 4; i++)
+			{
+				arr[j][i] = num - 1;
+				num--;
+				System.out.print(arr[j][i] + " ");
+			}
+			System.out.println();
+			
+		}
+		System.out.println("------------");	*/
 	
 		
-		System.out.print(ar[0]+"   "+ar[1]+"   "+ar[2]+"   "+ar[3] + "\n");
-		System.out.print((ar[0]+4)+"   "+(ar[1]+4)+"   "+(ar[2]+4)+"   "+(ar[3]+4)+ "\n");
-		System.out.print((ar[0]+8)+"  "+(ar[1]+8)+"  "+(ar[2]+8)+"  "+(ar[3]+8)+ "\n");
-		System.out.print((ar[0]+12)+"  "+(ar[1]+12)+"  "+(ar[2]+12)+"  "+(ar[3]+12)+ "\n");
+		int num2 = 17;
+		
+		for(int j = 0; j < 4; j++)
+		{
+			for(int i = 0; i < 4; i++)
+			{
+				arr[i][j] = num2 - 1;
+				num2--;
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+			
+		}
+		System.out.println("------------");	
+		
+		int num3 = 5;
+		
+		for(int j = 3; j >= 0; j--)
+		{
+			for(int i = 3; i >= 0; i--)
+			{
+				//arr[i][j] = num3;
+				arr[j][i] = num3 - 1;
+				num3--;
+				System.out.print((arr[j][i] + 4) + " ");
+			}
+			System.out.println();
+			
+		}
+		System.out.println("------------");	
 	
-		System.out.println();
+	
+			
+		
+		
+	
 
-		System.out.print((ar[0]+12)+"   "+(ar[0]+8)+"   "+(ar[0]+4)+"   "+ar[0]+ "\n");
-		System.out.print((ar[1]+12)+"   "+(ar[1]+8)+"   "+(ar[1]+4)+"   "+(ar[1])+ "\n");
-		System.out.print((ar[2]+12)+"  "+(ar[2]+8)+"  "+(ar[2]+4)+"  "+(ar[2])+ "\n");
-		System.out.print((ar[3]+12)+"  "+(ar[3]+8)+"  "+(ar[3]+4)+"  "+(ar[3])+ "\n");
-	
-		System.out.println();
-		
-		System.out.print((ar[3]+12)+"   "+(ar[2]+12)+"   "+(ar[1]+12)+"   "+(ar[0]+12)+"\n");
-		System.out.print((ar[3]+8)+"  "+(ar[2]+8)+"  "+(ar[1]+8)+"  "+(ar[0]+8) + "\n");
-		System.out.print((ar[3]+4)+"  "+(ar[2]+4)+"  "+(ar[1]+4)+"  "+(ar[0]+4)+ "\n");
-		System.out.print(ar[3]+"  "+ar[2]+"  "+ar[1]+"  "+ar[0]+ "\n");
-	
-		System.out.println();
-		
-		System.out.print(ar[3]+"   "+(ar[3]+4)+"   "+(ar[3]+8)+"   "+(ar[3]+12)+"\n");
-		System.out.print(ar[2]+"   "+(ar[2]+4)+"   "+(ar[2]+8)+"   "+(ar[2]+12)+"\n");
-		System.out.print(ar[1]+"  "+(ar[1]+4)+"  "+(ar[1]+8)+"  "+(ar[1]+12)+"\n");
-		System.out.print(ar[0]+"  "+(ar[0]+4)+"  "+(ar[0]+8)+"  "+(ar[0]+12)+"\n");
-		
-	}
-
+}
 }

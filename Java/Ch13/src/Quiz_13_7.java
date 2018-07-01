@@ -35,7 +35,6 @@ public class Quiz_13_7 {
 			for(int j=0; j < 2; j++)
 			{
 				arr2[i][j] = num2;
-				num2++;
 			}
 		}
 		
