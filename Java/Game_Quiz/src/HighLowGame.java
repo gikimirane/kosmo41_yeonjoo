@@ -25,45 +25,32 @@ public class HighLowGame {
 				 
 				user = s.nextInt();
 			
-				if(com > user) 
-				{
-					System.out.println("노노노~ 내가 생각한 숫자보다 작아");	
-				}else if(com < user) 
-				{
-					System.out.println("노노노~ 내가 생각한 숫자보다 크다구");
-				
-				}else if(com == user) 
-				{
+				if(com > user) {
+					System.out.println("노노노~ 내가 생각한 숫자보다 작아");
+				}
+				if(com < user) {
+					System.out.println("노노노~ 내가 생각한 숫자보다 크다구");	
+				}
+				if(com == user) {
 					System.out.println(user + " 오~ 이런~ 정답을 맞춰 버렸군 ");
 					break;
 				}
 			
-				int j = 0;
-				if(j > 6) 
-				{
-					System.out.println("이제 기회는 " + ( j - 1 ) + "번 남았어 ");
-				}else if (j == 0) 
-				{
-					System.out.println("이제 기회가 없어 재도전 할건가? (y/n)");	
-						
-						String chan = s.nextLine();
-						if(chan.equals("y"))
-						{
-							System.out.println("다음에 또 보지");
-						    break;
-						}else if(chan.equals("n"))
-						{
-							continue;
-						}
+				if(i < 5) 
+					System.out.println("기회는 " + (6 - i - 1) + "번 밖에 남지 않았어");
+				else
+					System.out.println("내가 준 기회를 모두 써버렸군..");
+		     }
 			
-			
-			}	
-				
-					}
-						
+			System.out.println("한 게임 더 도전하겠나?? (y/n) ");
+			String str = s.next();
+			if (!str.equalsIgnoreCase("y")) {
+				System.out.println("좋은 승부였다. 다음에 또 보자구 ! ");
+				break;
 			}
 				
-				
+	     }
+					
 	}
 }
 
