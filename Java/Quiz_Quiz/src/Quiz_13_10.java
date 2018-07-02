@@ -20,20 +20,9 @@ public class Quiz_13_10 {
 		}
 		System.out.println("------------");	
 	
-	 /*	for(int j = 0; j < 4; j++)
-		{
-			for(int i = 0; i < 4; i++)
-			{
-				arr[j][i] = num - 1;
-				num--;
-				System.out.print(arr[j][i] + " ");
-			}
-			System.out.println();
-			
-		}
-		System.out.println("------------");	*/
 	
 		
+	
 		int num2 = 17;
 		
 		for(int j = 0; j < 4; j++)
@@ -48,26 +37,6 @@ public class Quiz_13_10 {
 			
 		}
 		System.out.println("------------");	
-		
-		int num3 = 5;
-		
-		for(int j = 3; j >= 0; j--)
-		{
-			for(int i = 3; i >= 0; i--)
-			{
-				//arr[i][j] = num3;
-				arr[j][i] = num3 - 1;
-				num3--;
-				System.out.print((arr[j][i] + 4) + " ");
-			}
-			System.out.println();
-			
-		}
-		System.out.println("------------");	
-	
-	
-			
-		
 		
 	
 

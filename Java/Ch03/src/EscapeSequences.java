@@ -1,4 +1,6 @@
-
+//
+// 출력 상태 확인
+//
 public class EscapeSequences {
 
 	public static void main(String[] args) {
