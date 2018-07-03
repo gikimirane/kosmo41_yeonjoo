@@ -33,7 +33,7 @@ public class Puzzle_3by3 {
 		System.out.printf("%2d",puzzle[x][y]);
 		} else if(user==2) {
 			puzzle2[x][y] = puzzle[x][1-y];
-			System.out.printf("%2d",puzzle[x][y])
+			System.out.printf("%2d",puzzle[x][y]);
 		}
 	}
 	}

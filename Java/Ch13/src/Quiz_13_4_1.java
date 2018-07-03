@@ -22,6 +22,7 @@ public class Quiz_13_4_1 {
 		
 		int addCnt = 0;
 		int evenCnt = 9;
+		
 		for(int i=0; i<num.length;i++)  // 어느 범주내에서 반복할 건지
 		{
 			System.out.println("숫자를 입력하세요");
