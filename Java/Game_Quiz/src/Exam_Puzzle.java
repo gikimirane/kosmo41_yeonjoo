@@ -32,45 +32,63 @@ public class Exam_Puzzle {
 		char user;
 		user = s.nextLine().charAt(0);  //전체 문자열중에 첫번째 글자만 사용 하겠다
 		
-	while(user!='k'){		
+			
 			if(user=='a') {
 				for(int i=0; i<3; i++) {
 					for(int j=0; j<3; j++) {
+
 						if((j-1) >= 0 && arr[i][j-1]=='x'){
 							arr[i][j-1] = arr[i][j];
 							arr[i][j] = 'x';
-						}						
+						}
 						for(i=0; i<3; i++) {
 							for(j=0; j<3; j++) {
 								System.out.print(arr[i][j] + "\t");
 							}
 							System.out.println();
 							System.out.println();
-	
+							break; 			
 						}
-					}
-					
-				}
-				
-			}else if(user=='s') {
+						
+		/* if(user=='s') {
 				for(int i=0; i<3; i++) {
 					for(int j=0; j<3; j++) {
+		
 						if((j+1)<= 2 && arr[i][j+1] =='x'){
 							arr[i][j+1] = arr[i][j];
 							arr[i][j] = 'x';
-						}						
+						}
+						for(i=0; i<3; i++) {
+							for(j=0; j<3; j++) {
+								System.out.print(arr[i][j] + "\t");
+							}
+							System.out.println();
+							System.out.println();
+							break;
+						}
 					}
+				
 				}
-			}else if(user=='w') {
+			}
+		 if(user=='w') {
 				for(int i=0; i<3; i++) {
 					for(int j=0; j<3; j++) {
 						if((i+1)<= 2 && arr[i+1][j] =='x'){
 							arr[i+1][j] = arr[i][j];
 							arr[i][j] = 'x';
-							}						
 						}
+						for(i=0; i<3; i++) {
+							for(j=0; j<3; j++) {
+								System.out.print(arr[i][j] + "\t");
+							}
+							System.out.println();
+							System.out.println();
+							break;
+						}
+					}
 				}
-			}else if(user=='z') {
+			}
+		 if(user=='z') {
 				for(int i=0; i<3; i++) {
 						for(int j=0; j<3; j++) {
 							if((i-1) >= 0 && arr[i-1][j]=='x'){
@@ -86,15 +104,18 @@ public class Exam_Puzzle {
 						}
 						System.out.println();
 						System.out.println();
-					}
-		}
-
-	
-	
-	}
-}
+						break;
+					} */
 		
 
+	
+					}
+
+		
+				}
+			}
+	}
+}
 		
 
 
