@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 // Quiz 03 02
 
 // 하나의 정수를 입력받아서 
@@ -6,7 +8,16 @@
 public class Quiz_03_02 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Scanner s = new Scanner(System.in);
+		
+		int num = 0;
+		
+		System.out.println("한 개의 정수를 입력하세요");
+		
+		num =s.nextInt();
+		
+		System.out.println("입력하신 정수에 대한 제곱의 수: " + (num*num));
 
 	}
 

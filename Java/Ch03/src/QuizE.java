@@ -5,19 +5,19 @@ import java.util.Scanner;
 		public static void main(String[] args) {
 			Scanner s = new Scanner(System.in);
 			
-			System.out.println("ÇÑ °³ÀÇ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+			System.out.println("í•œê°€ì§€ ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 			
 			int num = s.nextInt();
 			
-			System.out.println("´ç½ÅÀÌ ÀÔ·ÂÇÑ ¼ıÀÚ´Â " + num + " ÀÔ´Ï´Ù.");
+			System.out.println("ë‹¹ì‹ ì´ ì…ë ¥í•œ ìˆ«ìëŠ” " + num + "ì…ë‹ˆë‹¤.");
 			
 			System.out.println("----------------------------");
 			
-			System.out.println("´ç½ÅÀÌ ÀÔ·ÂÇÑ ¼ıÀÚÀÇ Á¦°öÀº ");
+			System.out.println("ë‹¹ì‹ ì´ ì…ë ¥í•œ ìˆ«ìì˜ ì œê³±ì€ ");
 			
 			int rv = num*num;
 			
-			System.out.println(rv + " ÀÔ´Ï´Ù.");
+			System.out.println(rv + " ï¿½Ô´Ï´ï¿½.");
 			
 			System.out.println("----------------------------");
 		}

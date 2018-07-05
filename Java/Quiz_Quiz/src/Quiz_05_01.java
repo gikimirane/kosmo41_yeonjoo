@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 // Quiz 05 01
 
 // 사용자로부터 계속해서 정수를 입력받는다.
@@ -7,8 +9,32 @@
 public class Quiz_05_01 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		Scanner s = new Scanner(System.in);
+		
+		int user = 0;
+		int sum = 0;
+		System.out.println("정수를 입력하세요");
+	
+// do ~ While 문 활용
+		
+ 		do {
+			user =s.nextInt();
+			sum = sum + user;
+		} while(user != 0);
+		System.out.println("입력하신 정수의 합은 : " + sum );
+		
+// while문 활용
+		
+//		while(true) {
+//			user = s.nextInt();
+//			sum = sum + user;
+//			if(user == 0 ) {
+//				System.out.println("입력하신 정수의 합은 : " + sum );
+//				break;
+//			}
+		
+		
 	}
 
 }

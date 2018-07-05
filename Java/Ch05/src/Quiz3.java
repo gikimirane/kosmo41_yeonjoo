@@ -3,9 +3,9 @@ public class Quiz3 {
 
 	public static void main(String[] args) {
 		
-		/* int result = 1;
+		int result = 1;
 		
-		System.out.println("7°ú 9ÀÇ ¹è¼ö¿¡ ÇØ´çÇÏ´Â ¼ö´Â ?");
+		System.out.println(" 1ì´ìƒ 100 ë¯¸ë§Œì˜ ì •ìˆ˜ ì¤‘ì—ì„œ 7ê³¼ 9ì˜ ë°°ìˆ˜ëŠ”? ");
 		
 		while(result < 100) {
 			if(((result % 7) == 0) || ((result % 9) == 0)) {
@@ -13,14 +13,14 @@ public class Quiz3 {
 				
 			}
 			result++;
-			} */
+			} 
 		
-		System.out.println("7°ú 9ÀÇ ¹è¼ö¿¡ ÇØ´çÇÏ´Â ¼ö´Â ?");
-		
-		for (int C=1; C < 100; C++) {
-			if ((C % 7) == 0 || (C % 9) == 0)
-				System.out.print( C + " " );
-		}
+//		System.out.println("1ì´ìƒ 100 ë¯¸ë§Œì˜ ì •ìˆ˜ ì¤‘ì—ì„œ 7ê³¼ 9ì˜ ë°°ìˆ˜ëŠ”?");
+//		
+//		for (int C=1; C < 100; C++) {
+//			if ((C % 7) == 0 || (C % 9) == 0)
+//				System.out.print( C + " " );
+//		}
 		
 	}
 

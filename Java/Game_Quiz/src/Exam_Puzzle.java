@@ -41,16 +41,17 @@ public class Exam_Puzzle {
 							arr[i][j-1] = arr[i][j];
 							arr[i][j] = 'x';
 						}
-						for(i=0; i<3; i++) {
-							for(j=0; j<3; j++) {
-								System.out.print(arr[i][j] + "\t");
-							}
-							System.out.println();
-							System.out.println();
-							break; 			
-						}
+			
+					}
+				}
+			}for(int i=0; i<3; i++) {
+				for(int j=0; j<3; j++) {
+					System.out.print(arr[i][j] + "\t");
+				}
+				System.out.println();
+				System.out.println();
 						
-		/* if(user=='s') {
+			}if(user=='s') {
 				for(int i=0; i<3; i++) {
 					for(int j=0; j<3; j++) {
 		
@@ -58,37 +59,32 @@ public class Exam_Puzzle {
 							arr[i][j+1] = arr[i][j];
 							arr[i][j] = 'x';
 						}
-						for(i=0; i<3; i++) {
-							for(j=0; j<3; j++) {
-								System.out.print(arr[i][j] + "\t");
-							}
-							System.out.println();
-							System.out.println();
-							break;
-						}
 					}
-				
 				}
-			}
-		 if(user=='w') {
+			}for(int i=0; i<3; i++) {
+				for(int j=0; j<3; j++) {
+					System.out.print(arr[i][j] + "\t");
+				}
+				System.out.println();
+				System.out.println();
+			}if(user=='w') {
 				for(int i=0; i<3; i++) {
 					for(int j=0; j<3; j++) {
 						if((i+1)<= 2 && arr[i+1][j] =='x'){
 							arr[i+1][j] = arr[i][j];
 							arr[i][j] = 'x';
 						}
-						for(i=0; i<3; i++) {
-							for(j=0; j<3; j++) {
-								System.out.print(arr[i][j] + "\t");
-							}
-							System.out.println();
-							System.out.println();
-							break;
-						}
+						
 					}
 				}
-			}
-		 if(user=='z') {
+			}for(int i=0; i<3; i++) {
+				for(int j=0; j<3; j++) {
+					System.out.print(arr[i][j] + "\t");
+				}
+				System.out.println();
+				System.out.println();
+				
+			}if(user=='z') {
 				for(int i=0; i<3; i++) {
 						for(int j=0; j<3; j++) {
 							if((i-1) >= 0 && arr[i-1][j]=='x'){
@@ -97,24 +93,17 @@ public class Exam_Puzzle {
 							}						
 						}
 					}
-			}
-					for(int i=0; i<3; i++) {
-						for(int j=0; j<3; j++) {
-							System.out.print(arr[i][j] + "\t");
+			}for(int i=0; i<3; i++) {
+					for(int j=0; j<3; j++) {
+						System.out.print(arr[i][j] + "\t");
 						}
 						System.out.println();
 						System.out.println();
-						break;
-					} */
+					} 
 		
-
+		}
 	
-					}
 
-		
-				}
-			}
-	}
 }
 		
 

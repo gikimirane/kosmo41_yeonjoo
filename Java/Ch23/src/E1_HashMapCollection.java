@@ -14,8 +14,6 @@ class E1_HashMapCollection {
 		map.put(23, "Martin");
 		
 		//데이터 탐색
-		System.out.println("23번: " + map.get(23) + '\t'+ "37번: " + map.get(37)+ '\t' + "45번: " + map.get(45)+ '\t');
-		
 		System.out.println("23번: " + map.get(23));
 		System.out.println("37번: " + map.get(37));
 		System.out.println("45번: " + map.get(45));

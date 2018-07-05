@@ -5,17 +5,17 @@ import java.util.Scanner;
 		public static void main(String[] args) {
 			Scanner s = new Scanner(System.in);
 			
-			System.out.println("µÎ °³ÀÇ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+			System.out.println("ë‘ ê°œì˜ ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 			
 			int num1 = s.nextInt();
 			int num2 = s.nextInt();
 			
-			System.out.println("´ç½ÅÀÌ ÀÔ·ÂÇÑ ¼ıÀÚ´Â "+ num1 + "," + num2 + "ÀÔ´Ï´Ù.");
+			System.out.println("ì…ë ¥í•˜ì‹œëŠ” ìˆ«ìëŠ” "+ num1 + "," + num2 + "ì…ë‹ˆë‹¤");
 			
 			System.out.println("-----------------------------------------");
 			
-			System.out.println(num1 + " ³ª´©±â " + num2 + " ÀÇ ¸òÀº " + (num1 / num2) + "ÀÔ´Ï´Ù.");
-			System.out.println(num1 + " ³ª´©±â " + num2 + " ÀÇ ³ª¸ÓÁö´Â " + (num1 % num2) + "ÀÔ´Ï´Ù.");
+			System.out.println(num1 + " ë‚˜ëˆ„ê¸° " + num2 + " ì˜ ëª«ì€ " + (num1 / num2) + "ì…ë‹ˆë‹¤");
+			System.out.println(num1 + " ë‚˜ëˆ„ê¸° " + num2 + " ì˜ ë‚˜ë¨¸ì§€ëŠ” " + (num1 % num2) + "ì…ë‹ˆë‹¤");
 			
 			System.out.println("-----------------------------------------");
 			

@@ -7,8 +7,15 @@
 public class Quiz_05_03 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+	 System.out.println("1이상 100미만의 정수중에서 7과 9의 배수를 출력하시오");
+	 System.out.println();
+		
+	 for(int i=1;i<100;i++) {
+			if((i % 7) == 0 || (i % 9) == 0) {		
+				System.out.print(i + " ");
+			}
+
+		}
 	}
-
 }
