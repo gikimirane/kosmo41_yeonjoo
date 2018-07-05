@@ -51,7 +51,8 @@ public class Exam_Puzzle {
 				System.out.println();
 				System.out.println();
 						
-			}if(user=='s') {
+			}
+			if(user=='s') {
 				for(int i=0; i<3; i++) {
 					for(int j=0; j<3; j++) {
 		
@@ -67,7 +68,8 @@ public class Exam_Puzzle {
 				}
 				System.out.println();
 				System.out.println();
-			}if(user=='w') {
+			}continue;
+			if(user=='w') {
 				for(int i=0; i<3; i++) {
 					for(int j=0; j<3; j++) {
 						if((i+1)<= 2 && arr[i+1][j] =='x'){
@@ -84,7 +86,8 @@ public class Exam_Puzzle {
 				System.out.println();
 				System.out.println();
 				
-			}if(user=='z') {
+			}continue;
+			if(user=='z') {
 				for(int i=0; i<3; i++) {
 						for(int j=0; j<3; j++) {
 							if((i-1) >= 0 && arr[i-1][j]=='x'){
