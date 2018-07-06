@@ -1,5 +1,11 @@
 package com.study.pattern.factory1;
 
+/*
+ * simple Factory Pattern 
+ * 6. 출력
+ */
+
+
 public class Main {
 
 	public static void main(String[] args) {

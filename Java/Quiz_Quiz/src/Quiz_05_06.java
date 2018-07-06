@@ -16,15 +16,6 @@ public class Quiz_05_06 {
 		int user = 0;
 		
 		user = s.nextInt();
-		
-		for(int i=1;i<=9;i++) {
-			for(int j>;j<=9;j++) {
-			
-				if(user == i) {	
-					System.out.println(i + " x " + j + " = " + ( i * j ) );
-				}
-			}
-		}
 	}
+	
 }
-
