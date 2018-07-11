@@ -13,6 +13,7 @@ public class Main {
 		character.fire();
 		
 		// 동일 목적 알고리즘의 선택 적용 문제
+		// 전략적으로 무기를 선택
 		character.setwebpon(new Arrow()); //fire에서 선택해서 적용함
 		character.fire();
 		
