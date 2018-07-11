@@ -1,4 +1,4 @@
-package com.study.pattern.strategy1;
+package com.study.pattern02.strategy1;
 
 public class BObj {
 	

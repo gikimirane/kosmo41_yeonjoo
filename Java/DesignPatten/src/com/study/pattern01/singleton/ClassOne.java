@@ -1,4 +1,4 @@
-package com.study.pattern.singleton;
+package com.study.pattern01.singleton;
 
 public class ClassOne {
 

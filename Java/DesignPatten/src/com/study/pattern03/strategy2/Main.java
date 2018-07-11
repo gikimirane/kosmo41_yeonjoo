@@ -1,4 +1,4 @@
-package com.study.pattern.strategy2;
+package com.study.pattern03.strategy2;
 /*
  * Strategy Pattern : 전략 패턴
  * ㄴ 여러 알고리즘을 하나의 추상적인 접근점을 만들어 

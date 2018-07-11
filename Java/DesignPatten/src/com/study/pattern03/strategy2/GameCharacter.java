@@ -1,8 +1,8 @@
-package com.study.pattern.strategy2;
+package com.study.pattern03.strategy2;
 
 public class GameCharacter {
 	
-	// 접근점 (인터페이스가 각종문기의 단일 통로)
+	// 접근점 (인터페이스가 각종무기의 단일 통로)
 	private Weapon weapon;
 	
 	// 무기 교환이 가능하도록 함

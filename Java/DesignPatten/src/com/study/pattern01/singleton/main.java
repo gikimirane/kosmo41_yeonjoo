@@ -1,4 +1,4 @@
-package com.study.pattern.singleton;
+package com.study.pattern01.singleton;
 /*
  * singleton pattern은 인스턴스가 사용될 때에 똑같은 인스턴스를 만들어 내는 것이 아니라, 
  * 동일 인스턴스를 사용하게끔 하는 것이 기본 전략이다. 
