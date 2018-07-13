@@ -5,7 +5,7 @@
  * 3. interface 생성 
  */
 
-package com.study.pattern.factory1;
+package com.study.pattern03.simple_factory;
 
 public interface Unit {
 	void move();  //무브라는 행동을 넣고싶음

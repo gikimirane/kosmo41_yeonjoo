@@ -18,16 +18,16 @@ public class MultiServerQ {
 		
 		public void init() {
 		
-		try {
-			serverSocket = new ServerSocket(9999); //9999포트로 서버소켓 객체생성
-			System.out.println("서버가 시작 되었습니다.");
+			try {
+				serverSocket = new ServerSocket(9999); //9999포트로 서버소켓 객체생성
+				System.out.println("서버가 시작 되었습니다.");
 			
 			while(true) {
 				socket = serverSocket.accept();
 				System.out.println(socket.getInetAddress()+ ":"+socket.getPort());
 				
-				Thread msr = new MultiServerT(socket); //쓰레드 생성
-				msr.start(); //쓰레드 시동
+				Thread mst = new MultiServerT(socket); //쓰레드 생성
+				mst.start(); //쓰레드 시동
 			}
 
 		} catch (Exception e) {
@@ -41,31 +41,39 @@ public class MultiServerQ {
 		}
 	}
 		
-	
-	public void unicast(String msg,int i) {
-	
-		List clientMap = new ArrayList();
-		List<String> clientmap = new ArrayList<String>();
+///////////////////// + 추가된 부분 + ////////////////////////
 		
-		try {
-			PrintWriter it_out2 = (PrintWriter) clientMap.get(i);
-			it_out2.println(msg);
-			it_out2.flush();
-		} catch (Exception e) {
-		System.out.println("xxx");
-		}
-		}
-	// 접속된 모든 클라이언트들에게 메시지를 전달
-	public void sendAllMsg(String msg) {
+		// 접속자 리스트 보내기
+		public void list(PrintWriter out) {
+			// 츨력 스트림이 순차적으로 얻어와서 해당 메시지를 출력한다.
+			Iterator<String> it = clientMap.keySet().iterator();
+			String msg = "사용자 리스트 [";
+			while(it.hasNext()) {
+				msg += (String)it.next() + ",";
+			}
+			msg = msg.substring(0,msg.length()-1)+"]";
+			out.println(msg);
+		}			
+
+///////////////////// + 추가된 부분 + ///////////////////////
+
+		// 접속된 모든 클라이언트들에게 메시지를 전달
+	public void sendAllMsg(String user,String msg) {
 			
 		// 출력스트림을 순차적으로 얻어와서 해당 메시지를 출력한다.
-		Iterator it = clientMap.keySet().iterator();
+		Iterator<String> it = clientMap.keySet().iterator();
 	
 		while(it.hasNext()) {
 			try {
-				
 				PrintWriter it_out = (PrintWriter) clientMap.get(it.next());
-				it_out.println(msg);
+// 추가			
+				
+				if(user.equals(""))
+					it_out.println(msg);
+	
+				else
+					it_out.println("["+user+"]"+msg);
+// 추가
 			} catch (Exception e) {
 				System.out.println("예외1:" +e);
 			}
@@ -89,8 +97,7 @@ public class MultiServerQ {
 		Socket socket;
 		PrintWriter out = null;
 		BufferedReader in = null;
-		
-		
+			
 		//생성자
 		public MultiServerT(Socket socket) {
 			this.socket = socket;
@@ -103,49 +110,47 @@ public class MultiServerQ {
 			}
 		}
 		
-		
+		//쓰레드를 사용하기 위해서 run()메서드 재정의
 		@Override
 		public void run() {
 
-			String name = ""; 
+//			String s ="";
+			String name = ""; // 클라이언트로부터 받은 이름을 저장할 변수
 			try {
-				name = in.readLine(); 
+				name = in.readLine(); // 클라이언트에서 처음으로 보내는 메시지
+				 					  // 클라이언트가 사용할 이름
 				
-				sendAllMsg(name + "님이 입장하셨습니다.");
-				
-				clientMap.put(name,out); 
+				sendAllMsg("",name + "님이 입장하셨습니다.");
+				// 현재 객체가 가지고있는 소켓을 제외하고 다른 소켓(클라이언트)들에게 접속을 알림
+				clientMap.put(name,out); // 해쉬맵에 키를 name으로 출력스트림 객체를 저장
 				System.out.println("현재 접속자 수는" + clientMap.size()+ "명 입니다.");
 				
-				
-				
-			/*	if (msg.indexof("\to") >=0 ) {
-					name = msg.substring(msg.lastIndexOf("<")+1,msg.lastIndexOf(">"));
-					for(int i = 0; i System.out.println("name:"+list.elementAt(i)+"//"+msg.substring(msg.indexOf("<")+1,msg.indexOf(">"))+"->"+ name);
-							if(name.equals(String)list.elementAt(i) == true) {
-								cnt = i;
-							}
-							}
-							System.out.println("cnt ="+ cnt);
-							unicast(msg,cnt);
-				}*/
-			
-			
-			
+				// 입력스트림이 null이 아니면 반복
 				String s ="";
+			
 				while (in!=null) {
-					s= in.readLine();
+					s = in.readLine();
 					System.out.println(s);
-					if(s.equals("q") || s.equals("Q") )
-						break;
-					sendAllMsg(s);
+
+//					if(s.equals("q") || s.equals("Q") )
+//						break;
+					
+// 추가 클라이언트가 자기자신이 친내용을 출력하는 곳
+					
+					if(s.equals("/list"))
+						list(out);
+					
+					else
+						sendAllMsg(name,s);
 				}
+// 추가				
 				} catch (Exception e) {
 					System.out.println("예외3:" + e);
 				} finally {
 				// 예외가 발생할때 퇴장 해쉬맵에서 해당 데이터 제거
 				// 보통 종료하거나 나가면 java.net.SocketException: 예외발생
 					clientMap.remove(name);
-					sendAllMsg(name + "님이 퇴장하셨습니다.");
+					sendAllMsg("",name + "님이 퇴장하셨습니다.");
 					System.out.println("현재 접속자 수는 "+clientMap.size()+"명 입니다.");
 					
 					try {
@@ -161,4 +166,3 @@ public class MultiServerQ {
 	
 	}
 }
-

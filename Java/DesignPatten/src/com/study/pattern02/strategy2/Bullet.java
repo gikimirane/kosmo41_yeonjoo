@@ -1,4 +1,4 @@
-package com.study.pattern03.strategy2;
+package com.study.pattern02.strategy2;
 /* 
  * 2. 공격 설정 2
  */

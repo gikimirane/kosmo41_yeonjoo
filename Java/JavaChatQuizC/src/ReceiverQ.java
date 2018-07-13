@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
+// 서버에서 오는 내용을 받는 역할만 함
 
 // 서버로 메시지를 전송하는 클래스
 public class ReceiverQ extends Thread {
@@ -28,15 +29,7 @@ public class ReceiverQ extends Thread {
 	public void run() {
 		while (in!=null) {
 			try {
-				/*
-				 * String s = s.nextLine();
-					if(s.equals("q")||s.equals("Q") ) {
-						break;
-					} else {
-						System.out.println("Thread Receive : " + s);
-					}
-				 */
-				System.out.println("Thread Receive : " + in.readLine());
+			System.out.println(">>" + in.readLine());
 			} catch(java.net.SocketException ne) {
 				break;
 			} catch (Exception e) {

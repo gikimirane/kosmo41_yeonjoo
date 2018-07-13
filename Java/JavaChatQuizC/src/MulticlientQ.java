@@ -22,9 +22,11 @@ public class MulticlientQ {
 			receiver.start();
 			
 			// 사용자로부터 얻은 문자열을 서버로 전송해주는 역할을 하는 쓰레드
-			Thread sender = new SenderQ(socket,s_name);
-			sender.start();
+//			Thread sender = new SenderQ(socket,s_name);
+//			sender.start();
 			
+			new ChatWin(socket,s_name);
+	
 		} catch (Exception e) {
 			System.out.println("예외[MultiClient class]:" + e);
 		}

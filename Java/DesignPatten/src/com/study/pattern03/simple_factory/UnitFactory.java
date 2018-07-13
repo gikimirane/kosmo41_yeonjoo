@@ -1,4 +1,4 @@
-package com.study.pattern.factory1;
+package com.study.pattern03.simple_factory;
 /*
  * simple Factory Pattern 
  * 5. 구체적인 생성 방법을 지정하여 생성
