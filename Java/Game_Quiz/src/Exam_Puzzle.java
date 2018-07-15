@@ -68,7 +68,7 @@ public class Exam_Puzzle {
 				}
 				System.out.println();
 				System.out.println();
-			}continue;
+			}
 			if(user=='w') {
 				for(int i=0; i<3; i++) {
 					for(int j=0; j<3; j++) {
@@ -86,7 +86,7 @@ public class Exam_Puzzle {
 				System.out.println();
 				System.out.println();
 				
-			}continue;
+			}
 			if(user=='z') {
 				for(int i=0; i<3; i++) {
 						for(int j=0; j<3; j++) {
