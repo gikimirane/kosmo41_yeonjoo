@@ -24,15 +24,7 @@ public class Quiz_05_01 {
 		} while(user != 0);
 		System.out.println("입력하신 정수의 합은 : " + sum );
 		
-// while문 활용
-		
-//		while(true) {
-//			user = s.nextInt();
-//			sum = sum + user;
-//			if(user == 0 ) {
-//				System.out.println("입력하신 정수의 합은 : " + sum );
-//				break;
-//			}
+
 		
 		
 	}

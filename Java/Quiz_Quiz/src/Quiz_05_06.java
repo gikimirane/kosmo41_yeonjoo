@@ -7,20 +7,32 @@ import java.util.Scanner;
 public class Quiz_05_06 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
 		Scanner s = new Scanner(System.in);
 		
-		System.out.println("정수를 한 개를 입력하세요");
+			int user = 0;
 		
-		int user = 0;
+		System.out.println("정수 하나를 입력하세요");
 		
-		user = s.nextInt();
-		
-		for(int i = 9; i <= 2; i--) 
-			{
-				System.out.println(user + "x" + i + "=" + (user*i));
+			user = s.nextInt();
+			
+			System.out.println("입력하신 정수에 해당하는 구구단 (역순)");
+			
+			//포카리 작품
+			
+			for(int i = 9; i>=1; i--) {
+				System.out.println(user + " * " + i+" = " +(user*i));
 			}
-		
+
 	}
 }
+/*
+for(int i=9; i>=2; i--) {
+for(int j=9; j>=1; j--) {
+	if(user == i) {
+		
+		System.out.println(i + " x " + j + " = " + (i*j));
+}
+}
+}
+*/

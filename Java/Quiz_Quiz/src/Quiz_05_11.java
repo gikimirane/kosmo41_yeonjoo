@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 // Quiz 05 11
 
 // 정수 하나를 입력받은후 그 수의
@@ -8,8 +10,27 @@
 public class Quiz_05_11 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Scanner s = new Scanner(System.in);
 
+		int user = 0;
+		int result = 1;
+		
+		System.out.println("정수 하나를 입력하세요");
+		
+
+		user = s.nextInt();
+		
+		while(user>=2){			
+					result = result * user;
+					
+					System.out.print(user);	
+					System.out.print(" x ");
+					user--;	
+					
+		}System.out.println("1 = " + result);
+		
+		
 	}
 
 }

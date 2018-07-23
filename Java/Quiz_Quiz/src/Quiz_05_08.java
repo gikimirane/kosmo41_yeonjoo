@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 // Quiz 05 08
 
 // 사용자로부터 5개의 정수를 입력받아서 합을 구하여 출력한다.
@@ -7,7 +9,17 @@
 public class Quiz_05_08 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		Scanner s = new Scanner(System.in);
+		
+		int user = 0;
+		
+		System.out.println("5개의 정수를 입력하세요");
+		
+		user = s.nextInt();
+	
+		
+		
 
 	}
 

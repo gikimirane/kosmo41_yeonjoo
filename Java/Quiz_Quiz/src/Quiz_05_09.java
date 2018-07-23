@@ -5,8 +5,18 @@
 public class Quiz_05_09 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+		int i = 0;
+		int sum = 0;
+	
+		do {
+			i++;
+			if(i%2 == 0) {
+				sum = sum + i;
+			}
+		}while(i <= 100);
+		
+		System.out.println("1 부터 100 까지 정수중에서 짝수의 합은 : " + sum );
 	}
 
 }
