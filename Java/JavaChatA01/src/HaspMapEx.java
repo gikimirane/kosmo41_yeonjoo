@@ -6,8 +6,10 @@ import java.util.Set;
 public class HaspMapEx {
 
 	public static void main(String[] args) {
+		
 		//Map<키,밸류> -> 키는 중복을 허용하지 않음
 		//키가 중복인 경우 값을 변경
+		
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("만화", "마녀배달부 키키") ;
 		map.put("호러", "스크림") ;
