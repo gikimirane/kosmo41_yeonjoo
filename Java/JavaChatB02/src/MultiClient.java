@@ -13,7 +13,7 @@ public class MultiClient {
 		BufferedReader in = null;
 		
 		try {
-			//String ServerIP = "localhost";
+			String ServerIP = "localhost";
 			Socket socket = new Socket(args[0],9999); //소켓 객체 생성
 			System.out.println("서버와 연결이 되었습니다...");
 			

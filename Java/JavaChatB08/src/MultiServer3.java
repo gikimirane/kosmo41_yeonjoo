@@ -26,16 +26,22 @@ public class MultiServer3 {
 			socket = serverSocket.accept();
 			System.out.println(socket.getInetAddress() + ":" + socket.getPort());
 			
+			// 소켓 생성 > 소켓 허용( IP주소,포트 받기 )
+			
 			out =new PrintWriter(socket.getOutputStream(),true);
 			in = new BufferedReader(new InputStreamReader(
 										socket.getInputStream() ));
+			
+			// 소켓 내용 추출 
+			
 			while (in != null) {
 				s = in.readLine();
 				if(s == null)
 					break;
 				if(s.equals("q")||s.equals("Q") )
 					break;
-					
+				
+				// 사용자 입력 값이 혹시 Null이거나 q 일때는 break
 				System.out.println(s);
 				//out.println(s);
 				sendAllMsg(s);

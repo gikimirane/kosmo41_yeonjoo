@@ -40,5 +40,7 @@ public class Receiver3 extends Thread {
 			System.out.println("예외3 :"+ e);
 		}
 	}
-
 }
+
+// 자바에서 this는 자기 자신을 말한다.
+// this.멤버변수 / 메소드 자신이 가지고 있는 변수/메소드

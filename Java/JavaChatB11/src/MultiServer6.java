@@ -12,7 +12,7 @@ public class MultiServer6 {
 		public MultiServer6 () {
 			// 클라이언트의 출력스트림을 저장할 해쉬맵 생성
 			clientMap = new HashMap<String,PrintWriter>();
-			//해쉬맵 동기화 설정
+			//해쉬맵 동기화 설정 (하나가 사용시 다른 하나는 대기 하도록)
 			Collections.synchronizedMap(clientMap);
 		}
 		

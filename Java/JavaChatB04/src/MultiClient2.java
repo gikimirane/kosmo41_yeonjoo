@@ -32,7 +32,7 @@ public class MultiClient2 {
 			
 			while(out != null) {
 				try {
-					// 입력
+					// 입력 
 					if(in!=null) {
 						System.out.println("Receive : " + in.readLine());
 					}

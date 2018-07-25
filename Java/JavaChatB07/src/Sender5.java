@@ -12,6 +12,7 @@ public class Sender5 extends Thread {
 	public Sender5(Socket socket,String name)
 	{
 		this.socket = socket;
+		
 		try {
 			out = new PrintWriter(this.socket.getOutputStream(),true);
 			this.name = name;
@@ -24,8 +25,8 @@ public class Sender5 extends Thread {
 	public void run() {
 		
 		Scanner s = new Scanner(System.in);
-			
-		try {
+	
+		 try {
 			// 서버에 입력한 사용자이름을 보내준다.
 			out.println(name);
 			
@@ -49,7 +50,7 @@ public class Sender5 extends Thread {
 			
 		} catch (Exception e) {
 			System.out.println("예외s2:"+ e);
-		}
+		} 
 
 	}
 
