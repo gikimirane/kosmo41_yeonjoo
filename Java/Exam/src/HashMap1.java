@@ -19,7 +19,7 @@ public class HashMap1 {
 		testMap.put("3번 댕댕이", "모모");
 		
 		for(int i = 1; i <= testMap.size(); i++) {
-			System.out.println(testMap.get((i + "번 댕댕이")));
+			System.out.println(testMap.get((i + "번 댕댕이" )));
 		}
 	}
 

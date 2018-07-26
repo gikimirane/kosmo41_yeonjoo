@@ -71,6 +71,7 @@ public class MultiServer3 {
 				System.out.println("예외:" + e);
 			}
 		}
+		
 		public static void main(String[] args)
 		{
 			init();

@@ -27,6 +27,7 @@ public class ThreadMain {
 	static class ThreadSub extends Thread {
 	
 		int nNum;
+		
 		public ThreadSub(int num)
 		{
 		this.nNum = num;

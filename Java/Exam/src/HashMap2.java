@@ -12,7 +12,7 @@ public class HashMap2 {
 			Collections.synchronizedMap(testMap);
 	
 			Iterator it = testMap.keySet().iterator();
-			
+				
 			for(int i = 1; i <= testMap.size(); i++) {
 				System.out.println(testMap.get((i)));
 			}

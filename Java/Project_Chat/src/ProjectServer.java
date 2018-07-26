@@ -80,7 +80,7 @@ public class ProjectServer {
 			try {
 				name = in.readLine();
 
-				sendAllMsg("["+ name + "]님 입장 ");
+				sendAllMsg("[ "+ name + " ]님, 입장 ");
 
 				clientMap.put(name, out);
 				System.out.print("현재 접속자 는 [ " + name + " ]님 이고,");

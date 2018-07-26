@@ -7,6 +7,7 @@ import java.net.Socket;
 public class MultiServer {
 
 	public static void main(String[] args) {
+		
 		ServerSocket serverSocket = null;
 		Socket socket = null;
 		PrintWriter out = null;
@@ -36,7 +37,8 @@ public class MultiServer {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			try {
 				in.close();
 				out.close();

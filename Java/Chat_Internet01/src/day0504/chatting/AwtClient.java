@@ -195,10 +195,10 @@ public class AwtClient extends Frame implements ActionListener, Runnable {
 		
 	}
 	
-	public static void main(String[] args) {
+	/* public static void main(String[] args) {
 	 
 		// new AwtServer("Frame 기본창")
 	
-	} 
+	} */
 
 }

@@ -2,14 +2,14 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class MultiServer6 {
+public class MultiServer7 {
 
 	ServerSocket serverSocket = null;
 	Socket socket = null;
 	Map<String, PrintWriter> clientMap;
 
 	// 생성자
-	public MultiServer6() {
+	public MultiServer7() {
 		// 클라이언트의 출력스트림을 저장할 해쉬맵 생성
 		clientMap = new HashMap<String, PrintWriter>();
 		// 해쉬맵 동기화 설정 (하나가 사용시 다른 하나는 대기 하도록)
@@ -41,8 +41,30 @@ public class MultiServer6 {
 		}
 	}
 
+
+	public void list(PrintWriter out) {
+
+		Iterator<String> it = clientMap.keySet().iterator();
+		String msg = "사용자 리스트 [ ";
+		while (it.hasNext()) {
+			msg += (String) it.next() + ",";
+		}
+		msg = msg.substring(0, msg.length() - 1) + " ] ";
+		out.println(msg);
+	}
+
+	public void whisper(PrintWriter wp) {
+		
+		Iterator<String> it = clientMap.keySet().iterator();
+		
+		String whis = "님 귓속말";
+		
+		
+			
+		}
+	
 	// 접속된 모든 클라이언트들에게 메시지를 전달
-	public void sendAllMsg(String msg) {
+	public void sendAllMsg(String user, String msg) {
 
 		// 출력스트림을 순차적으로 얻어와서 해당 메시지를 출력한다.
 		Iterator it = clientMap.keySet().iterator();
@@ -50,7 +72,10 @@ public class MultiServer6 {
 		while (it.hasNext()) {
 			try {
 				PrintWriter it_out = (PrintWriter) clientMap.get(it.next());
-				it_out.println(msg);
+				if (user.equals(""))
+					it_out.println(msg);
+				else
+					it_out.println("[" + user + "]" + msg);
 			} catch (Exception e) {
 				System.out.println("예외1:" + e);
 			}
@@ -59,7 +84,7 @@ public class MultiServer6 {
 
 	public static void main(String[] args) {
 		// 서버객체 생성
-		MultiServer6 ms = new MultiServer6();
+		MultiServer7 ms = new MultiServer7();
 		ms.init();
 
 	}
@@ -94,21 +119,24 @@ public class MultiServer6 {
 				name = in.readLine(); // 클라이언트에서 처음으로 보내는 메시지
 										// 클라이언트가 사용할 이름
 
-				sendAllMsg(name + "님이 입장하셨습니다.");
+				sendAllMsg("", name + "님이 입장하셨습니다.");
 				// 현재 객체가 가지고있는 소켓을 제외하고 다른 소켓(클라이언트)들에게 접속을 알림
 				clientMap.put(name, out); // 해쉬맵에 키를 name으로 출력스트림 객체를 저장
 				System.out.println("현재 접속자 수는" + clientMap.size() + "명 입니다.");
 
 				// 입력스트림이 null이 아니면 반복
+				
 				String s = "";
+				
 				while (in != null) {
 					s = in.readLine();
-					System.out.println(s);
-					if (s.equals("q") || s.equals("Q"))
-						break;
-					sendAllMsg(s);
+					System.out.println(s);					
+			
+					if (s.equals("/list"))
+						list(out);
+					else
+						sendAllMsg(name,s);
 				}
-				// System.out.println("사요나라~");
 
 			} catch (Exception e) {
 				System.out.println("예외3:" + e);
@@ -116,7 +144,7 @@ public class MultiServer6 {
 				// 예외가 발생할때 퇴장 해쉬맵에서 해당 데이터 제거
 				// 보통 종료하거나 나가면 java.net.SocketException: 예외발생
 				clientMap.remove(name);
-				sendAllMsg(name + "님이 퇴장하셨습니다.");
+				sendAllMsg("", name + "님이 퇴장하셨습니다.");
 				System.out.println("현재 접속자 수는 " + clientMap.size() + "명 입니다.");
 
 				try {

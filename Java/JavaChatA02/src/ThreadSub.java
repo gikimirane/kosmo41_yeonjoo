@@ -2,6 +2,7 @@
 public class ThreadSub extends Thread {
 	
 	int nNum;
+	
 	public ThreadSub(int num)
 	{
 		this.nNum = num;
