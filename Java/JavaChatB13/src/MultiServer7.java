@@ -58,9 +58,6 @@ public class MultiServer7 {
 		Iterator<String> it = clientMap.keySet().iterator();
 		
 		String whis = "님 귓속말";
-		
-		
-			
 		}
 	
 	// 접속된 모든 클라이언트들에게 메시지를 전달
@@ -113,7 +110,7 @@ public class MultiServer7 {
 		@Override
 		public void run() {
 
-			// String s ="";
+
 			String name = ""; // 클라이언트로부터 받은 이름을 저장할 변수
 			try {
 				name = in.readLine(); // 클라이언트에서 처음으로 보내는 메시지

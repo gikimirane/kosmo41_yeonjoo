@@ -25,7 +25,6 @@ public class MultiClient6 {
 			
 			new ChatWin(socket, s_name);			
 			
-	
 		} catch (Exception e) {
 			System.out.println("예외[Multiclient class] : " + e);
 		}

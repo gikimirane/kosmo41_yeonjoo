@@ -38,14 +38,39 @@ public class ProjectServer {
 		}
 	}
 
-	public void sendAllMsg(String msg) {
+	public void list(PrintWriter out) {
 
-		Iterator it = clientMap.keySet().iterator();
+		Iterator<String> it = clientMap.keySet().iterator();
+		String msg = "사용자 리스트 [ ";
+		while (it.hasNext()) {
+			msg += (String) it.next() + ",";
+		}
+		msg = msg.substring(0, msg.length() - 1) + " ] ";
+		out.println(msg);
+	}
+
+	public void whisper(PrintWriter wp) {
+
+		Iterator<String> it = clientMap.keySet().iterator();
+
+		String whis = "님 귓속말";
+	
+		
+	}
+
+	public void sendAllMsg(String user, String msg) {
+
+		Iterator<String> it = clientMap.keySet().iterator();
 
 		while (it.hasNext()) {
 			try {
+
 				PrintWriter it_out = (PrintWriter) clientMap.get(it.next());
-				it_out.println(msg);
+				if (user.equals(""))
+					it_out.println(msg);
+				else
+					it_out.println("[" + user + "] " + msg);
+
 			} catch (Exception e) {
 				System.out.println("예외1:" + e);
 			}
@@ -60,6 +85,7 @@ public class ProjectServer {
 	class MultiServerT extends Thread {
 
 		Socket socket;
+		PrintWriter wp = null;
 		PrintWriter out = null;
 		BufferedReader in = null;
 
@@ -80,27 +106,33 @@ public class ProjectServer {
 			try {
 				name = in.readLine();
 
-				sendAllMsg("[ "+ name + " ]님, 입장 ");
+				sendAllMsg("", "[ " + name + " ]님, 입장 ");
 
 				clientMap.put(name, out);
 				System.out.print("현재 접속자 는 [ " + name + " ]님 이고,");
 				System.out.println("현재 접속자 수는 [ " + clientMap.size() + " ]명 입니다.");
-				
 
 				String s = "";
 				while (in != null) {
 					s = in.readLine();
 					System.out.println(s);
+
+					if (s.equals("/list"))
+						list(out);
+
+					if (s.startsWith("/"))
+						whisper(wp);
+
 					if (s.equals("bye") || s.equals("BYE"))
 						break;
-					sendAllMsg(s);
+					sendAllMsg(name, s);
 				}
 
 			} catch (Exception e) {
 				System.out.println("예외3:" + e);
 			} finally {
 				clientMap.remove(name);
-				sendAllMsg("[ "+ name + " ]님이 퇴장하셨습니다.");
+				sendAllMsg("", "[ " + name + " ]님이 퇴장하셨습니다.");
 				System.out.println("현재 접속자 수는 [ " + clientMap.size() + " ] 명 입니다.");
 
 				try {
