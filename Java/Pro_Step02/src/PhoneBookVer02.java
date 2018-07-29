@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-/* 02 단계 : 전화번호 관리 프로그램 
- *            ㄴ 사용자로부터 데이터 입력 */
+/* 02 단계 : 사용자로부터 데이터 입력받기 */
 
 class PhoneInfo {
 

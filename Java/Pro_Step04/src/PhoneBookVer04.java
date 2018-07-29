@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
-/* 04 단계 : 전화번호 관리 프로그램 
-             ㄴ birth와 관련된 코드 - 삭제 [ v ]
-             ㄴ 대학동기 전화번호 및 회사동료 전화번호 저장 - 추가 */
+/* 04 단계 : 1) birth와 관련된 코드 - 삭제 [ v ]
+             2) 대학동기 전화번호 및 회사동료 전화번호 저장 - 추가 */
 
 //데이터 저장 클래스
 
@@ -32,7 +31,7 @@ class PhoneUnivInfo extends PhoneInfo { // name,num 상속
 
 	public PhoneUnivInfo(String name, String num, String major, String year) {
 
-		super(name, num);      // 자신을 가리키는 키워드가 this 라면 부모를 가리키는 키워드는 super
+		super(name, num); // 자신을 가리키는 키워드가 this 라면 부모를 가리키는 키워드는 super
 		this.major = major;
 		this.year = year;
 
@@ -46,6 +45,7 @@ class PhoneUnivInfo extends PhoneInfo { // name,num 상속
 
 	}
 
+}
 	class PhoneCompanyInfo extends PhoneInfo {
 
 		String company;
@@ -63,7 +63,7 @@ class PhoneUnivInfo extends PhoneInfo { // name,num 상속
 			System.out.println("company : " + company);
 		}
 
-		// 흐름 구성 클래스
+	}		// 흐름 구성 클래스
 
 		class PhoneBookManager {
 
@@ -115,29 +115,31 @@ class PhoneUnivInfo extends PhoneInfo { // name,num 상속
 
 				return new PhoneCompanyInfo(name, phone, company);
 			}
-			
-			
+
 			public void inputdata() {
 				System.out.println("<< 데이터 입력 >>");
 				System.out.println("1.일반 2.대학 3.회사 ");
 				System.out.println("선택 값 입력 : ");
-				
+
 				int choice = MenuV.keyboard.nextInt();
 				MenuV.keyboard.nextLine();
 				PhoneInfo info = null;
-				
+
 				switch (choice) {
-				case 1:
+				case 1 :
 					info = i_Info();
 					break;
-				case 2:
+				case 2 :
 					info = u_Info();
 					break;
 				case 3:
 					info = c_Info();
 					break;
 				}
-				
+
+				infoSt[Count].showPhoneInfo();
+				System.out.println("데이터 입력이 완료되었습니다.");
+
 			}
 
 			public void searchData() {
@@ -188,6 +190,7 @@ class PhoneUnivInfo extends PhoneInfo { // name,num 상속
 			}
 
 		}
+	
 
 		class MenuV {
 
@@ -207,9 +210,9 @@ class PhoneUnivInfo extends PhoneInfo { // name,num 상속
 			}
 		}
 
-		// 실행(메인) 클래스
+			// 실행(메인) 클래스
 
-class PhoneBookVer03 {
+class PhoneBookVer04 {
 
 		public static void main(String[] args) {
 
@@ -224,7 +227,7 @@ class PhoneBookVer03 {
 
 				switch (choice) {
 				case 1:
-					manager.inputData();
+					manager.inputdata();
 					break;
 				case 2:
 					manager.searchData();
@@ -241,4 +244,5 @@ class PhoneBookVer03 {
 
 		}
 
-	}
+}
+	

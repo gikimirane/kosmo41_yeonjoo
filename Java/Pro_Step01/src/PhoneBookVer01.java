@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-/* 01 단계 : 전화번호 관리 프로그램 */
+/* 01 단계 : 전화번호 관리 프로그램 베이스 만들기 */
 
 class PhoneInfo {
 
