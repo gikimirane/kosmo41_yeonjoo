@@ -1,6 +1,15 @@
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
 
-/* 07 단계 : HashSet<E>를 사용하여 동명이인이면 동일 데이터로 인식하게 하기 */
+/* 08 단계 : 프로그램종료 후에도 데이터가 남아있도록 저장하는 기능 추가 */
+
 
 
 
@@ -16,6 +25,9 @@ interface INPUT_SELECT {
 	int NOR = 1, UNIV = 2, COM = 3;
 
 }
+
+
+// 메뉴 선택을 잘못 입력 했을 경우 실행
 
 
 class MenuChoiceException extends Exception {
@@ -110,10 +122,7 @@ class PhoneCompanyInfo extends PhoneInfo {
 
 class PhoneBookManager {
 
-	// final int MAX = 100; // final 메소드가 더이상 오버라이딩 되지 않아야 할 때 사용
-	// PhoneInfo[] infoSt = new PhoneInfo[MAX];
-	// int Count = 0;
-
+	private final File dataFile=new File("PhoneBook.dat"); // 데이터를 저장할 파일 생성
 	HashSet<PhoneInfo> infoSt = new HashSet<PhoneInfo>();
 
 	static PhoneBookManager inst = null;
@@ -126,11 +135,10 @@ class PhoneBookManager {
 	}
 
 	private PhoneBookManager() {
+		readFromFile();
 	}
 
 	private PhoneInfo i_Info() {
-
-		System.out.println("<< 일반 데이터 입력 >>");
 
 		System.out.print("이    름 : ");
 		String name = MenuV.keyboard.nextLine();
@@ -142,8 +150,6 @@ class PhoneBookManager {
 	}
 
 	private PhoneInfo u_Info() {
-
-		System.out.println("<< 대학동기 데이터 입력 >>");
 
 		System.out.print("이    름 : ");
 		String name = MenuV.keyboard.nextLine();
@@ -159,8 +165,6 @@ class PhoneBookManager {
 	}
 
 	private PhoneInfo c_Info() {
-
-		System.out.println("<< 회사동료 데이터 입력 >>");
 
 		System.out.print("이    름 : ");
 		String name = MenuV.keyboard.nextLine();
@@ -198,7 +202,6 @@ class PhoneBookManager {
 			break;
 		}
 
-		// infoSt[Count] = info;
 		boolean isAdded = infoSt.add(info);
 		if (isAdded == true)
 			System.out.println("데이터 입력이 완료되었습니다.\n");
@@ -213,14 +216,7 @@ class PhoneBookManager {
 
 		System.out.print(" 이름으로 검색 : ");
 		String name = MenuV.keyboard.nextLine();
-
-		/*
-		 * int dataIdx = search(name);
-		 * 
-		 * if (dataIdx < 0) { System.out.println("<< 해당하는 데이터없음 >> \n"); } else {
-		 * infoSt[dataIdx].showPhoneInfo(); System.out.println(" << 데이터 검색 완료 >> \n"); }
-		 * }
-		 */
+		
 		PhoneInfo info = search(name);
 		if (info == null) {
 			System.out.println("<< 해당하는 데이터없음 >> \n");
@@ -237,18 +233,6 @@ class PhoneBookManager {
 		System.out.print("이름으로 검색 후 삭제 : ");
 		String name = MenuV.keyboard.nextLine();
 
-		/*
-		 * int dataIdx = search(name);
-		 * 
-		 * 
-		 * if (dataIdx < 0) { System.out.println("<< 해당하는 데이터없음 >> \n"); } else {
-		 * 
-		 * for (int idx = dataIdx; idx < (Count - 1); idx++) infoSt[idx] = infoSt[idx +
-		 * 1];
-		 * 
-		 * Count--; System.out.println("<< 데이터 삭제 완료 >> \n"); }
-		 */
-
 		Iterator<PhoneInfo> itr = infoSt.iterator();
 		while (itr.hasNext()) {
 			PhoneInfo curInfo = itr.next();
@@ -263,10 +247,6 @@ class PhoneBookManager {
 
 	private PhoneInfo search(String name) {
 
-		/*
-		 * for (int idx = 0; idx < Count; idx++) { PhoneInfo curInfo = infoSt[idx]; if
-		 * (name.compareTo(curInfo.name) == 0) return idx; }
-		 */
 		Iterator<PhoneInfo> itr = infoSt.iterator();
 		while (itr.hasNext()) {
 			PhoneInfo curInfo = itr.next();
@@ -276,6 +256,49 @@ class PhoneBookManager {
 
 		return null;
 	}
+	
+	public void storeToFile()
+	{
+		try {
+			FileOutputStream file = new FileOutputStream(dataFile);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			Iterator<PhoneInfo> itr = infoSt.iterator();
+			while(itr.hasNext())
+				out.writeObject(itr.next());
+			
+			out.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+		public void readFromFile()
+		{
+			if(dataFile.exists() == false)
+				return;
+			try {
+				FileInputStream file = new FileInputStream(dataFile);
+				ObjectInputStream in = new ObjectInputStream(file);
+				
+				while(true) {
+					PhoneInfo info = (PhoneInfo)in.readObject();
+					if(info==null)
+						break;
+					infoSt.add(info);
+					
+				}
+				in.close();
+				
+			} catch (IOException e) {
+				return;
+			}
+			  catch(ClassNotFoundException e)
+			{
+				  return;
+			}
+		}
 }
 
 class MenuV {
@@ -298,7 +321,7 @@ class MenuV {
 
 // 실행(메인) 클래스
 
-class PhoneBookVer07 {
+class PhoneBookVer08 {
 
 	public static void main(String[] args) {
 
@@ -313,6 +336,9 @@ class PhoneBookVer07 {
 				choice = MenuV.keyboard.nextInt();
 				MenuV.keyboard.nextLine();
 
+				if (choice < INIT_MENU.INPUT || choice > INIT_MENU.EXIT)
+					throw new MenuChoiceException(choice);
+				
 				switch (choice) {
 				case INIT_MENU.INPUT:
 					manager.inputdata();
