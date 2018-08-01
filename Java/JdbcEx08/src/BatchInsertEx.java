@@ -28,7 +28,7 @@ public class BatchInsertEx {
 					"scott", 
 					"tiger");                      // 2. 데이터베이스 커넥션 구함
 			
-			stmt = con.createStatement();          // 3. 쿼리 실행을 위한 Statement 객체 생성
+			stmt = con.createStatement();    // 3. 쿼리 실행을 위한 Statement 객체 생성
 			sql = "create table test4 ( " +
 			      "    id varchar2(10), " +
 				  "    password varchar2(10) )";

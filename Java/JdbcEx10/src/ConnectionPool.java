@@ -32,9 +32,7 @@ public class ConnectionPool {
         }
     }
 
-    /**
-     * private constructor for static class
-     */
+
     private ConnectionPool() { }
 
     public static Connection getConnection() throws SQLException {

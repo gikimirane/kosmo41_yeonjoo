@@ -29,7 +29,7 @@ public class PreparedStatementEx {
 		int updateCount = pstmt.executeUpdate();
 		System.out.println("createCount : " + updateCount);
 		
-		//--------------------
+		//--------------------------------------------------------
 		sql = "insert into test2 values(?,?)";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1,"홍길동");
@@ -37,7 +37,8 @@ public class PreparedStatementEx {
 		updateCount = pstmt.executeUpdate();
 		System.out.println("inser tCount : " + updateCount);
 		
-		//--
+		//--------------------------------------------------------
+		
 		sql = "select * from test2";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();   
@@ -46,7 +47,8 @@ public class PreparedStatementEx {
 			System.out.println(", password : " + rs.getString(2));
 		}
 			
-		//--
+		//--------------------------------------------------------
+		
 		sql = "drop table test2";
 		pstmt = con.prepareStatement(sql);
 		updateCount = pstmt.executeUpdate();
