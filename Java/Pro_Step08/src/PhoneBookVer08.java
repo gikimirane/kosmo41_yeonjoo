@@ -94,8 +94,8 @@ class PhoneUnivInfo extends PhoneInfo { // name,num 상속
 	public void showPhoneInfo() {
 
 		super.showPhoneInfo();
-		System.out.println("major : " + major);
-		System.out.println("year  : " + year);
+		System.out.println("[전    공] : " + major);
+		System.out.println("[학    년] : " + year);
 
 	}
 
@@ -115,14 +115,15 @@ class PhoneCompanyInfo extends PhoneInfo {
 	public void showPhoneInfo() {
 
 		super.showPhoneInfo();
-		System.out.println("company : " + company);
+		System.out.println("[회 사 명] : " + company);
+		                  
 	}
 
 } // 흐름 구성 클래스
 
 class PhoneBookManager {
 
-	private final File dataFile=new File("PhoneBook.dat"); // 데이터를 저장할 파일 생성
+	private final File dataFile=new File("PhoneBook.dat"); 
 	HashSet<PhoneInfo> infoSt = new HashSet<PhoneInfo>();
 
 	static PhoneBookManager inst = null;
@@ -140,9 +141,9 @@ class PhoneBookManager {
 
 	private PhoneInfo i_Info() {
 
-		System.out.print("이    름 : ");
+		System.out.print("[이    름] : ");
 		String name = MenuV.keyboard.nextLine();
-		System.out.print("전화번호 : ");
+		System.out.print("[전화번호] : ");
 		String phone = MenuV.keyboard.nextLine();
 
 		return new PhoneInfo(name, phone);
@@ -151,13 +152,13 @@ class PhoneBookManager {
 
 	private PhoneInfo u_Info() {
 
-		System.out.print("이    름 : ");
+		System.out.print("[이    름] : ");
 		String name = MenuV.keyboard.nextLine();
-		System.out.print("전화번호 : ");
+		System.out.print("[전화번호] : ");
 		String phone = MenuV.keyboard.nextLine();
-		System.out.print("전    공 : ");
+		System.out.print("[전    공] : ");
 		String major = MenuV.keyboard.nextLine();
-		System.out.print("학    년 : ");
+		System.out.print("[학    년] : ");
 		String year = MenuV.keyboard.nextLine();
 
 		return new PhoneUnivInfo(name, phone, major, year);
@@ -166,11 +167,11 @@ class PhoneBookManager {
 
 	private PhoneInfo c_Info() {
 
-		System.out.print("이    름 : ");
+		System.out.print("[이    름] : ");
 		String name = MenuV.keyboard.nextLine();
-		System.out.print("전화번호 : ");
+		System.out.print("[전화번호] : ");
 		String phone = MenuV.keyboard.nextLine();
-		System.out.print("회 사 명 : ");
+		System.out.print("[회 사 명] : ");
 		String company = MenuV.keyboard.nextLine();
 
 		return new PhoneCompanyInfo(name, phone, company);
@@ -178,9 +179,9 @@ class PhoneBookManager {
 
 	public void inputdata() throws MenuChoiceException {
 
-		System.out.println("<< 데이터 입력 >>");
-		System.out.println("1.일반 2.대학 3.회사 ");
-		System.out.println("선택 값 입력 : ");
+		System.out.println("[데이터 입력]");
+		System.out.println("[1] 일반 [2] 대학 [3] 회사 ");
+		System.out.print("[선택 값 입력] : ");
 
 		int choice = MenuV.keyboard.nextInt();
 		MenuV.keyboard.nextLine();
@@ -204,17 +205,17 @@ class PhoneBookManager {
 
 		boolean isAdded = infoSt.add(info);
 		if (isAdded == true)
-			System.out.println("데이터 입력이 완료되었습니다.\n");
+			System.out.println("[데이터 입력이 완료] ");
 		else
-			System.out.println("이미 저장된 데이터입니다.\n");
+			System.out.println("[이미 저장된 데이터입니다.] ");
 
 	}
 
 	public void searchData() {
 
-		System.out.println("<< 데이터 검색 >> ");
+		System.out.println("[데이터 검색] ");
 
-		System.out.print(" 이름으로 검색 : ");
+		System.out.print("[검색할 이름 입력] : ");
 		String name = MenuV.keyboard.nextLine();
 		
 		PhoneInfo info = search(name);

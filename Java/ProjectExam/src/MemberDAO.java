@@ -118,8 +118,6 @@ public class MemberDAO {
         return data;
     }//getMemberList()
    
- 
- 
     /**회원 등록*/
     public boolean insertMember(MemberDTO dto){
        
@@ -131,9 +129,7 @@ public class MemberDAO {
         try{
            
             con = getConn();
-            String sql = "insert into tb_member(" +
-                        "id,pwd,name,tel,birth,intro) " +
-                        "values(?,?,?,?,?,?)";
+            String sql = "insert into tb_member(" + "id,pwd,name,tel,birth,intro) " + "values(?,?,?,?,?,?)";
            
             ps = con.prepareStatement(sql);
             ps.setString(1, dto.getId());
@@ -207,9 +203,9 @@ public class MemberDAO {
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, pwd);
-            int r = ps.executeUpdate(); // 실행 -> 삭제
+            int delete = ps.executeUpdate(); // 실행 -> 삭제
            
-            if (r>0) ok=true; //삭제됨;
+            if (delete>0) ok=true; //삭제됨;
            
         } catch (Exception e) {
             System.out.println(e + "-> 오류발생");

@@ -1,13 +1,27 @@
-import java.awt.*;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.border.*;
-
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+import javax.swing.border.Border;
 
 /* 09 단계 : GUI를 입히는 작업 */
 
@@ -406,6 +420,7 @@ class DeleteEventHandler implements ActionListener {
 			srchBtn.addActionListener(new SearchEventHandler(srchField,textArea));
 			delBtn.addActionListener(new DeleteEventHandler(delField,textArea));
 			
+			setSize(600, 500);
 			setVisible(true);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		}
@@ -440,14 +455,15 @@ class PhoneBookVer09 {
 					
 				case INIT_MENU.EXIT:
 					manager.storeToFile();
-					System.out.println("프로그램을 종료합니다.");
+					System.out.println("[ 프로그램 종료 ] ");
+					System.out.println("[  사 요 나 라  ] ");
 					System.exit(0);
 					return;
 				}
 
 			} catch (MenuChoiceException e) {
 				e.showWrongChoice();
-				System.out.println("메뉴 선택을 처음부터 다시 진행 합니다.");
+				System.out.println("[ 메뉴 선택 재진행 ] ");
 
 			}
 

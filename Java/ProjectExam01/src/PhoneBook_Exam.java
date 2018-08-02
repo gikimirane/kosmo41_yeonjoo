@@ -1,13 +1,10 @@
 import java.awt.*;
-import java.io.*;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Scanner;
-
-import javax.swing.*;
 import java.awt.event.*;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.border.*;
-
 
 /* 09 단계 : GUI를 입히는 작업 */
 
@@ -32,12 +29,12 @@ class MenuChoiceException extends Exception {
 
 	public MenuChoiceException(int choice) {
 
-		super("잘못된 선택이 이뤄졌습니다");
+		super("[잘못된 선택입니다.]");
 		wrongChoice = choice;
 	}
 
 	public void showWrongChoice() {
-		System.out.println(wrongChoice + "에 해당하는 선택은 존재하지 않습니다.");
+		System.out.println("["+ wrongChoice + " 에 해당하는 선택은 존재하지 않습니다.] ");
 	}
 }
 
@@ -136,6 +133,7 @@ class PhoneBookManager {
 	HashSet<PhoneInfo> infoSt = new HashSet<PhoneInfo>();
 
 	static PhoneBookManager inst = null;
+	private PhoneInfo info;
 
 	public static PhoneBookManager createManagerInst() {
 		if (inst == null)
@@ -148,26 +146,26 @@ class PhoneBookManager {
 		readFromFile();
 	}
 
-	private PhoneInfo i_Info() {
+	private PhoneInfo readFriendInfo() {
 
-		System.out.print("이    름 : ");
+		System.out.print("[이    름] : ");
 		String name = MenuV.keyboard.nextLine();
-		System.out.print("전화번호 : ");
+		System.out.print("[전화번호] : ");
 		String phone = MenuV.keyboard.nextLine();
 
 		return new PhoneInfo(name, phone);
 
 	}
 
-	private PhoneInfo u_Info() {
+	private PhoneInfo readUnivInfo() {
 
-		System.out.print("이    름 : ");
+		System.out.print("[이    름] : ");
 		String name = MenuV.keyboard.nextLine();
-		System.out.print("전화번호 : ");
+		System.out.print("[전화번호] : ");
 		String phone = MenuV.keyboard.nextLine();
-		System.out.print("전    공 : ");
+		System.out.print("[전    공] : ");
 		String major = MenuV.keyboard.nextLine();
-		System.out.print("학    년 : ");
+		System.out.print("[학    년] : ");
 		int year = MenuV.keyboard.nextInt();
 		MenuV.keyboard.nextLine();
 
@@ -175,49 +173,103 @@ class PhoneBookManager {
 
 	}
 
-	private PhoneInfo c_Info() {
+	private PhoneInfo readCompanyInfo() {
 
-		System.out.print("이    름 : ");
+		System.out.print("[이    름] : ");
 		String name = MenuV.keyboard.nextLine();
-		System.out.print("전화번호 : ");
+		System.out.print("[전화번호] : ");
 		String phone = MenuV.keyboard.nextLine();
-		System.out.print("회 사 명 : ");
+		System.out.print("[회 사 명] : ");
 		String company = MenuV.keyboard.nextLine();
 
 		return new PhoneCompanyInfo(name, phone, company);
 	}
 
-	public void inputdata() throws MenuChoiceException {
-
-		System.out.println("<< 데이터 입력 >>");
-		System.out.println("1.일반 2.대학 3.회사 ");
-		System.out.println("선택 값 입력 : ");
-
+	public void inputdata() throws MenuChoiceException, SQLException {
+		
+		System.out.println("[데이터 입력] ");
+		System.out.println("[1]일반 | [2] 대학 | [3] 회사 ");
+		System.out.println("");
+		System.out.println("[선택값 입력] : ");
+		
 		int choice = MenuV.keyboard.nextInt();
 		MenuV.keyboard.nextLine();
-
-		PhoneInfo info = null;
-
+		
+		info = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		con = DriverManager.getConnection( "jdbc:oracle:thin:@localhost:1521:xe", 
+					                       "scott", 
+					                       "tiger");
+		String sql = " ";
+	
+		
 		if (choice < INPUT_SELECT.NOR || choice > INPUT_SELECT.COM)
 			throw new MenuChoiceException(choice);
 
 		switch (choice) {
+		
 		case INPUT_SELECT.NOR:
-			info = i_Info();
+			
+			info = readFriendInfo();
+		
+			sql = "insert into project("+ "name,phone) " + "values(?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,info.name);
+			pstmt.setString(2,info.phoneNum);
+			
+			int updateCount = pstmt.executeUpdate();
+			System.out.println("insert Count : " + updateCount);
 			break;
+			
 		case INPUT_SELECT.UNIV:
-			info = u_Info();
+			
+			PhoneUnivInfo info1 = (PhoneUnivInfo)readUnivInfo();
+			
+			sql = "insert into project("+ "name,phone,major,year) " + "values(?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,info1.name);
+			pstmt.setString(2,info1.phoneNum);
+			pstmt.setString(3,info1.major);
+			pstmt.setInt(4,info1.year);
+						
+			System.out.println(info1.name);
+			System.out.println(info1.phoneNum);
+			System.out.println(info1.major);
+			System.out.println(info1.year);
+			
+			updateCount = pstmt.executeUpdate();
+			System.out.println("insert Count : " + updateCount);
 			break;
+		
 		case INPUT_SELECT.COM:
-			info = c_Info();
+			PhoneCompanyInfo info2 = (PhoneCompanyInfo)readCompanyInfo();
+			
+			sql = "insert into project("+ "name,phone,company) " + "values(?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,info2.name);
+			pstmt.setString(2,info2.phoneNum);
+			pstmt.setString(3,info2.company);
+			
+			System.out.println(info2.name);
+			System.out.println(info2.phoneNum);
+			System.out.println(info2.company);
+			
+			updateCount = pstmt.executeUpdate();
+			System.out.println("insert Count : " + updateCount);
 			break;
 		}
-
-		boolean isAdded = infoSt.add(info);
-		if (isAdded == true)
-			System.out.println("데이터 입력이 완료되었습니다.\n");
-		else
-			System.out.println("이미 저장된 데이터입니다.\n");
+		
+		System.out.println("[데이터 입력 완료]");
+		
+//		boolean isAdded = infoSt.add(info);
+//		
+//		if (isAdded == true)
+//			System.out.println("[데이터 입력 완료]");
+//		else
+//			System.out.println("[이미 저장된 데이터입니다.]");
 
 	}
 
@@ -245,15 +297,17 @@ class PhoneBookManager {
 	}
 
 	private PhoneInfo search(String name) {
+		
+		return info;
 
-		Iterator<PhoneInfo> itr = infoSt.iterator();
-		while (itr.hasNext()) {
-			PhoneInfo curInfo = itr.next();
-			if (name.compareTo(curInfo.name) == 0)
-				return curInfo;
-		}
-
-		return null;
+//		Iterator<PhoneInfo> itr = infoSt.iterator();
+//		while (itr.hasNext()) {
+//			PhoneInfo curInfo = itr.next();
+//			if (name.compareTo(curInfo.name) == 0)
+//				return curInfo;
+//		}
+//
+//		return null;
 	}
 
 	public void storeToFile() {
@@ -304,10 +358,10 @@ class MenuV {
 	public static void showMenu() {
 
 		System.out.println("");
-		System.out.println("원하시는 메뉴를 선택 하세요");
-		System.out.println("1. 데이터 입력 ");
-		System.out.println("2. 프로그램 종료 ");
-		System.out.println("선택 값 입력 :");
+		System.out.println("[메 뉴 선 택] ");
+		System.out.println("[1] 데이터 입력 | [2] 프로그램 종료");
+		System.out.println("");
+		System.out.println("[선택값 입력] : ");
 
 	}
 }
@@ -327,11 +381,11 @@ class SearchEventHandler implements ActionListener{
 		PhoneBookManager manager = PhoneBookManager.createManagerInst();
 		String srchResult = manager.searchData(name);
 		if(srchResult == null) {
-			textArea.append(" << 해당 데이터가 존재하지 않음>> ");
+			textArea.append("[해당 데이터가 존재하지 않음] \n");
 		}
 		else
 		{
-			textArea.append(" << 검색 데이터 정보 >> \n");
+			textArea.append("[검색 결과] \n");
 			textArea.append(srchResult);
 			textArea.append("\n");
 		}
@@ -357,9 +411,9 @@ class DeleteEventHandler implements ActionListener {
 		PhoneBookManager manager = PhoneBookManager.createManagerInst();
 		boolean isDeleted = manager.deleteData(name);
 		if(isDeleted) 
-			textArea.append(" << 해당 데이터 삭제 완료>> ");
+			textArea.append("[해당 데이터 삭제 완료] \n");
 		else
-			textArea.append(" << 해당 데이터가 존재하지 않음>> \n");
+			textArea.append("[해당 데이터가 존재하지 않음] \n");
 		}
 
 	}
@@ -406,6 +460,7 @@ class DeleteEventHandler implements ActionListener {
 			srchBtn.addActionListener(new SearchEventHandler(srchField,textArea));
 			delBtn.addActionListener(new DeleteEventHandler(delField,textArea));
 			
+			setSize(600, 500);
 			setVisible(true);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		}
@@ -413,12 +468,50 @@ class DeleteEventHandler implements ActionListener {
 
 // 실행(메인) 클래스
 
-class PhoneBookVer09 {
+class PhoneBook_Exam {
+	
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		}
 
-	public static void main(String[] args) {
+	}
+
+	public static void main(String[] args) throws SQLException {
 
 		PhoneBookManager manager = PhoneBookManager.createManagerInst();
-		SearchDelFrame winFrame = new SearchDelFrame("PhoneBookVer09");
+		SearchDelFrame winFrame = new SearchDelFrame("PhoneBook");
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = DriverManager.getConnection(
+					"jdbc:oracle:thin:@localhost:1521:xe", 
+					"scott", 
+					"tiger");
+		String sql = "create table project(name varchar(20)," +
+					 "                     phone varchar(40),"+
+					 "                     major varchar(20),"+
+					 "                     year varchar(5),"+
+					 "                     company varchar(20))";
+		
+		pstmt = con.prepareStatement(sql);
+		int updateCount = pstmt.executeUpdate();
+		System.out.println("createCount : " + updateCount);
+		
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException sqle) {}
+			
+		}
+		
 		int choice;
 
 		while (true) {
@@ -440,14 +533,15 @@ class PhoneBookVer09 {
 					
 				case INIT_MENU.EXIT:
 					manager.storeToFile();
-					System.out.println("프로그램을 종료합니다.");
+					System.out.println("[프로그램 종료] ");
+					System.out.println("[ 사 요 나 라 ] ");
 					System.exit(0);
 					return;
 				}
 
 			} catch (MenuChoiceException e) {
 				e.showWrongChoice();
-				System.out.println("메뉴 선택을 처음부터 다시 진행 합니다.");
+				System.out.println("[메뉴 선택 재진행] ");
 
 			}
 
