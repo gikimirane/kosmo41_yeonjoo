@@ -64,7 +64,7 @@ class PhoneBookManager {
 		PhoneInfo info = null;
 		
 		
-			System.out.println("[ 데이터 입력 ]");
+			System.out.println("[ 연락처 입력]");
 			System.out.println("[1] 일반 | [2] 대학 | [3] 회사 ");
 			System.out.print("[ 선택 값 입력 ] : ");
 			
@@ -84,20 +84,20 @@ class PhoneBookManager {
 			case INPUT_SELECT.NOR:
 				info = readFriendInfo();
 
-				sql = "insert into project(" + "name,phone) " + "values(?,?)";
+				sql = "insert into contact41(" + "name,phone) " + "values(?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, info.name);
 				pstmt.setString(2, info.phoneNum);
 
 				int updateCount = pstmt.executeUpdate();
-				System.out.println("insert Count : " + updateCount);
+			//	System.out.println("insert Count : " + updateCount);
 				break;
 				
 			case INPUT_SELECT.UNIV:
 				
 				PhoneUnivInfo info1 = (PhoneUnivInfo) readUnivInfo();
 
-				sql = "insert into project(" + "name,phone,major,year) " + "values(?,?,?,?)";
+				sql = "insert into contact41(" + "name,phone,major,year) " + "values(?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, info1.name);
 				pstmt.setString(2, info1.phoneNum);
@@ -105,24 +105,24 @@ class PhoneBookManager {
 				pstmt.setInt(4, info1.year);
 
 				updateCount = pstmt.executeUpdate();
-				System.out.println("insert Count : " + updateCount);
+		//		System.out.println("insert Count : " + updateCount);
 				break;
 				
 			case INPUT_SELECT.COM:
 				PhoneCompanyInfo info2 = (PhoneCompanyInfo) readCompanyInfo();
 
-				sql = "insert into project(" + "name,phone,company) " + "values(?,?,?)";
+				sql = "insert into contact41(" + "name,phone,company) " + "values(?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, info2.name);
 				pstmt.setString(2, info2.phoneNum);
 				pstmt.setString(3, info2.company);
 
 				updateCount = pstmt.executeUpdate();
-				System.out.println("insert Count : " + updateCount);
+		//		System.out.println("insert Count : " + updateCount);
 				break;
 		}
 
-		System.out.println("[ 데이터 입력 완료 ] ");
+		System.out.println("[ 연락처 입력 완료 ] ");
 
 		} catch (MenuChoiceException e) {
 			e.showWrongChoice();
@@ -136,7 +136,8 @@ class PhoneBookManager {
 			
 		}
 		
-
+		// 동명이인 잡기
+		
 		// boolean isAdded = infoSt.add(info);
 		// if (isAdded == true)
 		// System.out.println("[ 데이터 입력이 완료 ] ");
@@ -147,7 +148,7 @@ class PhoneBookManager {
 
 	public void searchData() throws MenuChoiceException, SQLException {
 
-		System.out.println("[ 데이터 검색 ] ");
+		System.out.println("[ 연락처 검색 ] ");
 		System.out.print("[ 검색할 이름 입력 ] : ");
 
 		String name = MenuV.keyboard.nextLine();
@@ -160,27 +161,25 @@ class PhoneBookManager {
 		
 		try {
 
-			String sql = "select * from project where name like '%" + name + "%'";
-			System.out.println("name:["+ name + "]");
+			String sql = "select * from contact41 where name like '%" + name + "%'";
+		//	System.out.println("name:["+ name + "]");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			
 			while (rs.next()) {
-				System.out.println("[ 검색 결과 출력 ] : ");
+				System.out.println(" ");
+				System.out.println("[ 연락처 검색 결과 출력 ] ");
 				System.out.println(" ");
 				System.out.println("[ 이    름 ] : " + rs.getString(1));
 				System.out.println("[ 전화번호 ] :  " + rs.getString(2));
 				System.out.println("[ 전    공 ] :  " + rs.getString(3));
 				System.out.println("[ 학    년 ] :  " + rs.getString(4));
 				System.out.println("[ 회 사 명 ] :  " + rs.getString(5));
-		
-				if(name.equals(rs)) {
-					System.out.println("[ 해당하는 데이터 없음 ] ");
 			
-			} return;
-				
-			}
-
+			}System.out.println(" "); 
+			 System.out.println("[ 해당하는 데이터 없음 ] ");
+			return;
+			
 		} catch (Exception e) {
 			System.out.println(e + "[ 오류발생 ]");
 		} finally {
@@ -196,7 +195,7 @@ class PhoneBookManager {
 
 	public void delData() throws MenuChoiceException, SQLException {
 
-		System.out.println("[ 데이터 삭제 ] ");
+		System.out.println("[ 연락처 삭제 ] ");
 		System.out.print(" [삭제할 이름 입력 ] : ");
 
 		String name = MenuV.keyboard.nextLine();
@@ -208,12 +207,12 @@ class PhoneBookManager {
 
 	try {
 		
-			String sql = "delete from project where name like '%" + name + "%'";
+			String sql = "delete from contact41 where name like '%" + name + "%'";
 			pstmt = con.prepareStatement(sql);
 			int del = pstmt.executeUpdate(); // 실행 > 삭제
 
 			if (del > 0) {
-			System.out.println("[ 데이터 삭제 완료 ] ");
+			System.out.println("[ 연락처 삭제 완료 ] ");
 			} else {
 			System.out.println("[ 일치하는 데이터가 없음 (삭제 실패) ] ");
 			
@@ -241,17 +240,21 @@ class PhoneBookManager {
 
 		try {
 
-			String sql = "select * from project";
+			String sql = "select * from contact41";
 
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			
-			System.out.println("[ 이름 전체 출력 ] : ");
+			System.out.println(" ");
+			System.out.println("[ 전체연락처보기 ] ");
 			System.out.println(" ");
 			
 			while (rs.next()) {
 				
-				System.out.println(rs.getString(1));
+				String name = rs.getString(1);
+				String num = rs.getString(2);				
+				System.out.println("[이   름] : " + name + ", [전화번호] : " + num);
+			//	System.out.println(rs.getString(1));
 
 			}
 

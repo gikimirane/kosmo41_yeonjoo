@@ -10,9 +10,9 @@ public class ConnectionPool {
     static {
         try {
             ods = new OracleDataSource();
-            ods.setURL("jdbc:oracle:thin:@ec2-13-125-41-104.ap-northeast-2.compute.amazonaws.co:1521:xe");
-            ods.setUser("system");
-            ods.setPassword("0000");
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("only6hwa");
+            ods.setPassword("3968802");
             // caching parms
             ods.setConnectionCachingEnabled(true);
             ods.setConnectionCacheName(CACHE_NAME);

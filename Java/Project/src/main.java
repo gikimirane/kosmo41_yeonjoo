@@ -15,9 +15,9 @@ class MenuV {
 		
 		System.out.println("");
 		System.out.println("[메 뉴 선 택] ");
-		System.out.println("[1] 데이터입력 | [2] 데이터검색 | [3] 데이터삭제 | [4] 전체이름출력 | [5] 종료");
+		System.out.println("[1] 연락처입력 | [2] 연락처검색 | [3] 연락처삭제 | [4] 전체연락처보기 | [5] 종료");
 		System.out.println("");
-		System.out.println("[선택값 입력] : ");
+		System.out.print("[선택값 입력] : ");
 
 	}
 }
@@ -36,16 +36,16 @@ class main {
 		
 		try {
 			
-			String sql = "create table project(name varchar(20)," +
-  					 	 "                     phone varchar(40),"+
-  					  	 "                     major varchar(20),"+
-  					 	 "                     year varchar(5),"+
-  					 	 "                     company varchar(20))";
+			String sql = "create table contact41(name varchar(20)," +
+  					 	 "                       phone varchar(40),"+
+  					  	 "                       major varchar(20),"+
+  					 	 "                       year varchar(5),"+
+  					 	 "                       company varchar(20))";
 			
 			con = ConnectionPool.getConnection();
 			pstmt = con.prepareStatement(sql);
 			int updateCount = pstmt.executeUpdate();
-			System.out.println("createCount : " + updateCount);
+//			System.out.println("createCount : " + updateCount);
 		
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -84,8 +84,9 @@ class main {
 					manager.allData();
 					break;
 				case INIT_MENU.EXIT:
+					System.out.println(" ");
 					System.out.println("[프로그램 종료] ");
-					System.out.println("[ 사 요 나 라 ] ");
+					System.out.println("[사요나라 바이 짜이찌엔] ");
 					return;
 				}
 
