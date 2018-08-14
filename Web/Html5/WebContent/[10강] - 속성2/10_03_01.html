@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> border 속성1 </title>
+		
+		<style>
+			
+			body {
+				margin:0;
+				background-color:#f4eaff;
+			}
+			
+			div {
+				width:200px;
+				height:200px;
+				margin:10px;
+				padding:10px;
+				border:10px solid #8000ff;
+			}
+			
+			div:nth-child(1) {
+				margin:0;
+				border:0;
+				padding:0;
+				background-color:#8000ff;
+			}
+			
+			/* width값을 border,padding을 합한 값으로 사용함. 컨텐츠 크기 줄어듬 */
+			div:nth-child(2) {
+				background-color:#a74fff;
+				box-sizing:border-box;
+			}
+			
+			/* width값을 컨텐츠 영역의 너비 값으로 사용 */
+			div:nth-child(3) {
+				background-color:#cf9fff;
+				box-sizing:content-box;
+			}
+		</style>
+		
+	</head>
+	<body>
+
+		<div>200*200</div>
+		<div>200*200</div>
+		<div>200*200</div>
+		
+	</body>
+</html>

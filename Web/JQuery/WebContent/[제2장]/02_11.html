@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+				
+		<script src = "http://code.jquery.com/jquery.js"></script>
+	
+		<script>
+			$(document).ready(function () { //add() 메서드
+				$('h1').css('background','#cbe86b').add('h2').css('float','left');
+				// h1에도 css('float','left') 속성을 추가
+				//$('h1').css('background','#cbe86b');
+				//$('h2').css('float','left'); << h2에만  css('float','left') 속성을 추가
+			});
+		</script>
+		
+	</head>
+	<body>
+		<h1>Header-0</h1>
+		<h2>Header-1</h2>
+		<h1>Header-2</h1>
+		<h2>Header-3</h2>
+		<h1>Header-4</h1>
+	</body>
+</html>

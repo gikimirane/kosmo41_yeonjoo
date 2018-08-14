@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> Date 객체로 현재 시간 알아내기 </title>
+	</head>
+	<body>
+		
+		<h3> Date 객체로 현재 시간 알아내기 </h3>
+		<hr>
+		
+		<script>
+			var now = new Date(); //현재 시간 값을 가진 Date 객체 생성
+			document.write("현재 시간 : " + now.toUTCString() + "<br><hr>");
+			document.write(now.getFullYear() + "년도<br>");
+			document.write(now.getMonth() + 1 + "월<br>");
+			document.write(now.getDate() + "일<br>");
+			document.write(now.getHours() + "시<br>");
+			document.write(now.getMinutes() + "분<br>");
+			document.write(now.getSeconds() + "초<br>");
+			document.write(now.getMilliseconds() + "밀리초<br><br>");
+					
+			var next = new Date(2018,7,15,12,12,12); // 7은 8월을 의미		
+			document.write("next.toLocaleString() : " + next.toLocaleString() + "<br>");
+											//toLocaleString() 괄호안에 국가를 지정하면 국가별 디폴트 형태로 출력이 됨.
+		
+		var diff = next - now;
+		var day = 1000 * 60 * 60 * 24; //하루의 시간을 구하는 공식
+		document.write("차이 일수 1 : " + parseInt(diff/day) +"<br>");
+		
+		var diff2 = next.getDate() - now.getDate();
+		document.write("차이 일수 2 : " + diff2);
+		</script>
+			
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<meta charset="UTF-8">
+		<title>fig 01-02 : 자바스크립트롤 사용자 입력 및 대화</title>
+		</head>
+	<body>
+	<h3>for문으로 0에서 9까지 출력</h3>
+		<hr>
+	<div id="result"></div>
+	<script>
+		var result = document.getElementById("result");
+		
+		function promptEX() {
+			var ret = prompt("이름을 입력하세요", "홍길동");
+			if(ret == null) {
+				//취소 버튼을 눌렀거나 다이얼로그를 닫은 경우
+				result.innerHTML = "취소버튼을 누르셨거나 그냥 닫으셨군요"
+			}
+			else {
+				// ret에는 사용자가 입력한 문자열
+				// 아무값도 입력하지 않으면, ret =""
+				result.innerHTML = ret;
+			}
+		}
+		function confirmEX() {
+			var ret = confirm("전송할까요?");
+			if(ret == true) {
+				// 사용자가 "확인" 버튼을 누른 경우
+				result.innerHTML = "확인을 눌렀군요";
+			}
+			else {
+				// 취소 버트이나 다이얼로그다 닫힌 경우
+				result.innerHTML = "취소버튼을 누르셨거나 그냥 닫으셨군요";
+			}
+		}
+		function alertEX() {
+			alert("클릭 하셨습니다.")
+		}
+	</script>
+	<button onclick="promptEX()">프로프트 다이얼로그</button>
+	<button onclick="confirmEX()">확인 다이얼로그</button>	
+	<button onclick="alertEX()">경고 다이얼로그</button>		
+	
+	</body>
+</html>

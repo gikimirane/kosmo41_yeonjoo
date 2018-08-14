@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+				
+		<script src = "http://code.jquery.com/jquery.js"></script>
+	
+		<script>
+			$(document).ready(function () { //is()메서드 사용
+				$('h1').each(function() {
+					if($(this).is('.select')) {
+					   $(this).css('background','#747ced');
+					}
+				});
+			});
+		</script>
+		
+	</head>
+	<body>
+		<h1 class="select">Header-0</h1>
+		<h1>Header-1</h1>
+		<h1 class="select">Header-2</h1>
+	</body>
+</html>

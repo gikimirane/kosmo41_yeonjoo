@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> display / visibility 속성 </title>
+		
+		<style>
+		
+			<!-- 영역차지도 없고 노출되지 않는 영역 -->
+		
+			#display_none div:nth-child(1) {
+				width : 100px;
+				height : 100px;
+				background-color:#da0067;
+				color:#ffffff;
+				font-weight:bold;
+				text-align:center;
+				display:inline;
+			}
+			
+			#display_none div:nth-child(2) {
+				width : 100px;
+				height : 100px;
+				background-color:#00da73;
+				color:#ffffff;
+				font-weight:bold;
+				text-align:center;
+				display:none;
+			}
+			
+			#display_none div:nth-child(3) {
+				width : 100px;
+				height : 100px;
+				background-color:#7200da;
+				color:#ffffff;
+				font-weight:bold;
+				text-align:center;
+				display:block;
+			}
+			
+			<!-- 영역차지는 있지만 노출되지 않는 영역 -->
+			
+			#visibility_hidden div:nth-child(1) {
+				width : 100px;
+				height : 100px;
+				background-color:#da0067;
+				color:#ffffff;
+				font-weight:bold;
+				text-align:center;
+			}
+			
+			#visibility_hidden div:nth-child(2) {
+				width : 100px;
+				height : 100px;
+				background-color:#00da73;
+				color:#ffffff;
+				font-weight:bold;
+				text-align:center;
+				visibility:hidden;
+			}
+			
+			#visibility_hidden div:nth-child(3) {
+				width : 100px;
+				height : 100px;
+				background-color:#7200da;
+				color:#ffffff;
+				font-weight:bold;
+				text-align:center;
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+	
+		<div id="display_none">
+			<div>
+				content1
+			</div>
+			<div>
+				content2
+			</div>
+			<div>
+				content3
+			</div>
+		</div>
+		<hr>
+		
+		<div id="visibility_hidden">
+			<div>
+				content1
+			</div>
+			<div>
+				content2
+			</div>
+			<div>
+				content3
+			</div>
+		</div>
+
+	</body>
+</html>

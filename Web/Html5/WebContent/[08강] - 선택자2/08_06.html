@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>동위,반응,상태 선택자</title>
+		<style>
+		
+		<!-- 선택자A + 선택자B : 선택자A 바로 뒤에 위치하는 선택자B를 선택 
+			 선택자A ~ 선택자B : 선택자A 뒤에 위치하는 선택자B를 선택 -->
+			 
+			h3~div {
+				font-size:10px;
+				color:#d4cdf6;
+			}
+			h3+div {
+				font-size:20px;
+				font-weight:bold;
+				color:#5d00b3;
+			}
+			#title~div {
+				width:300px;
+				background-color:#d4cdf6;
+	
+			}
+			.hoverSel:hover {
+				font-size:2em;
+				color:#694e74;
+				font-weight:bolder;
+			}
+			input:checked{
+				font-size:2em;
+				background:#ffffff;
+			}
+			input{
+				font-size:1em;
+				background:#ffffff;
+			}
+			input:focus{
+				font-size:2em;
+				background:#d4cdf6;
+			}
+		</style>
+	</head>
+	<body>
+	
+		<!-- 동위 선택자 -->
+		<h3 id="title">동위 선택자(+,~) </h3>
+			<div>div_01</div>
+			<div>div_02</div>
+			<div>div_03</div>
+			<div>div_04</div>
+			<div>div_05</div>
+			<br />
+		
+		<!-- 반응 선택자 -->
+		<div class='hoverSel'>반응 선택자</div>
+		
+		<br />
+		
+		<!-- 상태 선택자 -->
+		<div>
+			아이디 : <input type='text'>
+		</div>
+</body>
+</html>

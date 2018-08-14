@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+				
+		<script src = "http://code.jquery.com/jquery.js"></script>
+	
+		<script>
+			$(document).ready(function () { //필터 선택자 이용
+				$('h1').eq(0).css('background','#f9d423');
+				$('h1').eq(1).css('background','#fc913a');
+				$('h1').eq(2).css('background','#ff4e50'); 
+				$('h1').eq(-1).css('background','#ede574'); 
+	// -1을 쓰면 마지막에서부터 돌아오기 때문에 제일 마지막 줄인 
+	// Header-2의 색상이 변경된다.
+	// 웬만하면 마지막 색상을 바꾸려면, -1을 쓰지말고 last를 써라	
+			});
+		</script>
+		
+	</head>
+	<body>
+		<h1>Header-0</h1>
+		<h1>Header-1</h1>
+		<h1>Header-2</h1>
+		<h1>Header-3</h1>
+	</body>
+</html>

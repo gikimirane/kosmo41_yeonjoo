@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> 포지션 속성 5 </title>
+		
+		<style>
+		
+			#contain {
+				width:800px; 
+				margin:0 auto;
+				border:1px solid #004e66;
+			}		
+			
+			#header {
+				height:50px;
+				background-color:#004e66;
+				color:#ffffff;
+			}
+			
+			#wrap {
+				height:200px;
+				position:relative;
+			}
+			
+			#content1 {
+			 	width:100px; height:100px;
+			 	background-color:#ff5f2e;
+			 	border:2px dashed #004e66;
+			 	position:absolute;
+			 	top:10px; left:10px;
+			 	z-index:20;
+			}
+			
+			#content2 {
+			 	width:100px; height:100px;
+			 	background-color:#fcbe32;
+			 	border:2px dashed #004e66;
+			 	position:absolute;
+			 	top:50px; left:50px;
+			 	z-index:20;
+			}
+			
+			#footer {
+				height:50px;
+				background-color:#004e66;
+				color:#ffffff;
+			}
+			
+		</style>
+	</head>
+	<body>
+	
+		<div id="contain">
+			<div id="header">HEADER</div>
+			<div id="wrap">
+				<div id="content1">content1</div>
+				<div id="content2">content2</div>
+			</div>
+			<div id="footer">FOOTER</div>
+		</div>
+	</body>
+</html>

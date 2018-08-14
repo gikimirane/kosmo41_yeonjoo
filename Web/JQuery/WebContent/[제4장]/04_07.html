@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+		<style>
+			.reverse {
+			background : #886bc5;
+			color : #ffb5da;
+			}
+		</style>
+		<script src = "http://code.jquery.com/jquery.js"></script>
+	
+		<script>
+			$(document).ready(function () { 
+				 //단축 이벤트 메서드 구현
+				 
+				 //이벤트 연결합니다. >> hover() 메서드 구현
+				 $('h1').hover(function () {
+					 $(this).addClass('reverse');
+				 }, function () {
+					 $(this).removeClass('reverse');
+				 });
+			});
+		</script>
+		
+	</head>
+	<body>
+		<h1>Header-0</h1>
+		<h1>Header-1</h1>
+		<h1>Header-2</h1>
+	</body>
+</html>

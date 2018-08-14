@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+		<style>
+			.high_light_0 { background:#ff7473; }
+			.high_light_1 { background:#ffc952; }
+			.high_light_2 { background:#47b8e0; }
+			.high_light_3 { background:#34314c; }
+			.high_light_4 { background:#a663dc; }
+		</style>
+			
+		<script src = "http://code.jquery.com/jquery.js"></script>
+	
+		<script>
+			$(document).ready(function () { //JQuery 를 사용한 배열 관리(2)
+				$('h1').each(function (index, item) {
+					$(this).addClass('high_light_' + index);
+				});		
+			});
+		</script>
+		
+	</head>
+	<body>
+		<h1>item - 0</h1>
+		<h1>item - 1</h1>
+		<h1>item - 2</h1>
+		<h1>item - 3</h1>
+		<h1>item - 4</h1>
+	</body>
+</html>
