@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 @WebServlet("/LoginProcess")
 public class LoginProcess extends HttpServlet {
 	
@@ -80,11 +82,12 @@ public class LoginProcess extends HttpServlet {
 				}
 					
 				if(pwcheck) {
+					
 					HttpSession session = request.getSession();
 					session.setAttribute("name", name);
 					session.setAttribute("id", id);
 					session.setAttribute("pw", pw);
-					
+			
 					System.out.println("login success");
 					writer.println( "[{\"result\":\"ok\",\"desc\":\"none\"}]" );
 					

@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>JSP/Servlet19-2 로그인</title>
+		<title>19 ex 로그인</title>
 		
 	<script src="http://code.jquery.com/jquery.js"></script>	
 
@@ -16,7 +16,7 @@
 		function submit_ajax(){
 			var queryString = $("#LoginProcess").serialize() ;
 			$.ajax({
-				url : '/Jsp19_2/LoginProcess',
+				url : '/Jsp19_ex/LoginProcess',
 				type : 'POST',
 				data : queryString,
 				datatype : 'json',

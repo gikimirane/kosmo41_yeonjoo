@@ -23,7 +23,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>JSP/Servlet19-2 수정</title>
+		<title>19 ex 정보수정</title>
 		
 		<script src="http://code.jquery.com/jquery.js"></script>	
 	
@@ -36,7 +36,7 @@
 		function submit_ajax(){
 			var queryString = $("#ModifyProcess").serialize() ;
 			$.ajax({
-				url : '/Jsp19_2/ModifyProcess',
+				url : '/Jsp19_ex/ModifyProcess',
 				type : 'POST',
 				data : queryString,
 				datatype : 'json',
@@ -57,6 +57,16 @@
 	<body>
 		
 		<%
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		Object obj = session.getAttribute("id");
+		String Id = (String)obj;	
+		
+		if(Id == null) {
+			response.sendRedirect("login.jsp");
+		} else {
+			
 			id = (String)session.getAttribute("id");
 		
 			String query = "select * from member where id = '" + id + "'";
@@ -107,6 +117,7 @@
 					   <input type="radio" name="gender" value="man" checked="checked"> 남 <br>
 			<%
 				  }
+		}
 			%>
 			 <input type="button" value="정보수정" onclick="form_check()" />	 
 		</form>
