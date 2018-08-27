@@ -27,7 +27,9 @@
 		
 		<a href="modify.jsp">회원정보 수정</a> <br><p>
 		
-		<a href="sessiontest.jsp"> 세션 테스트 </a>
+		<a href="sessiontest.jsp"> 세션 테스트 </a> <br><p>
+		
+		<a href="home.jsp"> 홈으로이동 </a> 
 		
 	</body>
 </html>

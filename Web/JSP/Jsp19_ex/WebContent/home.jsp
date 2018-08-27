@@ -71,7 +71,6 @@
 		<div id="con">
 			<div id="header">
 			<a href="login.jsp">로그인</a> <a href="join.jsp">회원가입</a> 
-			HEADER
 			</div>
 			
 			<div id="nav">
@@ -88,7 +87,6 @@
 		<div id="wrap">
 			<div id="content"> CONTENT </div>
 			<div id="login"> 
-			LOGIN 
 			<%
 			request.setCharacterEncoding("UTF-8");
 			
