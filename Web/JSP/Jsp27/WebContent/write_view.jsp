@@ -25,7 +25,7 @@
  				<tr>
  					<td colspan="2"> 
  						<input type="submit" value="입력">	&nbsp;&nbsp;
- 						<a href="list.do">목록보기</a>
+ 						<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a>&nbsp;&nbsp;
  					</td>
  				</tr>
  			</form>

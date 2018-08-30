@@ -25,18 +25,24 @@
  				</tr>
  				<tr>
  					<td> 이름 </td>
- 					<td><input type="text" name="bName" value="${reply_view.bHit}"> </td>
+ 					<td><input type="text" name="bName" value=""> </td>
  				</tr>
  				<tr>
  					<td> 제목 </td>
- 					<td><input type="text" name="bTitle" value="${reply_view.bTitle}"> </td>
+ 					<td><input type="text" name="bTitle" value="${reply_view.bTitle}" - > </td>
+ 				</tr>
+ 				<tr>
+ 					<td> 원문내용 </td>
+ 					<td>${reply_view.bContent}</td>
  				</tr>
  				<tr>
  					<td> 내용 </td>
- 					<td><textarea name="bContent" rows="10">${reply_view.bContent}</textarea></td>
+ 					<td><textarea name="bContent" rows="10"></textarea></td>
  				</tr>
  				<tr>
- 					<td colspan="2"><input type="submit" value="답변"><a href="list.do">목록</a></td>
+ 					<td colspan="2"><input type="submit" value="답변">
+ 					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a>&nbsp;
+ 					</td>
  				</tr>
  			</form>
  		</table>
