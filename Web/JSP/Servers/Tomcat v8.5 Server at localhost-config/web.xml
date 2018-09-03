@@ -290,7 +290,7 @@
   <!--                                                                      -->
   <!--   allowExec           Is use of the exec command enabled? [false]    -->
 
-<!--
+
     <servlet>
         <servlet-name>ssi</servlet-name>
         <servlet-class>
@@ -314,7 +314,7 @@
         </init-param>
         <load-on-startup>4</load-on-startup>
     </servlet>
--->
+
 
 
   <!-- Common Gateway Includes (CGI) processing servlet, which supports     -->

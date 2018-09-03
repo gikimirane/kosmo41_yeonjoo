@@ -5,8 +5,8 @@
 <%
  	String id = (String)session.getAttribute("id");
   	
-	BDao dao = BDao.getInstance();
-  	BDto dto = dao.getMember(id);
+	MemberDao dao = MemberDao.getInstance();
+	MemberDto dto = dao.getMember(id);
  %>
 <!DOCTYPE html>
 <html>

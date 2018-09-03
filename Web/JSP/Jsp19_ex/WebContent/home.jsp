@@ -22,6 +22,9 @@
 			#header {
 				width:780px; height:100px;
 				line-height:100px;
+			position: relative;
+			 top: expression(this.offsetParent.scrollTop);
+			 z-index: 20;
 			}
 			
 			#nav {
