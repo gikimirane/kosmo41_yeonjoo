@@ -1,27 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>27 reply_view </title>
+		<title> JAM#1♥ REPLY </title>
+		
 		<script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+		
+		<!-- Required meta tags -->
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<style>
+			div.col-sm-10 { 
+			width:60%;
+			height: 90%;
+			margin: auto;	 
+		}
+		</style>
 	</head>
-	<body>
 	
- 		<table width="500" cellpadding="0" cellspacing="0" border="1">
- 			<form action="reply.do" method="post">
- 				<input type="hidden" name="bId" value="${reply_view.bId}">
- 				<input type="hidden" name="bGroup" value="${reply_view.bGroup}">
- 				<input type="hidden" name="bStep" value="${reply_view.bStep}">
- 				<input type="hidden" name="bIndent" value="${reply_view.bIndent}">
+	<%@ include file="header.jsp" %>
+	
+	<body>
+		
+		<p></p>
+
+ 		<div class="container">
+ 		<table class="table" width=auto">
+ 		
+ 		<form action="reply.do" method="post">
+ 			<input type="hidden" name="bId" value="${reply_view.bId}">
+ 			<input type="hidden" name="bGroup" value="${reply_view.bGroup}">
+ 			<input type="hidden" name="bStep" value="${reply_view.bStep}">
+ 			<input type="hidden" name="bIndent" value="${reply_view.bIndent}">
  				
  				<tr>
  					<td> 번호 </td>
  					<td>${reply_view.bId} </td>
  				</tr>
  				<tr>
- 					<td> 조회 </td>
+ 					<td> 히트 </td>
  					<td>${reply_view.bHit} </td>
  				</tr>
  				<tr>
@@ -34,7 +56,6 @@
  				</tr>
  				<tr>
  					<td> 원문내용 </td>
- 					<td>${reply_view.bFile}</td>
  					<td>${reply_view.bContent}</td>
  				</tr>
  				<tr>
@@ -50,13 +71,20 @@
             		</script>
             		</td>
  				</tr>
+ 				
  				<tr>
- 					<td colspan="2"><input type="submit" value="답변">
- 					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a>&nbsp;
- 					</td>
+ 					<td colspan="2" style="text-align:center;" > 
+ 					<button type="submit" value="답변" class="btn btn-outline-warning">답변</button>
+ 					<button type="submit" value="목록보기" class="btn btn-outline-warning"> 
+ 					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a> 
+ 					</button></td>
  				</tr>
  			</form>
  		</table>
- 	
+ 		</div>
+	
 	</body>
+
+	<%@ include file="footer.jsp" %>
+	
 </html>

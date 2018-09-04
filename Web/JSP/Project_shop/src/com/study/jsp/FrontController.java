@@ -14,7 +14,6 @@ import com.study.jsp.command.BCommand;
 import com.study.jsp.command.BContentCommand;
 import com.study.jsp.command.BDeleteCommand;
 import com.study.jsp.command.BListCommand;
-import com.study.jsp.command.BLoginCommand;
 import com.study.jsp.command.BModifyCommand;
 import com.study.jsp.command.BReplyCommand;
 import com.study.jsp.command.BReplyViewCommand;
@@ -73,14 +72,17 @@ public class FrontController extends HttpServlet {
 			command = new BListCommand();
 			command.execute(request, response);
 			viewPage = "list.jsp";
+		
 		} else if (com.equals("/content_view.do")) {
 			command = new BContentCommand();
 			command.execute(request, response);
 			viewPage = "content_view.jsp";
+		
 		} else if (com.equals("/modify_view.do")) {
 			command = new BContentCommand();
 			command.execute(request, response);
 			viewPage = "modify_view.jsp";
+		
 		} else if (com.equals("/modify.do")) {
 			command = new BModifyCommand();
 			command.execute(request, response);
@@ -88,23 +90,21 @@ public class FrontController extends HttpServlet {
 			command = new BContentCommand();
 			command.execute(request, response);
 			viewPage = "content_view.jsp";
-			//viewPage = "content_view.do";
+		
 		} else if (com.equals("/delete.do")) {
 			command = new BDeleteCommand();
 			command.execute(request, response);
 			viewPage = "list.do?page="+curPage;
+		
 		} else if (com.equals("/reply_view.do")) {
 			command = new BReplyViewCommand();
 			command.execute(request, response);
 			viewPage = "reply_view.jsp";
+		
 		} else if (com.equals("/reply.do")) {
 			command = new BReplyCommand();
 			command.execute(request, response);
 			viewPage = "list.do?page="+curPage;
-		} else if (com.equals("/loginOK.do")) {
-			command = new BLoginCommand();
-			command.execute(request, response);
-			viewPage = "loginOK.do?page="+curPage;
 		} 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

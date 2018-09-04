@@ -29,8 +29,8 @@
     	</div>
       	<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
     	 <div class="card-body">
-		<p>상호명: (주)JAM#1|대표: 오연주|전화번호: 010-9448-8471 </p>
-		<p>Name of company: JAMNO.1 |Name of representative: OHYEONJOO </p>
+		<p>상호명: (주)스노우볼|대표: 오연주|전화번호: 010-9448-8471 </p>
+		<p>Name of company: Snowball |Name of representative: OH YEONJOO </p>
      	</div>
     	</div>
   	</div>

@@ -72,14 +72,17 @@ public class FrontController extends HttpServlet {
 			command = new BListCommand();
 			command.execute(request, response);
 			viewPage = "list.jsp";
+		
 		} else if (com.equals("/content_view.do")) {
 			command = new BContentCommand();
 			command.execute(request, response);
 			viewPage = "content_view.jsp";
+		
 		} else if (com.equals("/modify_view.do")) {
 			command = new BContentCommand();
 			command.execute(request, response);
 			viewPage = "modify_view.jsp";
+		
 		} else if (com.equals("/modify.do")) {
 			command = new BModifyCommand();
 			command.execute(request, response);
@@ -87,15 +90,17 @@ public class FrontController extends HttpServlet {
 			command = new BContentCommand();
 			command.execute(request, response);
 			viewPage = "content_view.jsp";
-			//viewPage = "content_view.do";
+		
 		} else if (com.equals("/delete.do")) {
 			command = new BDeleteCommand();
 			command.execute(request, response);
 			viewPage = "list.do?page="+curPage;
+		
 		} else if (com.equals("/reply_view.do")) {
 			command = new BReplyViewCommand();
 			command.execute(request, response);
 			viewPage = "reply_view.jsp";
+		
 		} else if (com.equals("/reply.do")) {
 			command = new BReplyCommand();
 			command.execute(request, response);

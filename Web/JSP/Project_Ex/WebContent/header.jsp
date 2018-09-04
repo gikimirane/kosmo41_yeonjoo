@@ -1,26 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title> JAM#1♥ HEADER </title>
-
-		<!-- Required meta tags -->
-	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    <!-- Bootstrap CSS -->
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<style>
-		.test1 {
-		}
-		</style>
+<head>
+	<title>Hello, world!</title>
+	<meta charset="utf-8">
+	
+	<!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<style>
+	.test1 {
+	}
+</style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-sm navbar-light bg-warning">
-  <a class="navbar-brand" href="#"><h1> JAM#1 </h1></a>
+  <a class="navbar-brand" href="#"><h1> I AM </h1></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -28,31 +27,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="main.jsp">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="list.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="login.jsp">login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="join.jsp">join</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="list.do">board</a>
-      </li>
-      <li class="nav-item">
-       <%
-			request.setCharacterEncoding("UTF-8");
-			
-  			String id = request.getParameter("id");
-			
-			if(id == null) {
-	   %>		
-				<a class="nav-link" href="#">로그인을 해 주세요♥</a>
-	   <%		
-			} else {
-	   %>	
-				<a class="nav-link" href="#"><%= id %> 님, 안녕하세요♥</a>
-	   <% } %>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

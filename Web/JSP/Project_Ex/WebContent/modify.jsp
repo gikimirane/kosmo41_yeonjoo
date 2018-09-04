@@ -4,9 +4,9 @@
 <% request.setCharacterEncoding("UTF-8"); %> 
 <%
  	String id = (String)session.getAttribute("id");
-    	
-  	MemberDao dao = MemberDao.getInstance();
-  	MemberDto dto = dao.getMember(id);
+  	
+  	MDao dao = MDao.getInstance();
+  	MDto dto = dao.getMember(id);
  %>
 <!DOCTYPE html>
 <html>

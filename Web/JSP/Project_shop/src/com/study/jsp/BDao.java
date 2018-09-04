@@ -420,39 +420,5 @@ public void modify(String bId, String bName, String bTitle, String bContent) {
 			}
 		}
 	}
-	
-	private void loginOK(String bId) {
-		
-		
-		BDto dto = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet resultSet =null;
-		
-		try {
-			 con = dataSource.getConnection();
-			 
-			 String query = "select * from mvc_board where bId = ?";
-			 
-			 pstmt = con.prepareStatement(query);
-			 pstmt.setInt(1,Integer.parseInt(bId));
-			 resultSet = pstmt.executeQuery();
-	
-			 if (resultSet.next()) {
-				 int bId = resultSet.getInt("bId");
-				 String bName = resultSet.getString("bName");
-				 
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
 }
 
