@@ -67,14 +67,14 @@ public class joinOK implements Service {
 		
 			writer.println("<script language=\"javascript\" >"
 					+ "alert(\"회원가입을 축하합니다.\");"
-					+ "document.location.href=\"login.jsp\";</script>");
+					+ "document.location.href=\"list.jsp\";</script>");
 			
 			writer.close();
 		} else {	
 			
 			writer.println("<script language=\"javascript\" >"
 					+ "alert(\"회원가입에 실패했습니다.\");"
-					+ "document.location.href=\"join.jsp\";</script>");
+					+ "document.location.href=\"list.jsp\";</script>");
 			writer.close();
 			
 			}

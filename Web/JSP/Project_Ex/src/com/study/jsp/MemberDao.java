@@ -105,6 +105,8 @@ public class MemberDao {
 		ResultSet set = null;
 		String query = "select pw from members where id = ?";
 		
+		System.out.println("DaoOK");
+		
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(query);

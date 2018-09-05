@@ -10,27 +10,22 @@ import javax.servlet.http.HttpSession;
 
 public class loginOK implements Service {
 
-	public loginOK() {
-		
-	}
-
 	@Override
-	public void execute(HttpServletRequest request, 
-			HttpServletResponse response) 
+	public void execute(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{
 	
 		System.out.println("loginOK");
 		request.setCharacterEncoding("UTF-8"); 
 		
-		String mId = request.getParameter("mId");
-		String mPw = request.getParameter("mPw");
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		
-		MDao mdao = MDao.getInstance();
-		int checkNum = mdao.userCheck(mId, mPw);
+		MemberDao dao = MemberDao.getInstance();
+		int checkNum = dao.userCheck(id, pw);
 		
 		if(checkNum == -1) {
 		
@@ -47,7 +42,7 @@ public class loginOK implements Service {
 			writer.close();
 			
 		} else if(checkNum == 1) {		
-			MDto dto = mdao.getMember(mId);
+			MemberDto dto = dao.getMember(id);
 					  
 			if(dto == null) {
 				
@@ -57,14 +52,14 @@ public class loginOK implements Service {
 				writer.close();
 				
 			} else {
-				String mName = dto.getmName();
+				String name = dto.getName();
 				
 				HttpSession session = request.getSession();
 				
-				session.setAttribute("mId", mId);
+				session.setAttribute("id", id);
 				session.setAttribute("name", name);
 				session.setAttribute("ValidMem", "yes");
-				response.sendRedirect("main.jsp");
+				response.sendRedirect("header.jsp");
 			}
 				
 		}
