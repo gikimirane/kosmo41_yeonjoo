@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title> JAM#1♥ HEADER </title>
+		<title> JAM#1♥ HEADER(예비) </title>
 
 		<!-- Required meta tags -->
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-light bg-warning">
+<nav class="navbar navbar-expand-sm navbar-light bg-info">
   <a class="navbar-brand" href="#"><h1> JAM#1 </h1></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -31,32 +31,41 @@
         <a class="nav-link" href="main.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login.jsp">login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="join.jsp">join</a>
+    	 <%	request.setCharacterEncoding("UTF-8");
+  			String id =(String)session.getAttribute("id");	
+			if(id == null) { %>		
+			<a class="nav-link" href="join.jsp">회원가입</a>
+	   <%	} else { %>	
+			 	<a class="nav-link" href="modify.jsp">정보수정</a>			 
+	   <%   } %>     
       </li>
       <li class="nav-item">
         <a class="nav-link" href="list.do">board</a>
       </li>
-      <li class="nav-item">
-       <%
-			request.setCharacterEncoding("UTF-8");
-			
-  			String id = request.getParameter("id");
-			
-			if(id == null) {
-	   %>		
-				<a class="nav-link" href="#">로그인을 해 주세요♥</a>
-	   <%		
-			} else {
-	   %>	
-				<a class="nav-link" href="#"><%= id %> 님, 안녕하세요♥</a>
-	   <% } %>
-      </li>
+      
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    
+	   <%	//request.setCharacterEncoding("UTF-8");
+  			//String id =(String)session.getAttribute("id");	
+			if(id == null) { %>		
+			로그인을 해 주세요♥ &nbsp;&nbsp;
+			 	<form class="form-inline my-2 my-lg-0" name="login" action="loginOK.do" method="post">
+				<input class="form-control mr-sm-2" type="text" name="id" placeholder="ID"
+   			  		   value="<% if(session.getAttribute("id") != null) 
+					   				out.println(session.getAttribute("id"));%>">
+
+				<input class="form-control mr-sm-2" type="password" name="pw" placeholder="PASSWORD">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">로그인</button>
+  				</form>
+	   <%	} else { %>	
+			<%= id %> 님, 안녕하세요♥ &nbsp;&nbsp;
+			 <form class="form-inline my-2 my-lg-0" name="logout" action="logout.do" method="post">
+			 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">로그아웃</button>
+			 </form>		 
+	   <%   } %>
+  	&nbsp;&nbsp;
+     <form class="form-inline my-2 my-lg-0"> 
+     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>

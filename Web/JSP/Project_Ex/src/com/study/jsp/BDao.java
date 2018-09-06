@@ -66,6 +66,7 @@ public class BDao {
 	public ArrayList<BDto> list(int curPage) {
 		
 		ArrayList<BDto> dtos = new ArrayList<BDto>();
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet resultSet =null;
@@ -79,17 +80,18 @@ public class BDao {
 // '검색' 추가 sql문 수정할거면 여기서 수정
 			 
 			 String query = "select * from ( " + 
-					 		" select rownum num, A.* from ( " + 
-					 		" select * from mvc_board " + 
-					 		" order by bgroup desc, bstep asc ) A " + 
-					 		" where rownum <= ? ) B where B.num >= ?"; 
-	 
+				 		" select rownum num, A.* from ( " + 
+				 		" select * from mvc_board " + 
+				 		" order by bgroup desc, bstep asc ) A " + 
+				 		" where rownum <= ? ) B where B.num >= ?"; 
+			 
 			 pstmt = con.prepareStatement(query);
 			 pstmt.setInt(1, nEnd);
 			 pstmt.setInt(2, nStart);
 			 resultSet = pstmt.executeQuery();
-			
+
 			 while (resultSet.next()) {
+				 
 				 int bId = resultSet.getInt("bId");
 				 String bName = resultSet.getString("bName");
 				 String bTitle = resultSet.getString("bTitle");
@@ -102,8 +104,8 @@ public class BDao {
 				 
 				 BDto dto = new BDto(bId, bName, bTitle, bContent, bDate, 
 						 			 bHit, bGroup, bStep, bIndent);
-				 dtos.add(dto);
-			 }
+				 dtos.add(dto); 
+			 } 		 
 			
 		} catch (Exception e) {
 			e.printStackTrace();

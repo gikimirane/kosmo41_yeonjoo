@@ -24,8 +24,8 @@ public class loginOK implements Service {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		
-		MemberDao dao = MemberDao.getInstance();
-		int checkNum = dao.userCheck(id, pw);
+		MemberDao mdao = MemberDao.getInstance();
+		int checkNum = mdao.userCheck(id, pw);
 		
 		if(checkNum == -1) {
 		
@@ -42,9 +42,9 @@ public class loginOK implements Service {
 			writer.close();
 			
 		} else if(checkNum == 1) {		
-			MemberDto dto = dao.getMember(id);
+			MemberDto mdto = mdao.getMember(id);
 					  
-			if(dto == null) {
+			if(mdto == null) {
 				
 				writer.println("<script language=\"javascript\" >"
 						+ "alert(\"존재하지 않는 회원입니다.\");"
@@ -52,14 +52,14 @@ public class loginOK implements Service {
 				writer.close();
 				
 			} else {
-				String name = dto.getName();
+				String name = mdto.getName();
 				
 				HttpSession session = request.getSession();
 				
 				session.setAttribute("id", id);
 				session.setAttribute("name", name);
 				session.setAttribute("ValidMem", "yes");
-				response.sendRedirect("header.jsp");
+				response.sendRedirect("main.jsp");
 			}
 				
 		}

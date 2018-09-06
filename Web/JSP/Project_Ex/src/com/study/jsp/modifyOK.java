@@ -13,7 +13,7 @@ public class modifyOK implements Service {
 	public modifyOK() {
 		
 	}
-
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
@@ -24,7 +24,7 @@ public class modifyOK implements Service {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 						
-		MemberDto dto = new MemberDto();
+		MemberDto mdto = new MemberDto();
 						
 		HttpSession session = request.getSession();
 					
@@ -34,14 +34,14 @@ public class modifyOK implements Service {
 		String pw = request.getParameter("pw");
 		String address = request.getParameter("address");
 					
-		dto.setId(id);
-		dto.setPw(pw);
-		dto.setName(name);
-		dto.seteMail(eMail);
-		dto.setAddress(address);
+		mdto.setId(id);
+		mdto.setPw(pw);
+		mdto.setName(name);
+		mdto.seteMail(eMail);
+		mdto.setAddress(address);
 						
-		MemberDao dao = MemberDao.getInstance();
-		int ri = dao.updateMember(dto);
+		MemberDao mdao = MemberDao.getInstance();
+		int ri = mdao.updateMember(mdto);
 
 		if(ri == 1) {
 							

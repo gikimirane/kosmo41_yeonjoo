@@ -16,54 +16,48 @@
 		.test1 {
 		}
 		</style>
-</head>
-<body>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm navbar-light bg-warning">
+		  <a class="navbar-brand" href="#"><h1> JAM#1 </h1></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
 
-<nav class="navbar navbar-expand-sm navbar-light bg-warning">
-  <a class="navbar-brand" href="#"><h1> JAM#1 </h1></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="main.jsp">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-    	 <%	request.setCharacterEncoding("UTF-8");
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="main.jsp">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		   		<a class="nav-link" href="list.do">Ranking</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="list.do">Q&A</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="imglist.jsp">Coordi</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="list.do">EVENT</a>
+		      </li>
+		      
+		    </ul>
+    
+	   <%	request.setCharacterEncoding("UTF-8");
   			String id =(String)session.getAttribute("id");	
 			if(id == null) { %>		
+			<a class="nav-link" href="login.jsp">로그인</a>
 			<a class="nav-link" href="join.jsp">회원가입</a>
 	   <%	} else { %>	
-			 	<a class="nav-link" href="modify.jsp">정보수정</a>			 
-	   <%   } %>     
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="list.do">board</a>
-      </li>
-      
-    </ul>
-    
-	   <%	//request.setCharacterEncoding("UTF-8");
-  			//String id =(String)session.getAttribute("id");	
-			if(id == null) { %>		
-			로그인을 해 주세요♥ &nbsp;&nbsp;
-			 	<form class="form-inline my-2 my-lg-0" name="login" action="loginOK.do" method="post">
-				<input class="form-control mr-sm-2" type="text" name="id" placeholder="ID"
-   			  		   value="<% if(session.getAttribute("id") != null) 
-					   				out.println(session.getAttribute("id"));%>">
-
-				<input class="form-control mr-sm-2" type="password" name="pw" placeholder="PASSWORD">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">로그인</button>
-  				</form>
-	   <%	} else { %>	
-			<%= id %> 님, 안녕하세요♥ &nbsp;&nbsp;
+			<%= id %> 님, 안녕하세요 ♥ 
+			 <a class="nav-link" href="modify.jsp">정보수정</a>	
 			 <form class="form-inline my-2 my-lg-0" name="logout" action="logout.do" method="post">
 			 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">로그아웃</button>
+			 &nbsp;&nbsp;
 			 </form>		 
 	   <%   } %>
-  	&nbsp;&nbsp;
+  
      <form class="form-inline my-2 my-lg-0"> 
      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

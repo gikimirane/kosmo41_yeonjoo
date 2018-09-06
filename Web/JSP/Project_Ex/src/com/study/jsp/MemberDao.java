@@ -28,7 +28,7 @@ public class MemberDao {
 		return instance;
 	}
 	
-	public int insertMember(MemberDto dto) {
+	public int insertMember(MemberDto mdto) {
 		int ri = 0;
 		
 		Connection con = null;
@@ -39,12 +39,12 @@ public class MemberDao {
 			con = getConnection();
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPw());
-			pstmt.setString(3, dto.getName());
-			pstmt.setString(4, dto.geteMail());
-			pstmt.setTimestamp(5, dto.getrDate());
-			pstmt.setString(6, dto.getAddress());
+			pstmt.setString(1, mdto.getId());
+			pstmt.setString(2, mdto.getPw());
+			pstmt.setString(3, mdto.getName());
+			pstmt.setString(4, mdto.geteMail());
+			pstmt.setTimestamp(5, mdto.getrDate());
+			pstmt.setString(6, mdto.getAddress());
 			pstmt.executeUpdate();
 			ri = MemberDao.MEMBER_JOIN_SUCCESS;
 			
@@ -146,7 +146,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
 		String query = "select * from members where id = ?";
-		MemberDto dto = null;
+		MemberDto mdto = null;
 		
 		try {
 			con = getConnection();
@@ -155,13 +155,13 @@ public class MemberDao {
 			set = pstmt.executeQuery();
 			
 			if(set.next()) {
-				dto = new MemberDto();
-				dto.setId(set.getString("id"));
-				dto.setPw(set.getString("pw"));
-				dto.setName(set.getString("name"));
-				dto.seteMail(set.getString("eMail"));
-				dto.setrDate(set.getTimestamp("rDate"));
-				dto.setAddress(set.getString("address"));
+				mdto = new MemberDto();
+				mdto.setId(set.getString("id"));
+				mdto.setPw(set.getString("pw"));
+				mdto.setName(set.getString("name"));
+				mdto.seteMail(set.getString("eMail"));
+				mdto.setrDate(set.getTimestamp("rDate"));
+				mdto.setAddress(set.getString("address"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -175,10 +175,10 @@ public class MemberDao {
 			}
 		}
 		
-		return dto;
+		return mdto;
 	}
 	
-	public int updateMember(MemberDto dto) {
+	public int updateMember(MemberDto mdto) {
 		int ri = 0;
 		
 		Connection con = null;
@@ -189,14 +189,14 @@ public class MemberDao {
 			con = getConnection();
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, dto.getPw());
-			System.out.println(dto.getPw());
-			pstmt.setString(2, dto.geteMail());
-			System.out.println(dto.geteMail());
-			pstmt.setString(3, dto.getAddress());
-			System.out.println(dto.getAddress());
-			pstmt.setString(4, dto.getId());
-			System.out.println(dto.getId());
+			pstmt.setString(1, mdto.getPw());
+			System.out.println(mdto.getPw());
+			pstmt.setString(2, mdto.geteMail());
+			System.out.println(mdto.geteMail());
+			pstmt.setString(3, mdto.getAddress());
+			System.out.println(mdto.getAddress());
+			pstmt.setString(4, mdto.getId());
+			System.out.println(mdto.getId());
 			
 			ri = pstmt.executeUpdate();
 			

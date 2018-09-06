@@ -1,3 +1,4 @@
+<%@page import="com.study.jsp.*" %>		
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -25,16 +26,7 @@
 		
 	</head>
 		<%@ include file="header.jsp" %>	
-		<%@page import="com.study.jsp.*" %>		
 		
-		<% request.setCharacterEncoding("UTF-8"); %> 
-		<%	
-			id = (String)session.getAttribute("id");
-	
-			MemberDao dao = MemberDao.getInstance();
-			MemberDto dto = dao.getMember(id);
-
-		%>
 	<body>
 	<p></p>
 		<div class="container">
@@ -43,10 +35,17 @@
 	        <div class="panel panel-success">
 	            <div class="panel-heading">
 	            <p></p>
+	            
+	         <% request.setCharacterEncoding("UTF-8"); %> 
+			 <%	id = (String)session.getAttribute("id");
+	
+					MemberDao mdao = MemberDao.getInstance();
+					MemberDto mdto = mdao.getMember(id); %>
+					
 		<form action="modifyOK.do" method="post" name="reg_frm">
 		<div class="form-group">
   		     		<label for="id"> 아이디 </label>
-    		 		<%= dto.getId() %>
+    		 		<%= mdto.getId() %>
 				 </div>
 		<div class="form-group">
   		     		<label for="password"> 비밀번호 </label>
@@ -58,18 +57,18 @@
 			 	</div>
 		<div class="form-group">
   		     		<label for="name"> 이름 </label>
-    		 		<%= dto.getName() %>
+    		 		<%= mdto.getName() %>
 				 </div>
 		<div class="form-group">
-  		     		<label for="email"> 메일 </label>
-  		     			<input type="text" class="form-control" id="eMail" name="email"  value="<%= dto.geteMail() %>">
+  		     		<label for="eMail"> 메일 </label>
+  		     			<input type="text" class="form-control" id="eMail" name="eMail"  value="<%= mdto.geteMail() %>">
 				 </div>	
 		<div class="form-group">
-  		     		<label for="email"> 주소 </label>
-  		     			<input type="text" class="form-control" id="address" name="address"  value="<%= dto.getAddress() %>">
+  		     		<label for="address"> 주소 </label>
+  		     			<input type="text" class="form-control" id="address" name="address"  value="<%= mdto.getAddress() %>">
 				 </div>		
 			 <input type="button" class="btn btn-primary"  value="수정" onclick="updateInfoConfirm()"></button>
-			 <input type="reset" class="btn btn-primary"  value="취소" onclick="javascript:window.location='list.jsp'"></button>
+			 <input type="reset" class="btn btn-primary"  value="취소" onclick="javascript:window.location='main.jsp'"></button>
 		</form>
 		
 		</div>

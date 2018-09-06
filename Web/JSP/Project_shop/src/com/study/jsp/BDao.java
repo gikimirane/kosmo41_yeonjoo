@@ -104,6 +104,7 @@ public class BDao {
 						 			 bHit, bGroup, bStep, bIndent);
 				 dtos.add(dto);
 			 }
+			 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -151,37 +152,37 @@ public class BDao {
 			}
 		}
 
-		// 총 페이지 수
-		int totalPage = totalCount / listCount;
-		if (totalCount % listCount > 0)
-			totalPage++;
-		
-		// 현재 페이지
-		int myCurPage = curPage;
-		if (myCurPage > totalPage)
-			myCurPage = totalPage;
-		if (myCurPage < 1)
-			myCurPage = 1;
-		
-		// 시작페이지
-		int startPage = ((myCurPage - 1) / pageCount) * pageCount + 1;
-		
-		// 끝페이지
-		int endPage = startPage + pageCount - 1;
-		if (endPage > totalPage)
-			endPage = totalPage;
-		
-		BPageInfo pinfo = new BPageInfo();	
-		pinfo.setTotalCount(totalCount);
-		pinfo.setListCount(listCount);
-		pinfo.setTotalPage(totalPage);
-		pinfo.setCurPage(myCurPage);
-		pinfo.setPageCount(pageCount);
-		pinfo.setStartPage(startPage);
-		pinfo.setEndPage(endPage);
-
-		return pinfo;
-	}	
+			// 총 페이지 수
+			int totalPage = totalCount / listCount;
+			if (totalCount % listCount > 0)
+				totalPage++;
+			
+			// 현재 페이지
+			int myCurPage = curPage;
+			if (myCurPage > totalPage)
+				myCurPage = totalPage;
+			if (myCurPage < 1)
+				myCurPage = 1;
+			
+			// 시작페이지
+			int startPage = ((myCurPage - 1) / pageCount) * pageCount + 1;
+			
+			// 끝페이지
+			int endPage = startPage + pageCount - 1;
+			if (endPage > totalPage)
+				endPage = totalPage;
+			
+			BPageInfo pinfo = new BPageInfo();	
+			pinfo.setTotalCount(totalCount);
+			pinfo.setListCount(listCount);
+			pinfo.setTotalPage(totalPage);
+			pinfo.setCurPage(myCurPage);
+			pinfo.setPageCount(pageCount);
+			pinfo.setStartPage(startPage);
+			pinfo.setEndPage(endPage);
+	
+			return pinfo;
+		}	
 
 	public BDto contentView(String strID) {
 		upHit(strID);

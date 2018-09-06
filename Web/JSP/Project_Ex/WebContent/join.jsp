@@ -58,7 +58,7 @@
   		     		<label for="address"> 주소 </label>
     		 		<input type="text" class="form-control" id="address" name="address" placeholder="주소를 입력해 주세요">
 				 </div>		
-					<input type="button" class="btn btn-primary"  value="회원가입" onclick="infoConfirm()"> 회원가입 </button>
+					<input type="button" class="btn btn-primary"  value="회원가입" onclick="infoConfirm()"></button>
 					</form>
 						<p></p>
 			</table>

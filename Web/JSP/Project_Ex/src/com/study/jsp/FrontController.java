@@ -112,7 +112,13 @@ public class FrontController extends HttpServlet {
 			command = new BReplyCommand();
 			command.execute(request, response);
 			viewPage = "list.do?page="+curPage;
+			
+		}  else if (com.equals("/search.do")) {
+			command = new BListCommand();
+			command.execute(request, response);
+			viewPage = "list.do";
 		} 
+		
 		
 		if (com.equals("/loginOK.do")) {
 			service = new loginOK();
@@ -124,17 +130,19 @@ public class FrontController extends HttpServlet {
 			service.execute(request, response);
 			return;
 			
-		} else if (command.equals("/modifyOK.do")) {
+		} else if (com.equals("/logout.do")) {
+			session.invalidate();
+			response.sendRedirect("main.jsp");
+	
+			System.out.println("logout");
+			
+			return;
+			
+		}  else if (com.equals("/modifyOK.do")) {
 			service = new modifyOK();
 			service.execute(request, response);
 			return;
 			
-		} else if (com.equals("/logout.do")) {
-			System.out.println("logout");
-			
-			session.invalidate();
-			response.sendRedirect("list.jsp");
-			return;
 		} 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
