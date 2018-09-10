@@ -58,7 +58,7 @@
 	 				<td>내용</td>
 	 				<td>
 	 					<textarea name="bContent" id="editor1" rows="10" cols="80">
-	               				This is my textarea to be replaced with CKEditor.
+	               				${content_view.bContent}
 	           				</textarea>
 	            		<script>
 	              	  		// Replace the <textarea id="editor1"> with a CKEditor
@@ -75,7 +75,7 @@
 					<button type="submit" value="취소" class="btn btn-outline-warning"> 
 					<a href="content_view.do?bId=${content_view.bId}">취소</a></button>
 					<button type="submit" value="목록보기" class="btn btn-outline-warning"> 
-					<a href="clist.do?page=<%= session.getAttribute("cpage")%>">목록보기</a></button></td>
+					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a></button></td>
  				</tr>
  			</form>
  		

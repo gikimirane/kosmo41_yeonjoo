@@ -30,31 +30,36 @@ public class FrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{
+		System.out.println("doGet");
 		actionDo(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{
+		System.out.println("doPost");
 		actionDo(request, response);
 	}
 	
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
 	{	
+		System.out.println("actionDo");
 		request.setCharacterEncoding("UTF-8");
 		
 		String viewPage = null;
 		BCommand command = null;
+		Service service = null;
 		
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
-		
+
 		HttpSession session = null;
 		session = request.getSession();
 		
 		int curPage = 1;
+				
 		
 		if(session.getAttribute("cpage") != null) {
 			curPage = (int)session.getAttribute("cpage");
@@ -105,38 +110,37 @@ public class FrontController extends HttpServlet {
 			command = new BReplyCommand();
 			command.execute(request, response);
 			viewPage = "list.do?page="+curPage;
+			
+		} 	
+		
+		if (com.equals("/loginOK.do")) {
+			service = new loginOK();
+			service.execute(request, response);
+			return;
+			
+		} else if (com.equals("/joinOK.do")) {
+			service = new joinOK();
+			service.execute(request, response);
+			return;
+			
+		} else if (com.equals("/logout.do")) {
+			session.invalidate();
+			response.sendRedirect("main.jsp");
+	
+			System.out.println("logout");
+			
+			return;
+			
+		}  else if (com.equals("/modifyOK.do")) {
+			service = new modifyOK();
+			service.execute(request, response);
+			return;
+			
 		} 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);	
-	}
-	
-	public void loginOK (HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{	
-		System.out.println("loginOK");
-	}
-	
-	public void modifyOK (HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{
-		System.out.println("modifyOK");
-	}		
-	
-	public void joinOK (HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{
-		System.out.println("joinOK");
-	}
-	
-	public void logoutOK (HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{
-		System.out.println("logout");
 		
-		HttpSession session = request.getSession();
-		
-		session.invalidate();
-		response.sendRedirect("login.jsp");
 	}
+	
 }

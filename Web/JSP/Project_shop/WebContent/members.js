@@ -26,7 +26,7 @@ function infoConfirm(){
 	}
 	if(document.reg_frm.eMail.value.length == 0) {
 		alert("메일은 필수사항입니다.");
-		reg_frm.name.focus();
+		reg_frm.eMail.focus();
 		return;
 	}
 	
@@ -53,3 +53,4 @@ function updateInfoConfirm() {
 
 	document.reg_frm.submit();
 }
+

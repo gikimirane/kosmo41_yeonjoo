@@ -51,8 +51,8 @@
     		 		<input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력해 주세요">
 				 </div>
 				<div class="form-group">
-  		     		<label for="email"> 메일 </label>
-    		 		<input type="text" class="form-control" id="eMail" name="email" placeholder="메일을 입력해 주세요">
+  		     		<label for="eMail"> 메일 </label>
+    		 		<input type="text" class="form-control" id="eMail" name="eMail" placeholder="메일을 입력해 주세요">
 				 </div>		
 				<div class="form-group">
   		     		<label for="address"> 주소 </label>
