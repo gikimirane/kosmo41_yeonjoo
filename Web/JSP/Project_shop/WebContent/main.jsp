@@ -34,13 +34,13 @@
 		  </ol>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img class="d-block w-100" src="http://www.shinhwacompany.co.kr/images/t_main/main_visual_20180820.jpg" alt="첫번째 슬라이드">
+		      <img class="d-block w-100" src=".\img\kakao03.jpg"  alt="첫번째 슬라이드">
 		    </div>
 		    <div class="carousel-item">
-		      <img class="d-block w-100" src="http://www.shinhwacompany.co.kr/images/t_main/main_visual_20180820.jpg" alt="두번째 슬라이드">
+		      <img class="d-block w-100" src="/img/kakao04.jpg" alt="두번째 슬라이드">
 		    </div>
 		    <div class="carousel-item">
-		      <img class="d-block w-100" src="http://www.shinhwacompany.co.kr/images/t_main/main_visual_20180820.jpg" alt="세번째 슬라이드">
+		      <img class="d-block w-100" src="/img/kakao05.jpg" alt="세번째 슬라이드">
 		    </div>
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

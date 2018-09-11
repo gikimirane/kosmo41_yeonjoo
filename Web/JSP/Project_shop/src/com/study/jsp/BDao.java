@@ -34,14 +34,14 @@ public class BDao {
 		return instance;
 	}
 	
-	public void write(String bName, String bTitle, String bContent) {
+	public void write(String bName, String bTitle, String bContent, String fileName, String fileType) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String query = "insert into mvc_board " +
-					   "(bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent) " +
+					   "(bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent,fileName,fileType) " +
 					   "values " +
-					   " (mvc_board_seq.nextval, ?, ?, ?, 0, mvc_board_seq.currval, 0, 0 )";
+					   " (mvc_board_seq.nextval, ?, ?, ?, 0, mvc_board_seq.currval, 0, 0, ?, ? )";
 					  
 		try {
 			con = dataSource.getConnection();
@@ -49,6 +49,8 @@ public class BDao {
 			pstmt.setString(1, bName);
 			pstmt.setString(2, bTitle);
 			pstmt.setString(3, bContent);
+			pstmt.setString(4, fileName);
+			pstmt.setString(5, fileType);
 			int rn = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -86,8 +88,6 @@ public class BDao {
 								" where bTitle LIKE ? OR bContent LIKE ?" + 
 						 		" order by bGroup desc, bStep asc ) A " + 
 						 		" where rownum <= ? ) B where B.num >= ? "; 
-
-				 System.out.println("쿼리문(제목 + 내용)" + query);
 				 
 			 pstmt = con.prepareStatement(query);
 			 
@@ -97,7 +97,7 @@ public class BDao {
 			 pstmt.setInt(4, nStart);
 			 
 			 resultSet = pstmt.executeQuery();
-			 System.out.println(keyWord);
+			 System.out.println("쿼리문(제목+내용 리스트)" + query);
 			 
 			 } else if (keyField.equals("2") && !keyWord.equals("")) {
 				 
@@ -107,8 +107,6 @@ public class BDao {
 								" where bTitle LIKE ? " + 
 						 		" order by bGroup desc, bStep asc ) A " + 
 						 		" where rownum <= ? ) B where B.num >= ? "; 
-			 
-				 System.out.println("쿼리문(제목)" + query);
 				 
 			 pstmt = con.prepareStatement(query);
 			 
@@ -116,8 +114,9 @@ public class BDao {
 			 pstmt.setInt(2, nEnd);
 			 pstmt.setInt(3, nStart);
 			 
-			 
 			 resultSet = pstmt.executeQuery();
+			 
+			 System.out.println("쿼리문(제목리스트)" + query);
 			 
 			 } else if(keyField.equals("3") && !keyWord.equals("")) {
 				 
@@ -128,7 +127,7 @@ public class BDao {
 						 		" order by bGroup desc, bStep asc ) A " + 
 						 		" where rownum <= ? ) B where B.num >= ? "; 
 					 
-				 System.out.println("쿼리문(내용)" + query);
+				
 			 
 			 pstmt = con.prepareStatement(query);
 			 
@@ -137,6 +136,8 @@ public class BDao {
 			 pstmt.setInt(3, nStart);
 			 
 			 resultSet = pstmt.executeQuery();
+			 
+			 System.out.println("쿼리문(내용리스트)" + query);
 			 
 			 } else {
 			 
@@ -147,12 +148,13 @@ public class BDao {
 				 		" where rownum <= ? ) B where B.num >= ?"; 
 			
 			 pstmt = con.prepareStatement(query);
-			 System.out.println("전체목록");
+			
 			 pstmt.setInt(1, nEnd);
 			 pstmt.setInt(2, nStart);
 			 
 			 resultSet = pstmt.executeQuery();
 			 
+			 System.out.println("전체목록");
 			 }
 			 
 			 while (resultSet.next()) {
@@ -166,9 +168,11 @@ public class BDao {
 				 int bGroup = resultSet.getInt("bGroup");
 				 int bStep = resultSet.getInt("bStep");
 				 int bIndent = resultSet.getInt("bIndent");
+				 String fileName = resultSet.getString("fileName");
+				 String fileType = resultSet.getString("fileType");
 				 
 				 BDto dto = new BDto(bId, bName, bTitle, bContent, bDate, 
-						 			 bHit, bGroup, bStep, bIndent);
+						 			 bHit, bGroup, bStep, bIndent,fileName,fileType);
 				 dtos.add(dto); 
 			 } 		 
 			
@@ -193,67 +197,49 @@ public class BDao {
 		ResultSet resultSet = null;
 		String query = null;
 	
-		System.out.println("페이지갯수" + keyWord);
 		// 총 게시물의 갯수
 		int totalCount = 0;
-		
-		int nStart = (curPage - 1) * listCount + 1;
-		int nEnd = (curPage - 1) * listCount + listCount;
-		
+			
 		try {
 			 con = dataSource.getConnection();
 			 
-			 if (keyField.equals("1") && !keyWord.equals("")) {
+			 if (keyField.equals("1")) {
 				 	 
-			 query = "select * from ( " + 
-				 		" select rownum num, A.* from ( " + 
-				 		"select count(*) as total from mvc_board " + 
-						" where bTitle LIKE ? OR bContent LIKE ?" +
-						" order by bGroup desc, bStep asc ) A " + 
-				 		" where rownum <= ? ) B where B.num >= ? "; 
+				 query = "select count(*) as total from mvc_board " + 
+						" where bTitle LIKE ? OR bContent LIKE ?"; 
 				 
 				 pstmt = con.prepareStatement(query);
 				 
 				 pstmt.setString(1, "%" + keyWord + "%");
 				 pstmt.setString(2, "%" + keyWord + "%");
-				 pstmt.setInt(3, nEnd);
-				 pstmt.setInt(4, nStart);
 				 
 				 resultSet = pstmt.executeQuery();
+				 
+				System.out.println("아티클 제목+내용");
 	 
-			 }  else if (keyField.equals("2") && !keyWord.equals("")) {
+			 }  else if (keyField.equals("2")) {
 				 
-				 query = "select * from ( " + 
-					 		" select rownum num, A.* from ( " + 
-						 "select count(*) as total from mvc_board " + 
-						" where bTitle LIKE ? " + 
-						" order by bGroup desc, bStep asc ) A " + 
-				 		" where rownum <= ? ) B where B.num >= ? "; 
+				 query = "select count(*) as total from mvc_board " + 
+						 " where bTitle LIKE ?"; 
 				 
 				 pstmt = con.prepareStatement(query);
 				 
-				 pstmt.setString(1, "%" + keyWord + "%");
-				 pstmt.setInt(2, nEnd);
-				 pstmt.setInt(3, nStart);
-				
+				 pstmt.setString(1, "%" + keyWord + "%");				
 				 resultSet = pstmt.executeQuery();
 				 
-			 } else if(keyField.equals("3") && !keyWord.equals("")) {
+				 System.out.println("아티클 제목");
+				 
+			 } else if(keyField.equals("3")) {
 							 
-				 query = "select * from ( " + 
-					 		" select rownum num, A.* from ( " + 
-						 "select count(*) as total from mvc_board " + 
-						" where bContent LIKE ? " + 
-						" order by bGroup desc, bStep asc ) A " + 
-				 		" where rownum <= ? ) B where B.num >= ? "; 
+				 query = "select count(*) as total from mvc_board " + 
+						 " where bContent LIKE ?"; 
 				 
 				 pstmt = con.prepareStatement(query);
 				 
 				 pstmt.setString(1, "%" + keyWord + "%");
-				 pstmt.setInt(2, nEnd);
-				 pstmt.setInt(3, nStart);
 				 
 				 resultSet = pstmt.executeQuery();
+				 System.out.println("아티클 내용");
 				 
 			 } else {
 			 
@@ -262,10 +248,11 @@ public class BDao {
 				 pstmt = con.prepareStatement(query);
 				 resultSet = pstmt.executeQuery();
 
-				 if (resultSet.next()) {
-					 totalCount = resultSet.getInt("total");			 
-			   
-				 }
+				
+			 } if (resultSet.next()) {
+				 totalCount = resultSet.getInt("total");	
+				 
+				 System.out.println("아티클 검색 X ");
 			 }
 			 
 		} catch (Exception e) {
@@ -278,7 +265,6 @@ public class BDao {
 				e2.printStackTrace();
 			}
 		}
-		
 			
 			// 총 페이지 수
 			int totalPage = totalCount / listCount;
@@ -341,9 +327,11 @@ public class BDao {
 				 int bGroup = resultSet.getInt("bGroup");
 				 int bStep = resultSet.getInt("bStep");
 				 int bIndent = resultSet.getInt("bIndent");
+				 String fileName = resultSet.getString("fileName");
+				 String fileType = resultSet.getString("fileType");
 				 
 				 dto = new BDto(bId, bName, bTitle, bContent, bDate, 
-						 		bHit, bGroup, bStep, bIndent);
+						 		bHit, bGroup, bStep, bIndent,fileName,fileType);
 			 }
 			
 		} catch (Exception e) {
@@ -467,9 +455,11 @@ public void modify(String bId, String bName, String bTitle, String bContent) {
 				 int bGroup = resultSet.getInt("bGroup");
 				 int bStep = resultSet.getInt("bStep");
 				 int bIndent = resultSet.getInt("bIndent");
+				 String fileName = resultSet.getString("fileName");
+				 String fileType = resultSet.getString("fileType");
 				 
 				 dto = new BDto(bId, bName, bTitle, bContent, bDate, 
-						 		bHit, bGroup, bStep, bIndent);
+						 		bHit, bGroup, bStep, bIndent,fileName,fileType);
 			 }
 			
 		} catch (Exception e) {
@@ -540,6 +530,7 @@ public void modify(String bId, String bName, String bTitle, String bContent) {
 			 pstmt.setInt(2, Integer.parseInt(strStep));
 			
 			 int rn = pstmt.executeUpdate();
+			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

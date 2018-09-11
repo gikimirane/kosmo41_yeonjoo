@@ -16,6 +16,8 @@ public class BWriteCommand implements BCommand {
 		
 		BDao dao = BDao.getInstance();
 		dao.write(bName, bTitle, bContent);
+		
+		// 파일 보낸 것을 받음
 	}
 
 }

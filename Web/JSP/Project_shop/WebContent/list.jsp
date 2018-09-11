@@ -62,157 +62,10 @@
  				</td>
  			</tr>
  			
- 	   <% request.setCharacterEncoding("UTF-8");
-  		 		
- 	   			String keyField =(String)session.getAttribute("keyField");
-  		 		String keyWord =(String)session.getAttribute("keyWord");
-  		 		
-  		 		session.setAttribute("keyWord",keyWord);
-  		 		session.setAttribute("keyField",keyField);
-  		 		
-  		 		if(keyField != null && keyWord != null) {
-  		 			System.out.println("페이징1");	
-  		 			%>		
-				
-				<tr>
- 				<td colspan="5" style="text-align:center;"> 
- 				
- 				<!-- 처음버튼 -->
- 				<span class="btn btn-outline-warning">
- 				<c:choose>
-	 				<c:when test="${(page.curPage - 1) < 1}">
-	 					 &lt;&lt; 
-	 				</c:when>
-	 				<c:otherwise>
-						<a href="list.do?page=1&keyField=${keyField}&keyWord=${keyWord}" style="color:warning"> &lt;&lt; </a> 
-	 				</c:otherwise>
- 				</c:choose>	
- 				</span>
-
- 				<!-- 이전버튼 -->
- 				<span class="btn btn-outline-warning">
- 				<c:choose>
-	 				<c:when test="${(page.curPage - 1) < 1}">
-	 					 &lt; 
-	 				</c:when>
-	 				<c:otherwise>
-					<a href="list.do?page=${page.curPage - 1}&keyField=${keyField}&keyWord=${keyWord}" style="color:warning"> &lt; </a> 
-	 				</c:otherwise>
- 				</c:choose>
- 				</span>
- 				<!-- 개별페이지 -->
- 				<c:forEach var="fEach" begin="${page.startPage}" end="${page.endPage}" step="1">
-	 				<span class="btn btn-outline-warning">
-	 				<c:choose>
-		 				<c:when test="${page.curPage == fEach}">
-		 					 ${fEach}  &nbsp; 
-		 				</c:when>
-		 				<c:otherwise>
-							<a href="list.do?page=${fEach}&keyField=${keyField}&keyWord=${keyWord}" style="color:warning" > ${fEach} </a> &nbsp; 
-		 				</c:otherwise>
-	 				</c:choose>
-	 				</span>
- 				</c:forEach>
- 				
- 				<!-- 다음버튼 -->
- 				<span class="btn btn-outline-warning">
- 				<c:choose>
-	 				<c:when test="${(page.curPage + 1) > page.totalPage}">
-	 					  &gt;  
-	 				</c:when>
-	 				<c:otherwise>
-						<a href="list.do?page=${page.curPage + 1}&keyField=${keyField}&keyWord=${keyWord}" style="color:warning"> &gt; </a> 
-	 				</c:otherwise>
- 				</c:choose>
- 				</span>
- 				<!-- 끝버튼 -->
- 				<span class="btn btn-outline-warning">
- 				<c:choose>
-	 				<c:when test="${page.curPage == page.totalPage}">
-	 					  &gt; 
-	 				</c:when>
-	 				<c:otherwise>
-						<a href="list.do?page=${page.totalPage}&keyField=${keyField}&keyWord=${keyWord}" style="color:warning"> &gt;&gt; </a> 
-	 				</c:otherwise>
- 				</c:choose>
- 				</span>
- 				</td>
- 			</tr>	
-	   <%	} else { 
-		   System.out.println("페이징2");
-	   %>	
-	   		
-		   <tr>
- 				<td colspan="5" style="text-align:center;"> 
- 				<!-- 처음버튼 -->
- 				<span class="btn btn-outline-warning">
- 				<c:choose>
-	 				<c:when test="${(page.curPage - 1) < 1}">
-	 					 &lt;&lt; 
-	 				</c:when>
-	 				<c:otherwise>
-						<a href="list.do?page=1" style="color:warning"> &lt;&lt; </a> 
-	 				</c:otherwise>
- 				</c:choose>	
- 				</span>
-
- 				<!-- 이전버튼 -->
- 				<span class="btn btn-outline-warning">
- 				<c:choose>
-	 				<c:when test="${(page.curPage - 1) < 1}">
-	 					 &lt; 
-	 				</c:when>
-	 				<c:otherwise>
-					<a href="list.do?page=${page.curPage - 1}" style="color:warning"> &lt; </a> 
-	 				</c:otherwise>
- 				</c:choose>
- 				</span>
- 				<!-- 개별페이지 -->
- 				<c:forEach var="fEach" begin="${page.startPage}" end="${page.endPage}" step="1">
-	 				<span class="btn btn-outline-warning">
-	 				<c:choose>
-		 				<c:when test="${page.curPage == fEach}">
-		 					 ${fEach}  &nbsp; 
-		 				</c:when>
-		 				<c:otherwise>
-							<a href="list.do?page=${fEach}" style="color:warning" > ${fEach} </a> &nbsp; 
-		 				</c:otherwise>
-	 				</c:choose>
-	 				</span>
- 				</c:forEach>
- 				
- 				<!-- 다음버튼 -->
- 				<span class="btn btn-outline-warning">
- 				<c:choose>
-	 				<c:when test="${(page.curPage + 1) > page.totalPage}">
-	 					  &gt;  
-	 				</c:when>
-	 				<c:otherwise>
-						<a href="list.do?page=${page.curPage + 1}" style="color:warning"> &gt; </a> 
-	 				</c:otherwise>
- 				</c:choose>
- 				</span>
- 				<!-- 끝버튼 -->
- 				<span class="btn btn-outline-warning">
- 				<c:choose>
-	 				<c:when test="${page.curPage == page.totalPage}">
-	 					  &gt; 
-	 				</c:when>
-	 				<c:otherwise>
-						<a href="list.do?page=${page.totalPage}" style="color:warning"> &gt;&gt; </a> 
-	 				</c:otherwise>
- 				</c:choose>
- 				</span>
- 				</td>
- 			</tr>	
-			
-	   <% } %>
-	   
-	   
+ 		<form action="list.do" method="post">
  			<tr>
- 					<form action="list.do" method="post">
+ 				<td colspan="5" style="text-align:center;" > 	
 				<input type="hidden" name="search" value="true">
-
 				<select name="keyField">
 					<option value="0">전체목록</option>
 					<option value="1">제목+내용</option>
@@ -222,10 +75,156 @@
 				&nbsp;
 				<input type="text" name="keyWord">&nbsp;
 				<input type="submit"  value="검색">
-			</form>
+				</td>	
 			</tr>
+		</form>
 			
- 
+ 		   <% request.setCharacterEncoding("UTF-8");
+  		 		
+ 	   			String keyField =(String)session.getAttribute("keyField");
+  		 		String keyWord =(String)session.getAttribute("keyWord");
+  		 		
+  		 		session.setAttribute("keyWord",keyWord);
+  		 		session.setAttribute("keyField",keyField);
+  		 		
+  		 		if(keyField != null && keyWord != null){
+  		 			System.out.println("검색 페이징 처리");	
+  		 			%>		
+	   
+				<tr>
+	 			  <td colspan="5" style="text-align:center;"> 
+	 				
+	 				<!-- 처음버튼 -->
+	 				<span class="btn btn-outline-warning">
+	 				<c:choose>
+		 				<c:when test="${(page.curPage - 1) < 1}">
+		 					 &lt;&lt; 
+		 				</c:when>
+		 				<c:otherwise>
+							<a href="list.do?page=1&keyField=${keyField}&keyWord=${keyWord}" style="color:warning"> &lt;&lt; </a> 
+		 				</c:otherwise>
+	 				</c:choose>	
+	 				</span>
+	
+	 				<!-- 이전버튼 -->
+	 				<span class="btn btn-outline-warning">
+	 				<c:choose>
+		 				<c:when test="${(page.curPage - 1) < 1}">
+		 					 &lt; 
+		 				</c:when>
+		 				<c:otherwise>
+						<a href="list.do?page=${page.curPage - 1}&keyField=${keyField}&keyWord=${keyWord}" style="color:warning"> &lt; </a> 
+		 				</c:otherwise>
+	 				</c:choose>
+	 				</span>
+	 				<!-- 개별페이지 -->
+	 				<c:forEach var="fEach" begin="${page.startPage}" end="${page.endPage}" step="1">
+		 				<span class="btn btn-outline-warning">
+		 				<c:choose>
+			 				<c:when test="${page.curPage == fEach}">
+			 					 ${fEach}  &nbsp; 
+			 				</c:when>
+			 				<c:otherwise>
+								<a href="list.do?page=${fEach}&keyField=${keyField}&keyWord=${keyWord}" style="color:warning" > ${fEach} </a> &nbsp; 
+			 				</c:otherwise>
+		 				</c:choose>
+		 				</span>
+	 				</c:forEach>
+	 				
+	 				<!-- 다음버튼 -->
+	 				<span class="btn btn-outline-warning">
+	 				<c:choose>
+		 				<c:when test="${(page.curPage + 1) > page.totalPage}">
+		 					  &gt;  
+		 				</c:when>
+		 				<c:otherwise>
+							<a href="list.do?page=${page.curPage + 1}&keyField=${keyField}&keyWord=${keyWord}" style="color:warning"> &gt; </a> 
+		 				</c:otherwise>
+	 				</c:choose>
+	 				</span>
+	 				<!-- 끝버튼 -->
+	 				<span class="btn btn-outline-warning">
+	 				<c:choose>
+		 				<c:when test="${page.curPage == page.totalPage}">
+		 					  &gt; 
+		 				</c:when>
+		 				<c:otherwise>
+							<a href="list.do?page=${page.totalPage}&keyField=${keyField}&keyWord=${keyWord}" style="color:warning"> &gt;&gt; </a> 
+		 				</c:otherwise>
+	 				</c:choose>
+	 				</span>
+	 			  </td>
+	 			</tr>	
+	  		 		
+	   <%	} else { 
+		   System.out.println("검색X 페이징처리");
+	   %>				
+	   <tr>
+	 				<td colspan="5" style="text-align:center;"> 
+	 				<!-- 처음버튼 -->
+	 				<span class="btn btn-outline-warning">
+	 				<c:choose>
+		 				<c:when test="${(page.curPage - 1) < 1}">
+		 					 &lt;&lt; 
+		 				</c:when>
+		 				<c:otherwise>
+							<a href="list.do?page=1" style="color:warning"> &lt;&lt; </a> 
+		 				</c:otherwise>
+	 				</c:choose>	
+	 				</span>
+	
+	 				<!-- 이전버튼 -->
+	 				<span class="btn btn-outline-warning">
+	 				<c:choose>
+		 				<c:when test="${(page.curPage - 1) < 1}">
+		 					 &lt; 
+		 				</c:when>
+		 				<c:otherwise>
+						<a href="list.do?page=${page.curPage - 1}" style="color:warning"> &lt; </a> 
+		 				</c:otherwise>
+	 				</c:choose>
+	 				</span>
+	 				<!-- 개별페이지 -->
+	 				<c:forEach var="fEach" begin="${page.startPage}" end="${page.endPage}" step="1">
+		 				<span class="btn btn-outline-warning">
+		 				<c:choose>
+			 				<c:when test="${page.curPage == fEach}">
+			 					 ${fEach}  &nbsp; 
+			 				</c:when>
+			 				<c:otherwise>
+								<a href="list.do?page=${fEach}" style="color:warning" > ${fEach} </a> &nbsp; 
+			 				</c:otherwise>
+		 				</c:choose>
+		 				</span>
+	 				</c:forEach>
+	 				
+	 				<!-- 다음버튼 -->
+	 				<span class="btn btn-outline-warning">
+	 				<c:choose>
+		 				<c:when test="${(page.curPage + 1) > page.totalPage}">
+		 					  &gt;  
+		 				</c:when>
+		 				<c:otherwise>
+							<a href="list.do?page=${page.curPage + 1}" style="color:warning"> &gt; </a> 
+		 				</c:otherwise>
+	 				</c:choose>
+	 				</span>
+	 				<!-- 끝버튼 -->
+	 				<span class="btn btn-outline-warning">
+	 				<c:choose>
+		 				<c:when test="${page.curPage == page.totalPage}">
+		 					  &gt; 
+		 				</c:when>
+		 				<c:otherwise>
+							<a href="list.do?page=${page.totalPage}" style="color:warning"> &gt;&gt; </a> 
+		 				</c:otherwise>
+	 				</c:choose>
+	 				</span>
+	 				</td>
+ 				</tr>
+	  
+	   <% } %>
+	   
  <!--	totalCount : ${page.curPage}<br>
  		listCount : ${page.listCount}<br>
  		totalPage : ${page.totalPage}<br>

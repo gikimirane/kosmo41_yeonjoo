@@ -13,9 +13,12 @@ public class BDto {
 	int bGroup;
 	int bStep;
 	int bIndent;
+	String fileName;
+	String fileType;
 	
 	public BDto(int bId, String bName, String bTitle, String bContent, 
-			Timestamp bDate, int bHit, int bGroup, int bStep, int bIndent) 
+			Timestamp bDate, int bHit, int bGroup, int bStep, int bIndent, 
+			String fileName, String fileType) 
 	{
 		this.bId = bId;
 		this.bName = bName;
@@ -26,6 +29,8 @@ public class BDto {
 		this.bGroup = bGroup;
 		this.bStep = bStep;
 		this.bIndent = bIndent;
+		this.fileName = fileName;
+		this.fileType = fileType;
 	}
 	
 	public int getbId() {
@@ -81,6 +86,18 @@ public class BDto {
 	}
 	public void setbIndent(int bIndent) {
 		this.bIndent = bIndent;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getFileType() {
+		return fileType;
+	}
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
 	
 }

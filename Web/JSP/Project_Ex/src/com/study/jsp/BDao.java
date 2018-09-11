@@ -62,10 +62,10 @@ public class BDao {
 			}
 		}
 	}
-
-	public ArrayList<BDto> list(int curPage) {
 		
-		ArrayList<BDto> dtos = new ArrayList<BDto>();
+	public ArrayList<BDto> list(int curPage, String keyField, String keyWord) {
+	    
+        ArrayList<BDto> dtos = new ArrayList<BDto>();
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -75,21 +75,86 @@ public class BDao {
 		int nEnd = (curPage - 1) * listCount + listCount;
 		
 		try {
-			 con = dataSource.getConnection();
+			
+			con = dataSource.getConnection();
 			 
-// '검색' 추가 sql문 수정할거면 여기서 수정
+			 if (keyField.equals("1") && !keyWord.equals("")) {
+				 
+				 String query = "select * from ( " + 
+						 		" select rownum num, A.* from ( " + 
+						 		" select * from mvc_board " + 
+								" where bTitle LIKE ? OR bContent LIKE ?" + 
+						 		" order by bGroup desc, bStep asc ) A " + 
+						 		" where rownum <= ? ) B where B.num >= ? "; 
+				 
+			 pstmt = con.prepareStatement(query);
+			 
+			 pstmt.setString(1, "%" + keyWord + "%");
+			 pstmt.setString(2, "%" + keyWord + "%");
+			 pstmt.setInt(3, nEnd);
+			 pstmt.setInt(4, nStart);
+			 
+			 resultSet = pstmt.executeQuery();
+			 System.out.println("쿼리문(제목+내용 리스트)" + query);
+			 
+			 } else if (keyField.equals("2") && !keyWord.equals("")) {
+				 
+				 String query = "select * from ( " + 
+						 		" select rownum num, A.* from ( " + 
+						 		" select * from mvc_board " + 
+								" where bTitle LIKE ? " + 
+						 		" order by bGroup desc, bStep asc ) A " + 
+						 		" where rownum <= ? ) B where B.num >= ? "; 
+				 
+			 pstmt = con.prepareStatement(query);
+			 
+			 pstmt.setString(1, "%" + keyWord + "%");
+			 pstmt.setInt(2, nEnd);
+			 pstmt.setInt(3, nStart);
+			 
+			 resultSet = pstmt.executeQuery();
+			 
+			 System.out.println("쿼리문(제목리스트)" + query);
+			 
+			 } else if(keyField.equals("3") && !keyWord.equals("")) {
+				 
+				 String query = "select * from ( " + 
+						 		" select rownum num, A.* from ( " + 
+						 		" select * from mvc_board " + 
+								" where bContent LIKE ? " + 
+						 		" order by bGroup desc, bStep asc ) A " + 
+						 		" where rownum <= ? ) B where B.num >= ? "; 
+					 
+				
+			 
+			 pstmt = con.prepareStatement(query);
+			 
+			 pstmt.setString(1, "%" + keyWord + "%");
+			 pstmt.setInt(2, nEnd);
+			 pstmt.setInt(3, nStart);
+			 
+			 resultSet = pstmt.executeQuery();
+			 
+			 System.out.println("쿼리문(내용리스트)" + query);
+			 
+			 } else {
 			 
 			 String query = "select * from ( " + 
 				 		" select rownum num, A.* from ( " + 
 				 		" select * from mvc_board " + 
 				 		" order by bgroup desc, bstep asc ) A " + 
 				 		" where rownum <= ? ) B where B.num >= ?"; 
-			 
+			
 			 pstmt = con.prepareStatement(query);
+			
 			 pstmt.setInt(1, nEnd);
 			 pstmt.setInt(2, nStart);
+			 
 			 resultSet = pstmt.executeQuery();
-
+			 
+			 System.out.println("전체목록");
+			 }
+			 
 			 while (resultSet.next()) {
 				 
 				 int bId = resultSet.getInt("bId");
@@ -121,27 +186,71 @@ public class BDao {
 		return dtos;
 	}
 	
-	public BPageInfo articlePage(int curPage) {
+	public BPageInfo articlePage(int curPage, String keyField, String keyWord) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet resultSet =null;
+		ResultSet resultSet = null;
+		String query = null;
 	
 		// 총 게시물의 갯수
 		int totalCount = 0;
-		
+			
 		try {
 			 con = dataSource.getConnection();
 			 
-			 String query = "select count(*) as total from mvc_board";
+			 if (keyField.equals("1")) {
+				 	 
+				 query = "select count(*) as total from mvc_board " + 
+						" where bTitle LIKE ? OR bContent LIKE ?"; 
+				 
+				 pstmt = con.prepareStatement(query);
+				 
+				 pstmt.setString(1, "%" + keyWord + "%");
+				 pstmt.setString(2, "%" + keyWord + "%");
+				 
+				 resultSet = pstmt.executeQuery();
+				 
+				System.out.println("아티클 제목+내용");
+	 
+			 }  else if (keyField.equals("2")) {
+				 
+				 query = "select count(*) as total from mvc_board " + 
+						 " where bTitle LIKE ?"; 
+				 
+				 pstmt = con.prepareStatement(query);
+				 
+				 pstmt.setString(1, "%" + keyWord + "%");				
+				 resultSet = pstmt.executeQuery();
+				 
+				 System.out.println("아티클 제목");
+				 
+			 } else if(keyField.equals("3")) {
+							 
+				 query = "select count(*) as total from mvc_board " + 
+						 " where bContent LIKE ?"; 
+				 
+				 pstmt = con.prepareStatement(query);
+				 
+				 pstmt.setString(1, "%" + keyWord + "%");
+				 
+				 resultSet = pstmt.executeQuery();
+				 System.out.println("아티클 내용");
+				 
+			 } else {
 			 
-			 pstmt = con.prepareStatement(query);
-			 resultSet = pstmt.executeQuery();
+				 query = "select count(*) as total from mvc_board";
+				 
+				 pstmt = con.prepareStatement(query);
+				 resultSet = pstmt.executeQuery();
 
-			 if (resultSet.next()) {
-				 totalCount = resultSet.getInt("total");			 
-		    }
-
+				
+			 } if (resultSet.next()) {
+				 totalCount = resultSet.getInt("total");	
+				 
+				 System.out.println("아티클 검색 X ");
+			 }
+			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -152,7 +261,7 @@ public class BDao {
 				e2.printStackTrace();
 			}
 		}
-
+			
 			// 총 페이지 수
 			int totalPage = totalCount / listCount;
 			if (totalCount % listCount > 0)
@@ -172,6 +281,8 @@ public class BDao {
 			int endPage = startPage + pageCount - 1;
 			if (endPage > totalPage)
 				endPage = totalPage;
+			
+			System.out.println("totalpage : "+totalPage);
 			
 			BPageInfo pinfo = new BPageInfo();	
 			pinfo.setTotalCount(totalCount);

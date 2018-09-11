@@ -28,7 +28,7 @@
  		
  		<div class="container">
  		<table class="table" width=auto">
- 		
+ 		  		
  			<tr>
  				<td>번호</td>
  				<td> ${content_view.bId} </td>
@@ -37,14 +37,35 @@
  				<td>히트</td>
  				<td> ${content_view.bHit} </td>
  			</tr>
+						
  			<tr>
- 				<td>이름</td>
- 				<td>${content_view.bName}</td>
- 			</tr>	
+				<td>닉네임</td>
+				<td> ${content_view.bName} </td>
+			</tr>
+ 				
  			<tr>
  				<td>제목</td>
  				<td>${content_view.bTitle}</td>
  			</tr>
+		<%	request.setCharacterEncoding("UTF-8");
+  			
+			String fileName =(String)session.getAttribute("fileName");	
+			if(fileName == null) { %>	
+			
+				<tr>
+ 					<td>파일</td>
+ 					<td> 첨부하신 파일이 없습니다. </td>
+ 				</tr>
+				
+	  	 <%	} else { %>
+	  	 	
+	 			<tr>
+ 					<td>파일</td>
+ 					<td><img src="./img/${content_view.fileName}" width="100%"><br />
+ 					<a href="img/${content_view.fileName}">다운로드</a></td>
+ 				</tr>
+		<% } %>
+ 			
  			<tr>
  				<td>내용</td>
  				<td>${content_view.bContent}</td>

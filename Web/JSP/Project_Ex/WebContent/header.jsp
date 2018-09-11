@@ -30,25 +30,17 @@
 		        <a class="nav-link" href="main.jsp">Home <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		   		<a class="nav-link" href="list.do">Ranking</a>
-		      </li>
+		   		<a class="nav-link" href="imglist.jsp">Ranking</a>
 		      <li class="nav-item">
-		        <a class="nav-link" href="list.do">Q&A</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="imglist.jsp">Coordi</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="list.do">EVENT</a>
-		      </li>
-		      
+		        <a class="nav-link" href="list.do">board</a>
+		      </li>		      
 		    </ul>
     
 	   <%	request.setCharacterEncoding("UTF-8");
   			String id =(String)session.getAttribute("id");	
 			if(id == null) { %>		
-			<a class="nav-link" href="login.jsp">로그인</a>
-			<a class="nav-link" href="join.jsp">회원가입</a>
+			<a class="nav-link" href="login.jsp">LOGIN</a>
+			<a class="nav-link" href="join.jsp">JOIN</a>
 	   <%	} else { %>	
 			<%= id %> 님, 안녕하세요 ♥ 
 			 <a class="nav-link" href="modify.jsp">정보수정</a>	
@@ -57,11 +49,7 @@
 			 &nbsp;&nbsp;
 			 </form>		 
 	   <%   } %>
-  
-     <form class="form-inline my-2 my-lg-0"> 
-     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+ 
   </div>
 </nav>
 	

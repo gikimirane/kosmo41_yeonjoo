@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-import com.study.jsp.*;
 import com.study.jsp.command.BCommand;
 import com.study.jsp.command.BContentCommand;
 import com.study.jsp.command.BDeleteCommand;
@@ -113,12 +111,7 @@ public class FrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "list.do?page="+curPage;
 			
-		}  else if (com.equals("/search.do")) {
-			command = new BListCommand();
-			command.execute(request, response);
-			viewPage = "list.do";
-		} 
-		
+		} 	
 		
 		if (com.equals("/loginOK.do")) {
 			service = new loginOK();
