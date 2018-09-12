@@ -149,8 +149,8 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-     <Context docBase="Project_shop" path="/Project_shop" reloadable="true" source="org.eclipse.jst.jee.server:Project_shop"/>
-     <Context docBase="Jsp28" path="/Jsp28" reloadable="true" source="org.eclipse.jst.jee.server:Jsp28"/><Context docBase="Jsp25_1" path="/Jsp25_1" reloadable="true" source="org.eclipse.jst.jee.server:Jsp25_1"/><Context docBase="Project_Ex" path="/Project_Ex" reloadable="true" source="org.eclipse.jst.jee.server:Project_Ex"/><Context docBase="Jsp26_2" path="/Jsp26_2" reloadable="true" source="org.eclipse.jst.jee.server:Jsp26_2"/><Context docBase="BootStrapEx" path="/BootStrapEx" reloadable="true" source="org.eclipse.jst.jee.server:BootStrapEx"/><Context docBase="Jsp25_3" path="/Jsp25_3" reloadable="true" source="org.eclipse.jst.jee.server:Jsp25_3"/><Context docBase="GoogleLogin" path="/GoogleLogin" reloadable="true" source="org.eclipse.jst.jee.server:GoogleLogin"/><Context docBase="FacebookLogin" path="/FacebookLogin" reloadable="true" source="org.eclipse.jst.jee.server:FacebookLogin"/></Host>
+     
+     <Context docBase="Project_Ex1" path="/Project_shop" reloadable="true" source="org.eclipse.jst.jee.server:Project_Ex1"/><Context docBase="Project_Ex" path="/Project_Ex" reloadable="true" source="org.eclipse.jst.jee.server:Project_Ex"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -1,5 +1,3 @@
-<%@page import="com.study.jsp.*" %>		
-<%@page import="com.study.jsp.command.*" %>	
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -49,52 +47,39 @@
  				<td>제목</td>
  				<td>${content_view.bTitle}</td>
  			</tr>
-	
-			<c:choose>
-			 	<c:if test="${content_view.fileName eq 'none'}">
-		 			<tr>
- 						<td>파일</td>
- 						<td> 첨부하신 파일이 없습니다. </td>
- 					</tr>	
-		 				</c:if>
-		 				
-		 				<c:otherwise>
-		 			<tr>
- 						<td>파일</td>
- 						<td><img src="./img/${content_view.fileName}" width="100%"><br />
- 						<a href="img/${content_view.fileName}">다운로드</a></td>
- 					</tr>
-
-    					</c:otherwise>
-	 		</c:choose>
-		 			
+		<%	request.setCharacterEncoding("UTF-8");
+  			
+			String fileName =(String)session.getAttribute("fileName");	
+			if(fileName == null) { %>	
+			
+				<tr>
+ 					<td>파일</td>
+ 					<td> 첨부하신 파일이 없습니다. </td>
+ 				</tr>
+				
+	  	 <%	} else { %>
+	  	 	
+	 			<tr>
+ 					<td>파일</td>
+ 					<td><img src="./img/${content_view.fileName}" width="100%"><br />
+ 					<a href="img/${content_view.fileName}">다운로드</a></td>
+ 				</tr>
+		<% } %>
+ 			
  			<tr>
  				<td>내용</td>
  				<td>${content_view.bContent}</td>
  			</tr>
  			<tr>
  				<td colspan="2" style="text-align:center;">
- 				
- 		<% request.setCharacterEncoding("UTF-8"); %> 
-		<% id = (String)session.getAttribute("id");
- 			  			 	
- 			  MDao mdao = MDao.getInstance();
- 			  MDto mdto = mdao.getMember(id);
- 	
- 		 if(session.getAttribute("id") != null) { 
- 		 if(session.getAttribute("id").equals(mdto.getId())) { %>
- 		 			<button type="submit" value="수정" class="btn btn-outline-warning"> 
+ 				<button type="submit" value="수정" class="btn btn-outline-warning"> 
 					<a href="modify_view.do?bId=${content_view.bId}">수정</a></button>
-					
-					<button type="submit" value="삭제" class="btn btn-outline-warning"> 
-					<a href="delete.do?bId=${content_view.bId}">삭제</a></button>
-	   	 <%	} %>
-				<button type="submit" value="답변" class="btn btn-outline-warning"> 
- 					<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
- 		 <% } %>			
-				<button type="submit" value="목록보기" class="btn btn-outline-warning"> 
+ 				<button type="submit" value="목록보기" class="btn btn-outline-warning"> 
 					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a></button>
-				
+ 				<button type="submit" value="삭제" class="btn btn-outline-warning"> 
+					<a href="delete.do?bId=${content_view.bId}">삭제</a></button>
+				<button type="submit" value="삭제" class="btn btn-outline-warning"> 
+ 					<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
  				</td> 
  			</tr>
  			

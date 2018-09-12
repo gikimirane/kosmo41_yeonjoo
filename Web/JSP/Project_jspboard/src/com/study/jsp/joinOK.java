@@ -25,7 +25,7 @@ public class joinOK implements Service {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		
-		MDto mdto = new MDto();
+		MemberDto mdto = new MemberDto();
 		
 		HttpSession session = request.getSession();
 	
@@ -48,12 +48,12 @@ public class joinOK implements Service {
 		mdto.setAddress(address);
 		mdto.setrDate(new Timestamp(System.currentTimeMillis()));
 		
-		MDao mdao = MDao.getInstance();
+		MemberDao mdao = MemberDao.getInstance();
 		
 		System.out.println(mdto.getId());
 		System.out.println(mdao.confirmId(mdto.getId()));
 		
-		if(mdao.confirmId(mdto.getId()) == MDao.MEMBER_EXISTENT) {
+		if(mdao.confirmId(mdto.getId()) == MemberDao.MEMBER_EXISTENT) {
 
 			writer.println("<script language=\"javascript\" >"
 					+ "alert(\"아이디가 이미 존재합니다.\");"
@@ -62,7 +62,7 @@ public class joinOK implements Service {
 			
 		} else {
 			int ri = mdao.insertMember(mdto);
-			if(ri == MDao.MEMBER_JOIN_SUCCESS) {
+			if(ri == MemberDao.MEMBER_JOIN_SUCCESS) {
 				session.setAttribute("id", mdto.getId());
 		
 			writer.println("<script language=\"javascript\" >"

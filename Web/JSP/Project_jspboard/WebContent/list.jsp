@@ -1,4 +1,3 @@
-<%@page import="com.study.jsp.*" %>	
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,7 +27,7 @@
 	<body>
 		<p></p>		
  		
- 		<div class="col-sm-12">
+ 		<div class="col-sm-10">
  		<div class="container">
  		
  		<table class="table table-striped table-bordered table-hover width=auto">
@@ -37,7 +36,6 @@
  		
 	 			<tr>
 	 				<th scope="col">번호</th>
-	 				<th scope="col">아이디</th>
 	 				<th scope="col">닉네임</th>
 	 				<th scope="col">제목</th>
 	 				<th scope="col">날짜</th>
@@ -48,7 +46,6 @@
  			<c:forEach items="${list}" var="dto">
  			<tr>
  				<td>${dto.bId}</td>
- 				<td>${mdto.getId()}</td>
  				<td>${dto.bName}</td>
  				<td>
  					<c:forEach begin="1" end="${dto.bIndent}">-</c:forEach>
@@ -59,19 +56,12 @@
  			</tr>
  			</c:forEach>
  			
- 	<% if(session.getAttribute("id") != null) { %>
  			<tr>
  				<td colspan="5" style="text-align:center;" > 
  				<button type="submit" class="btn btn-Light"> <a href="write_view.do"> 글작성 </a></button>
  				</td>
  			</tr>
- 	<% } else { %>
- 			<tr>
- 				<td colspan="5" style="text-align:center;" > 
- 				<button type="submit" class="btn btn-Light"> <a href="write_view.do"> 로그인 </a></button>
- 				</td>
- 			</tr>
- 	<% } %>		
+ 			
  		<form action="list.do" method="post">
  			<tr>
  				<td colspan="5" style="text-align:center;" > 	

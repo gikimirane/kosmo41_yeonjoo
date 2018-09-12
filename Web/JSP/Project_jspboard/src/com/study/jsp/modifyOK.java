@@ -24,7 +24,7 @@ public class modifyOK implements Service {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 						
-		MDto mdto = new MDto();
+		MemberDto mdto = new MemberDto();
 						
 		HttpSession session = request.getSession();
 					
@@ -40,7 +40,7 @@ public class modifyOK implements Service {
 		mdto.seteMail(eMail);
 		mdto.setAddress(address);
 						
-		MDao mdao = MDao.getInstance();
+		MemberDao mdao = MemberDao.getInstance();
 		int ri = mdao.updateMember(mdto);
 
 		if(ri == 1) {

@@ -24,7 +24,7 @@ public class loginOK implements Service {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		
-		MDao mdao = MDao.getInstance();
+		MemberDao mdao = MemberDao.getInstance();
 		int checkNum = mdao.userCheck(id, pw);
 		
 		if(checkNum == -1) {
@@ -42,7 +42,7 @@ public class loginOK implements Service {
 			writer.close();
 			
 		} else if(checkNum == 1) {		
-			MDto mdto = mdao.getMember(id);
+			MemberDto mdto = mdao.getMember(id);
 					  
 			if(mdto == null) {
 				

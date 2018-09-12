@@ -37,10 +37,12 @@
 	            <p></p>
 	            
 	         <% request.setCharacterEncoding("UTF-8"); %> 
-			 <%	id = (String)session.getAttribute("id");
-	
-					MemberDao mdao = MemberDao.getInstance();
-					MemberDto mdto = mdao.getMember(id); %>
+			 <%
+ 			 	id = (String)session.getAttribute("id");
+ 			  			 	
+ 			  MDao mdao = MDao.getInstance();
+ 			  MDto mdto = mdao.getMember(id);
+ 			 %>
 					
 		<form action="modifyOK.do" method="post" name="reg_frm">
 		<div class="form-group">
