@@ -150,7 +150,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
      
-     <Context docBase="Project_Ex1" path="/Project_shop" reloadable="true" source="org.eclipse.jst.jee.server:Project_Ex1"/><Context docBase="Project_Ex" path="/Project_Ex" reloadable="true" source="org.eclipse.jst.jee.server:Project_Ex"/></Host>
+     <Context docBase="Project_Ex1" path="/Project_shop" reloadable="true" source="org.eclipse.jst.jee.server:Project_Ex1"/><Context docBase="Project_Ex" path="/Project_Ex" reloadable="true" source="org.eclipse.jst.jee.server:Project_Ex"/><Context docBase="BootStrapEx" path="/BootStrapEx" reloadable="true" source="org.eclipse.jst.jee.server:BootStrapEx"/></Host>
     </Engine>
   </Service>
 </Server>

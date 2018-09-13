@@ -13,11 +13,17 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		
 		<script language="JavaScript" src="members.js"></script>
-		
 		<style>
-		.test1 {
-	
-		}
+			a:link { color:#000000; text-decoration:none;}
+			a:visited { color:#000000; text-decoration:none;}
+			a:active { color:#0000000; text-decoration:none;}
+ 			a:hover { color:#000000; text-decoration:none;}
+		
+			div.col-sm-10 { 
+			width:100%;
+			height:90%;
+			margin:20%;
+			}
 		</style>
 	</head>
 	
@@ -26,13 +32,15 @@
 	<body>
 		<p></p>
 		<div class="container">
-			<table class="table table-bordered width=40%">
-	  	    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="col-sm-10">
+	  	    <div class="col-md-10 col-md-offset-3 col-sm-8 col-sm-offset-2">
 	        <div class="panel panel-success">
 	            <div class="panel-heading">
 	            <p></p>
-	                <div class="panel-title"><p> ♥회원가입을 하시면 더 많은 정보를 보실 수 있습니다♥ </p></div>
+	             
+	            <hr style="border:dashed 1px; color:#007BFF;">
 	            </div>
+
 	            <form action="joinOK.do" method="post" name="reg_frm">
 	             <div class="form-group">
   		     		<label for="id"> 아이디 </label>
@@ -57,15 +65,19 @@
 				<div class="form-group">
   		     		<label for="address"> 주소 </label>
     		 		<input type="text" class="form-control" id="address" name="address" placeholder="주소를 입력해 주세요">
-				 </div>		
-					<input type="button" class="btn btn-primary"  value="회원가입" onclick="infoConfirm()"></button>
+				 </div>	
+				 <p></p> 
+				 <div style="text-align:center;">
+				 	<input type="button" class="btn btn-primary"  value="회원가입" onclick="infoConfirm()"></button>
+				</div>	
 					</form>
 						<p></p>
-			</table>
+						<hr style="border:dashed 1px; color:#007BFF;">	
+			</div>
 		</div>
 	
 	</body>
 	
-	<%@ include file="footer.jsp" %>
+	<%--@ include file="footer.jsp" --%>
 	
 </html>

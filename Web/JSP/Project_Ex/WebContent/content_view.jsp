@@ -49,14 +49,13 @@
  				<td>제목</td>
  				<td>${content_view.bTitle}</td>
  			</tr>
-	
-			<c:choose>
-			 	<c:if test="${content_view.fileName eq 'none'}">
-		 			<tr>
+		 		<c:choose>	
+ 				<c:when test="${content_view.fileName eq 'none'}">
+ 				<tr>
  						<td>파일</td>
  						<td> 첨부하신 파일이 없습니다. </td>
  					</tr>	
-		 				</c:if>
+		 				</c:when>
 		 				
 		 				<c:otherwise>
 		 			<tr>
@@ -64,10 +63,8 @@
  						<td><img src="./img/${content_view.fileName}" width="100%"><br />
  						<a href="img/${content_view.fileName}">다운로드</a></td>
  					</tr>
-
     					</c:otherwise>
-	 		</c:choose>
-		 			
+    			</c:choose>
  			<tr>
  				<td>내용</td>
  				<td>${content_view.bContent}</td>

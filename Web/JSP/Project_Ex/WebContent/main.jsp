@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title> JAM#1♥ MAIN </title>
+		<title> MAIN </title>
 		
 		<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" /> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -18,11 +18,9 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		
 		<style>
-		.header {
-	
-		}			
+		.#slider { margin:0 auto; width:1000px; height:592px;}		
 		</style>
-	
+			
 		</head>
 		<%@ include file="header.jsp" %>
 	<body>
@@ -34,13 +32,13 @@
 		  </ol>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img class="d-block w-100" src=".\img\kakao03.jpg"  alt="첫번째 슬라이드">
+		      <img class="d-block w-100" src="./img/shinhwa1.jpg"  alt="첫번째 슬라이드">
 		    </div>
 		    <div class="carousel-item">
-		      <img class="d-block w-100" src="/img/kakao04.jpg" alt="두번째 슬라이드">
+		      <img class="d-block w-100" src="./img/shinhwa2.jpg" alt="두번째 슬라이드">
 		    </div>
 		    <div class="carousel-item">
-		      <img class="d-block w-100" src="/img/kakao05.jpg" alt="세번째 슬라이드">
+		      <img class="d-block w-100" src="./img/kakao03.jpg" alt="세번째 슬라이드">
 		    </div>
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -54,5 +52,5 @@
 		</div>
  	
 	</body>
-		<%@ include file="footer.jsp" %>
+		<%--@ include file="footer.jsp" --%>
 </html>
