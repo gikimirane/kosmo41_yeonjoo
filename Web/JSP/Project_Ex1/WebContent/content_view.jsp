@@ -1,3 +1,5 @@
+<%@page import="com.study.jsp.*" %>		
+<%@page import="com.study.jsp.command.*" %>	
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -13,21 +15,35 @@
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<style>
+			a:link { color:#000000; text-decoration:none;}
+			a:visited { color:#000000; text-decoration:none;}
+			a:active { color:#0000000; text-decoration:none;}
+ 			a:hover { color:#000000; text-decoration:none;}
+		
 			div.col-sm-10 { 
-			width:60%;
-			height: 90%;
-			margin: auto;	 
-		}
+			width:100%;
+			height:90%;
+			margin:10%;
+			}
+			
 		</style>
 	</head>
 	
 	<%@ include file="header.jsp" %>
-	
+	<script>
+		function doAction(value) {
+			if(value == 0) alert("수정버튼 클릭");
+			else if(value == 1)
+				location.href="delete.do?bId=${content_view.bId}";
+		}
+	</script>
 	<body>
  		<p></p>
  		
  		<div class="container">
- 		<table class="table" width=auto">
+ 		<div class="col-sm-10">
+ 		<hr style="border:dashed 1px; color:#007BFF;">
+ 		<table class="table">
  		  		
  			<tr>
  				<td>번호</td>
@@ -47,47 +63,60 @@
  				<td>제목</td>
  				<td>${content_view.bTitle}</td>
  			</tr>
-		<%	request.setCharacterEncoding("UTF-8");
-  			
-			String fileName =(String)session.getAttribute("fileName");	
-			if(fileName == null) { %>	
-			
-				<tr>
- 					<td>파일</td>
- 					<td> 첨부하신 파일이 없습니다. </td>
- 				</tr>
-				
-	  	 <%	} else { %>
-	  	 	
-	 			<tr>
- 					<td>파일</td>
- 					<td><img src="./img/${content_view.fileName}" width="100%"><br />
- 					<a href="img/${content_view.fileName}">다운로드</a></td>
- 				</tr>
-		<% } %>
- 			
+		 		<c:choose>	
+ 				<c:when test="${content_view.fileName eq 'none'}">
+ 				<tr>
+ 						<td>파일</td>
+ 						<td> 첨부하신 파일이 없습니다. </td>
+ 					</tr>	
+		 				</c:when>
+		 				
+		 				<c:otherwise>
+		 			<tr>
+ 						<td>파일</td>
+ 						<td><img src="./img/${content_view.fileName}" width="100%"><br />
+ 						<a href="img/${content_view.fileName}">다운로드</a></td>
+ 					</tr>
+    					</c:otherwise>
+    			</c:choose>
  			<tr>
  				<td>내용</td>
  				<td>${content_view.bContent}</td>
  			</tr>
+ 			  
+ 				<c:if test="${session.sessionId != null}">
+ 				<c:if test="${session.sessionId == mdto.getId()}">
  			<tr>
- 				<td colspan="2" style="text-align:center;">
- 				<button type="submit" value="수정" class="btn btn-outline-warning"> 
-					<a href="modify_view.do?bId=${content_view.bId}">수정</a></button>
- 				<button type="submit" value="목록보기" class="btn btn-outline-warning"> 
-					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a></button>
- 				<button type="submit" value="삭제" class="btn btn-outline-warning"> 
-					<a href="delete.do?bId=${content_view.bId}">삭제</a></button>
-				<button type="submit" value="삭제" class="btn btn-outline-warning"> 
- 					<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
+ 			<td colspan="2" style="text-align:center; color:#ffffff;">
+ 			
+ 			<button type="submit" value="수정" class="btn btn-outline-primary" onclick="doAction(0)"> 
+				<a href="modify_view.do?bId=${content_view.bId}">수정</a></button>
+		
+			<button type="submit" value="삭제" class="btn btn-outline-primary" onclick="doAction(1)"> 
+				<a href="delete.do?bId=${content_view.bId}">삭제</a></button>
+ 				</c:if>
+					</c:if>
+			<button type="submit" value="답변" class="btn btn-outline-primary"> 
+				<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
+				
+			<button type="submit" value="목록보기" class="btn btn-outline-primary"> 
+				<a href="list.do?page=<%= session.getAttribute("cpage")%>">리스트</a></button>	
  				</td> 
  			</tr>
- 			
+ 
  		</table>
+ 		<hr style="border:dashed 1px; color:#007BFF;">
 		</div>
-		
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="main.jsp">Back to Main</a>
+        </p>
+        <p>Name of company: Shooting Star|Name of representative: OH YEON JOO|KOSMO41 </p>
+      </div>
+    </footer>
+    		
 	</body>
-	
-	<%@ include file="footer.jsp" %>
-	
+
 </html>

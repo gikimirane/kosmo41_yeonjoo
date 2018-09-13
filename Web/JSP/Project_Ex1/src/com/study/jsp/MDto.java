@@ -2,7 +2,7 @@ package com.study.jsp;
 
 import java.sql.Timestamp;
 
-public class MemberDto {
+public class MDto {
 
 	private String id;
 	private String pw;

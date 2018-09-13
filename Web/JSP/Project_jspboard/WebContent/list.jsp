@@ -30,6 +30,7 @@
  		<div class="col-sm-10">
  		<div class="container">
  		
+ 		<hr style="border:dashed 1px; color:#007BFF;">
  		<table class="table table-striped table-bordered table-hover width=auto">
  		<thead>
  			<thead>
@@ -224,6 +225,7 @@
  				</tr>
 	  
 	   <% } %>
+	   
 	   
  <!--	totalCount : ${page.curPage}<br>
  		listCount : ${page.listCount}<br>

@@ -76,31 +76,13 @@ public class BDao {
 		int nStart = (curPage - 1) * listCount + 1;
 		int nEnd = (curPage - 1) * listCount + listCount;
 		
-		String query;
-		
 		try {
 			
 			con = dataSource.getConnection();
-			
-				
-				 query = "select * from ( " + 
-					 		" select rownum num, A.* from ( " + 
-					 		" select * from mvc_board " + 
-					 		" order by bgroup desc, bstep asc ) A " + 
-					 		" where rownum <= ? ) B where B.num >= ?"; 
-				
-				 pstmt = con.prepareStatement(query);
-				
-				 pstmt.setInt(1, nEnd);
-				 pstmt.setInt(2, nStart);
+			 
+			 if (keyField.equals("1") && !keyWord.equals("")) {
 				 
-				 resultSet = pstmt.executeQuery();
-				 
-				 System.out.println("전체목록");
-			
-			if (keyField.equals("1") && !keyWord.equals("")) {
-				 
-				 query = "select * from ( " + 
+				 String query = "select * from ( " + 
 						 		" select rownum num, A.* from ( " + 
 						 		" select * from mvc_board " + 
 								" where bTitle LIKE ? OR bContent LIKE ?" + 
@@ -119,7 +101,7 @@ public class BDao {
 			 
 			 } else if (keyField.equals("2") && !keyWord.equals("")) {
 				 
-				 query = "select * from ( " + 
+				 String query = "select * from ( " + 
 						 		" select rownum num, A.* from ( " + 
 						 		" select * from mvc_board " + 
 								" where bTitle LIKE ? " + 
@@ -138,7 +120,7 @@ public class BDao {
 			 
 			 } else if(keyField.equals("3") && !keyWord.equals("")) {
 				 
-				 query = "select * from ( " + 
+				 String query = "select * from ( " + 
 						 		" select rownum num, A.* from ( " + 
 						 		" select * from mvc_board " + 
 								" where bContent LIKE ? " + 
@@ -157,7 +139,23 @@ public class BDao {
 			 
 			 System.out.println("쿼리문(내용리스트)" + query);
 			 
-			 } 
+			 } else {
+			 
+			 String query = "select * from ( " + 
+				 		" select rownum num, A.* from ( " + 
+				 		" select * from mvc_board " + 
+				 		" order by bgroup desc, bstep asc ) A " + 
+				 		" where rownum <= ? ) B where B.num >= ?"; 
+			
+			 pstmt = con.prepareStatement(query);
+			
+			 pstmt.setInt(1, nEnd);
+			 pstmt.setInt(2, nStart);
+			 
+			 resultSet = pstmt.executeQuery();
+			 
+			 System.out.println("전체목록");
+			 }
 			 
 			 while (resultSet.next()) {
 				 

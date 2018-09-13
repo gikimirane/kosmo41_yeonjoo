@@ -8,7 +8,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class MemberDao {
+public class MDao {
 	
 	public static final int MEMBER_NONEXISTENT = 0;
 	public static final int MEMBER_EXISTENT = 1;
@@ -18,17 +18,17 @@ public class MemberDao {
 	public static final int MEMBER_LOGIN_SUCCESS = 1;
 	public static final int MEMBER_LOGIN_IS_NOT = -1;
 	
-	private static MemberDao instance = new MemberDao();
+	private static MDao instance = new MDao();
 	
-	private MemberDao() {
+	private MDao() {
 		
 	}
 	
-	public static MemberDao getInstance() {
+	public static MDao getInstance() {
 		return instance;
 	}
 	
-	public int insertMember(MemberDto mdto) {
+	public int insertMember(MDto mdto) {
 		int ri = 0;
 		
 		Connection con = null;
@@ -46,7 +46,7 @@ public class MemberDao {
 			pstmt.setTimestamp(5, mdto.getrDate());
 			pstmt.setString(6, mdto.getAddress());
 			pstmt.executeUpdate();
-			ri = MemberDao.MEMBER_JOIN_SUCCESS;
+			ri = MDao.MEMBER_JOIN_SUCCESS;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,9 +77,9 @@ public class MemberDao {
 			set = pstmt.executeQuery();
 			
 			if(set.next()) {
-				ri = MemberDao.MEMBER_EXISTENT;
+				ri = MDao.MEMBER_EXISTENT;
 			} else {
-				ri = MemberDao.MEMBER_NONEXISTENT;
+				ri = MDao.MEMBER_NONEXISTENT;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,14 +117,14 @@ public class MemberDao {
 				dbPw = set.getString("pw");
 				if(dbPw.equals(pw)) {
 					System.out.println("login_OK");
-					ri = MemberDao.MEMBER_LOGIN_SUCCESS; //로그인 OK
+					ri = MDao.MEMBER_LOGIN_SUCCESS; //로그인 OK
 				} else {
 					System.out.println("login fail(pw)");
-					ri = MemberDao.MEMBER_LOGIN_PW_NO_GOOD; //비밀번호 X
+					ri = MDao.MEMBER_LOGIN_PW_NO_GOOD; //비밀번호 X
 				}
 			} else {
 				System.out.println("login fail(ID)");
-				ri = MemberDao.MEMBER_LOGIN_IS_NOT; //아이디 X
+				ri = MDao.MEMBER_LOGIN_IS_NOT; //아이디 X
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,12 +141,12 @@ public class MemberDao {
 		return ri;
 	}
 	
-	public MemberDto getMember(String id) {
+	public MDto getMember(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
 		String query = "select * from members where id = ?";
-		MemberDto mdto = null;
+		MDto mdto = null;
 		
 		try {
 			con = getConnection();
@@ -155,7 +155,7 @@ public class MemberDao {
 			set = pstmt.executeQuery();
 			
 			if(set.next()) {
-				mdto = new MemberDto();
+				mdto = new MDto();
 				mdto.setId(set.getString("id"));
 				mdto.setPw(set.getString("pw"));
 				mdto.setName(set.getString("name"));
@@ -178,7 +178,7 @@ public class MemberDao {
 		return mdto;
 	}
 	
-	public int updateMember(MemberDto mdto) {
+	public int updateMember(MDto mdto) {
 		int ri = 0;
 		
 		Connection con = null;

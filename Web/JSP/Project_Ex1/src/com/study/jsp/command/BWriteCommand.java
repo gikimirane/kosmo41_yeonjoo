@@ -24,8 +24,9 @@ public class BWriteCommand implements BCommand {
 		String bName = null;
 		String bTitle = null;
 		String bContent = null; 
-		String fileName = null;
-		String fileType = null; 
+		String fileName;
+		String fileType; 
+		String orifile; 
 		
 		try {
 		
@@ -47,24 +48,27 @@ public class BWriteCommand implements BCommand {
 		      System.out.println(files);
 		      
 		    fileName = multi.getFilesystemName(str);
-		      System.out.println(fileName);
+		      System.out.println("fileName:" + fileName);
 		      
-		   String orifile = multi.getOriginalFileName(str);
+		   orifile = multi.getOriginalFileName(str);
 		      System.out.println(orifile);
 	
 		    fileType = multi.getContentType(str);
 		    String type = fileType.split("/")[0];
 		    String path = savePath+"\\"+fileName;
 			
+		    System.out.println(str);
+		    System.out.println(type);
+		    System.out.println(path);
+			
 
 		} catch (Exception e) {
 			
 			fileName = "none";
+			orifile = "none";
 			fileType = "none";
 		}	
-			
-			
-					
+						
 			BDao dao = BDao.getInstance();
 			dao.write(bName, bTitle, bContent,fileName,fileType);
 		

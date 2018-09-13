@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title> JAM#1♥ MODIFY </title>
+		<title> MODIFY </title>
 		
 		<!-- Required meta tags -->
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,11 +17,16 @@
 		<script language="JavaScript" src="members.js"></script>
 	
 		<style>
-		div.col-sm-10 { 
-			width:60%;
-			height: 90%;
-			margin: auto;	 
-		}
+			a:link { color:#000000; text-decoration:none;}
+			a:visited { color:#000000; text-decoration:none;}
+			a:active { color:#0000000; text-decoration:none;}
+ 			a:hover { color:#000000; text-decoration:none;}
+		
+			div.col-sm-10 { 
+			width:100%;
+			height:90%;
+			margin:20%;
+			}
 		</style>
 		
 	</head>
@@ -30,24 +35,29 @@
 	<body>
 	<p></p>
 		<div class="container">
-			<table class="table table-bordered width=40%">
-	  	    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="col-sm-10">
+		
+	  	    <div class="col-md-10 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	        
+	        <img src="./img/resume.png" width="128px" alt="loginpage" class="img-responsive center-block" />
 	        <div class="panel panel-success">
 	            <div class="panel-heading">
 	            <p></p>
+	            
+	              <hr style="border:dashed 1px; color:#007BFF;">
 	            
 	         <% request.setCharacterEncoding("UTF-8"); %> 
 			 <%
  			 	id = (String)session.getAttribute("id");
  			  			 	
-				MemberDao mdao = MemberDao.getInstance();
-		 		MemberDto mdto = mdao.getMember(id);
+					MDao mdao = MDao.getInstance();
+					MDto mdto = mdao.getMember(id);
  			 %>
 					
 		<form action="modifyOK.do" method="post" name="reg_frm">
 		<div class="form-group">
   		     		<label for="id"> 아이디 </label>
-    		 		<%= mdto.getId() %>
+  		     		<input type="text" class="form-control" value="<%= mdto.getId() %>" readonly>
 				 </div>
 		<div class="form-group">
   		     		<label for="password"> 비밀번호 </label>
@@ -59,7 +69,7 @@
 			 	</div>
 		<div class="form-group">
   		     		<label for="name"> 이름 </label>
-    		 		<%= mdto.getName() %>
+  		     		<input type="text" class="form-control" value="<%= mdto.getName() %>" readonly>
 				 </div>
 		<div class="form-group">
   		     		<label for="eMail"> 메일 </label>
@@ -68,9 +78,13 @@
 		<div class="form-group">
   		     		<label for="address"> 주소 </label>
   		     			<input type="text" class="form-control" id="address" name="address"  value="<%= mdto.getAddress() %>">
-				 </div>		
+				 </div>	
+				  <div style="text-align:center;">	
 			 <input type="button" class="btn btn-primary"  value="수정" onclick="updateInfoConfirm()"></button>
-			 <input type="reset" class="btn btn-primary"  value="취소" onclick="javascript:window.location='main.jsp'"></button>
+			 <input type="reset" class="btn btn-dark"  value="취소" onclick="javascript:window.location='main.jsp'"></button>
+			</div>
+		  <hr style="border:dashed 1px; color:#007BFF;">
+		
 		</form>
 		
 		</div>
@@ -81,5 +95,5 @@
 		
 </body>
 
-  <%@ include file="footer.jsp" %>
+  <%--@ include file="footer.jsp" --%>
 </html>

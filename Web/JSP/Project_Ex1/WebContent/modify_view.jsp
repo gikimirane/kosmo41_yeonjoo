@@ -15,11 +15,16 @@
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<style>
+			a:link { color:#000000; text-decoration:none;}
+			a:visited { color:#000000; text-decoration:none;}
+			a:active { color:#0000000; text-decoration:none;}
+ 			a:hover { color:#000000; text-decoration:none;}
+		
 			div.col-sm-10 { 
-			width:60%;
-			height: 90%;
-			margin: auto;	 
-		}
+			width:100%;
+			height:90%;
+			margin:20%;
+			}
 		</style>
 	</head>
 	
@@ -34,6 +39,8 @@
  		<p></p>
 
  		<div class="container">
+ 		<div class="col-sm-10">
+ 		
  		<table class="table" width=auto">
  			
  			<form name="modify_form" action="modify.do" method="post">
@@ -80,6 +87,7 @@
  			</form>
  		
  		</table>
+		</div>
 		</div>
 		
 	</body>
