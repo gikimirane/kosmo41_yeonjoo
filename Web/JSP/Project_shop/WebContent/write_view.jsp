@@ -40,29 +40,19 @@
 			if(Id != null) { %>	
 				<tr>
 					<td> 아이디 </td>
-					<td><%= Id %></td>
+					<td><input type="text" class="form-control" name="bName" size="50" value="<%= Id %>" readonly></td>
 				</tr>
-				<tr>
-					<td> 닉네임 </td>
-					<td><input type="text" name="bName" size="50"></td>
-				</tr>
-	  	 <%	} else { %>	
-			
-	 			<tr>
-					<td> 닉네임 </td>
-					<td><input type="text" name="bName" size="50"></td>
-				</tr>
-		<% } %>
+	  	 <%	} %>	
 				<tr>
 					<td> 제목 </td>
-					<td><input type="text" name="bTitle" size="50"></td>
+					<td><input type="text" class="form-control" name="bTitle" size="50"></td>
 				</tr>
 
 				<tr>
 					<td> 내용 </td>
 					<td>
-						<textarea name="bContent" id="editor1" rows="10" cols="80">
-	             				내용을 입력하세요
+						<textarea name="bContent" class="form-control" id="editor1" rows="10" cols="80">
+	             				'내용을 입력하세요'
 	         				</textarea>
 	          		<script>
 	            	  		// Replace the <textarea id="editor1"> with a CKEditor
@@ -82,6 +72,7 @@
 				<tr>
 					<td colspan="2" style="text-align:center;" > 
 					<button type="submit" value="입력" class="btn btn-outline-primary">입력</button>
+				
 					<button type="submit" value="목록보기" class="btn btn-outline-primary"> 
 					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a></button>
 					</td>

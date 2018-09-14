@@ -50,7 +50,29 @@
 		    <span class="sr-only">다음</span>
 		  </a>
 		</div>
+		
+		
+ 	 	 <footer class="text-muted">
+      <div class="container">
+    <% request.setCharacterEncoding("UTF-8");
+			if(id != null) { %>		
+		<p class="float-left">
+     	 <form name="login_form" action="chat.jsp" method="post">
+    		<input type="hidden" name="id" value="<%= id %>" >
+   		<a href="#" onclick="submit();"> <img src="./img/chat.png"></a>
+			</form>
+		
+	   <% } %>	
+		
+        </p>
+        <p class="float-right">
+          <a href="main.jsp">Back to Main</a>
+        </p>
+        <p>Name of company: Shooting Star|Name of representative: OH YEON JOO|KOSMO41 </p>
+      
+      </div>
+    </footer>
  	
 	</body>
-		<%--@ include file="footer.jsp" --%>
+		
 </html>

@@ -30,9 +30,6 @@
 		      <li class="nav-item active">
 		       <a class="nav-link" href="main.jsp"><img src="./img/home.png" title="home" /></a>
 		      </li>
-		      <li class="nav-item active">
-		   		<a class="nav-link" href="imglist.jsp"><img src="./img/ranking.png" title="Ranking" /></a>
-		       </li> 
 		       <li class="nav-item active">
 		        <a class="nav-link" href="list.do"><img src="./img/board.png" title="board" /></a>	      
 		  	  </li>
@@ -46,9 +43,9 @@
 			<a class="nav-link" href="login.jsp"><img src="./img/login.png" width="32px" title="LOGIN" /></a><a class="nav-link" href="join.jsp"><img src="./img/join.png" width="32px" title="JOIN" /></a>
 	   <%	} else { %>	
 			<%= id %> 님, 안녕하세요 ♥ 
-			 <a class="nav-link" href="modify.jsp">정보수정</a>	
+			<a class="nav-link" href="modify.jsp">정보수정</a>	
 			 <form class="form-inline my-2 my-lg-0" name="logout" action="logout.do" method="post">
-			 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">로그아웃</button>
+			 <button class="btn btn-primary my-2 my-sm-0" type="submit">로그아웃</button>
 			 &nbsp;&nbsp;
 			 </form>		 
 	   <%   } %>

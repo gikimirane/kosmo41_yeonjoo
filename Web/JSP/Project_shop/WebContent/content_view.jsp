@@ -1,5 +1,4 @@
 <%@page import="com.study.jsp.*" %>		
-<%@page import="com.study.jsp.command.*" %>	
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -30,13 +29,7 @@
 	</head>
 	
 	<%@ include file="header.jsp" %>
-	<script>
-		function doAction(value) {
-			if(value == 0) alert("수정버튼 클릭");
-			else if(value == 1)
-				location.href="delete.do?bId=${content_view.bId}";
-		}
-	</script>
+
 	<body>
  		<p></p>
  		
@@ -55,8 +48,9 @@
  			</tr>
 						
  			<tr>
-				<td>닉네임</td>
+				<td>아이디</td>
 				<td> ${content_view.bName} </td>
+				
 			</tr>
  				
  			<tr>
@@ -83,31 +77,46 @@
  				<td>내용</td>
  				<td>${content_view.bContent}</td>
  			</tr>
- 			  
- 				<c:if test="${session.sessionId != null}">
- 				<c:if test="${session.sessionId == mdto.getId()}">
- 			<tr>
- 			<td colspan="2" style="text-align:center; color:#ffffff;">
+ 			 
+ 				</table>
  			
- 			<button type="submit" value="수정" class="btn btn-outline-primary" onclick="doAction(0)"> 
-				<a href="modify_view.do?bId=${content_view.bId}">수정</a></button>
+ 		
+ 			
+ 		 <%	request.setCharacterEncoding("UTF-8");
+  			String mdId =(String)session.getAttribute("id");
+  			String mdbName = request.getParameter("bName");
+  			session.setAttribute("bName",mdbName);
+  	
+  			%>		
+ 			<c:choose>
+ 				<c:when test="${content_view.bName == id}">	
+ 					<tr>
+ 				<td colspan="2" align="center">	
+ 				<button type="submit" value="수정" class="btn btn-outline-primary" > 
+					<a href="modify_view.do?bId=${content_view.bId}">수정</a></button>
 		
-			<button type="submit" value="삭제" class="btn btn-outline-primary" onclick="doAction(1)"> 
-				<a href="delete.do?bId=${content_view.bId}">삭제</a></button>
- 				</c:if>
-					</c:if>
-			<button type="submit" value="답변" class="btn btn-outline-primary"> 
-				<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
-				
-			<button type="submit" value="목록보기" class="btn btn-outline-primary"> 
-				<a href="list.do?page=<%= session.getAttribute("cpage")%>">리스트</a></button>	
+				<button type="submit" value="삭제" class="btn btn-outline-primary" > 
+					<a href="delete.do?bId=${content_view.bId}">삭제</a></button>
+			    <button type="submit" value="답변" class="btn btn-outline-primary"> 
+					<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
+				</c:when>
+					
+				<c:when test="${id != null}">	
+					<button type="submit" value="답변" class="btn btn-outline-primary"> 
+					<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
+ 					</c:when>
+				</c:choose>
+				<button type="submit" value="목록보기" class="btn btn-outline-primary"> 
+					<a href="list.do?page=<%= session.getAttribute("cpage")%>">리스트</a></button>	
  				</td> 
  			</tr>
- 
- 		</table>
+ 				
+ 	
  		<hr style="border:dashed 1px; color:#007BFF;">
-		</div>
-
+		</div>    		
+	</body>
+	
+	
     <footer class="text-muted">
       <div class="container">
         <p class="float-right">
@@ -116,7 +125,5 @@
         <p>Name of company: Shooting Star|Name of representative: OH YEON JOO|KOSMO41 </p>
       </div>
     </footer>
-    		
-	</body>
 
 </html>

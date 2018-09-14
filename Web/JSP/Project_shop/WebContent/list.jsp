@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,7 +32,12 @@
 	</head>
 	
 	<%@ include file="header.jsp" %>
-		
+	
+	 <%	request.setCharacterEncoding("UTF-8");
+  			String boardid =(String)session.getAttribute("id");	
+  			System.out.println("리스트 아이디" + id);	
+  			%>
+  			
 	<body>
 		<p></p>		
  		
@@ -60,28 +66,26 @@
  				<td>${dto.bName}</td>
  				<td>
  					<c:forEach begin="1" end="${dto.bIndent}">-</c:forEach>
- 					<a href="content_view.do?bId=${dto.bId}" style="color:warning">${dto.bTitle}</a>
+ 					<a href="content_view.do?bId=${dto.bId}&bName=${dto.bName}" style="color:warning">${dto.bTitle}</a>
  				</td>
  				<td>${dto.bDate}</td>
  				<td>${dto.bHit}</td>
  			</tr>
  			</c:forEach>
-
- 		 <%	request.setCharacterEncoding("UTF-8");
-  			String Id =(String)session.getAttribute("id");	
-			if(Id != null) { %>	
- 			<tr>
- 				<td colspan="5" style="text-align:right;" > 
- 				<button type="submit" class="btn btn-outline-white"> <a href="write_view.do"> 글작성 </a></button>
+ 		
+ 		<%	request.setCharacterEncoding("UTF-8");	
+			if(id != null) { %>		
+			<tr>
+ 				<td colspan="5" align="right" > 
+ 				<button type="submit" class="btn btn-outline-dark btn-sm"> <a href="write_view.do"> 글작성 </a></button>
  				</td>
  			</tr>
-		<% } else { %>
-				<tr>
- 				<td colspan="5" style="text-align:center;" > 
- 				" 로그인 후에만 글작성이 가능합니다. "
- 				</td>
- 			</tr>
-		<% } %>
+	   <%	} else { %>	
+		   <td colspan="5" style="text-align:center;" > 
+ 			'로그인 후에 글작성이 가능합니다.'
+ 			</td>
+   		<%   } %>
+   		
  		   <% request.setCharacterEncoding("UTF-8");
   		 		
  	   			String keyField =(String)session.getAttribute("keyField");
@@ -98,7 +102,7 @@
 	 			  <td colspan="5" style="text-align:center;"> 
 	 				
 	 				<!-- 처음버튼 -->
-	 				<span class="btn btn-outline-primary">
+	 				<span class="btn btn-outline-primary btn-sm">
 	 				<c:choose>
 		 				<c:when test="${(page.curPage - 1) < 1}">
 		 					 &lt;&lt; 
@@ -110,7 +114,7 @@
 	 				</span>
 	
 	 				<!-- 이전버튼 -->
-	 				<span class="btn btn-outline-primary">
+	 				<span class="btn btn-outline-primary btn-sm">
 	 				<c:choose>
 		 				<c:when test="${(page.curPage - 1) < 1}">
 		 					 &lt; 
@@ -122,7 +126,7 @@
 	 				</span>
 	 				<!-- 개별페이지 -->
 	 				<c:forEach var="fEach" begin="${page.startPage}" end="${page.endPage}" step="1">
-		 				<span class="btn btn-outline-primary">
+		 				<span class="btn btn-outline-primary btn-sm">
 		 				<c:choose>
 			 				<c:when test="${page.curPage == fEach}">
 			 					 ${fEach}  &nbsp; 
@@ -135,7 +139,7 @@
 	 				</c:forEach>
 	 				
 	 				<!-- 다음버튼 -->
-	 				<span class="btn btn-outline-primary">
+	 				<span class="btn btn-outline-primary btn-sm">
 	 				<c:choose>
 		 				<c:when test="${(page.curPage + 1) > page.totalPage}">
 		 					  &gt;  
@@ -146,7 +150,7 @@
 	 				</c:choose>
 	 				</span>
 	 				<!-- 끝버튼 -->
-	 				<span class="btn btn-outline-primary">
+	 				<span class="btn btn-outline-primary btn-sm">
 	 				<c:choose>
 		 				<c:when test="${page.curPage == page.totalPage}">
 		 					  &gt; 
@@ -165,7 +169,7 @@
 	   <tr>
 	 				<td colspan="5" style="text-align:center;"> 
 	 				<!-- 처음버튼 -->
-	 				<span class="btn btn-outline-primary">
+	 				<span class="btn btn-outline-primary btn-sm">
 	 				<c:choose>
 		 				<c:when test="${(page.curPage - 1) < 1}">
 		 					 &lt;&lt; 
@@ -177,7 +181,7 @@
 	 				</span>
 	
 	 				<!-- 이전버튼 -->
-	 				<span class="btn btn-outline-primary">
+	 				<span class="btn btn-outline-primary btn-sm">
 	 				<c:choose>
 		 				<c:when test="${(page.curPage - 1) < 1}">
 		 					 &lt; 
@@ -189,7 +193,7 @@
 	 				</span>
 	 				<!-- 개별페이지 -->
 	 				<c:forEach var="fEach" begin="${page.startPage}" end="${page.endPage}" step="1">
-		 				<span class="btn btn-outline-primary">
+		 				<span class="btn btn-outline-primary btn-sm">
 		 				<c:choose>
 			 				<c:when test="${page.curPage == fEach}">
 			 					 ${fEach}  &nbsp; 
@@ -202,7 +206,7 @@
 	 				</c:forEach>
 	 				
 	 				<!-- 다음버튼 -->
-	 				<span class="btn btn-outline-primary">
+	 				<span class="btn btn-outline-primary btn-sm">
 	 				<c:choose>
 		 				<c:when test="${(page.curPage + 1) > page.totalPage}">
 		 					  &gt;  
@@ -213,7 +217,7 @@
 	 				</c:choose>
 	 				</span>
 	 				<!-- 끝버튼 -->
-	 				<span class="btn btn-outline-primary">
+	 				<span class="btn btn-outline-primary btn-sm">
 	 				<c:choose>
 		 				<c:when test="${page.curPage == page.totalPage}">
 		 					  &gt; 
@@ -230,7 +234,7 @@
 	   
 	   <form action="list.do" method="post">
  			<tr>
- 				<td colspan="5" style="text-align:center;" > 	
+ 				<td colspan="5" align="center"> 	
 				<input type="hidden" name="search" value="true">
 				<select name="keyField">
 					<option value="0">전체목록</option>
@@ -240,7 +244,7 @@
 				</select>
 				&nbsp;
 				<input type="text" name="keyWord">&nbsp;
-				<input type="submit" class="btn btn-outline-primary" value="검색">
+				<input type="submit" class="btn btn-outline-primary btn-sm" value="검색">
 				</td>	
 			</tr>
 		</form>

@@ -55,11 +55,11 @@
 	 			</tr>
 	 			<tr>
 	 				<td>이름</td>
-	 				<td><input type="text" name="bName" value=${content_view.bName}></td>
+	 				<td><input type="text" class="form-control" name="bName" value=${content_view.bName} readonly></td>
 	 			</tr>	
 	 			<tr>
 	 				<td>제목</td>
-	 				<td><input type="text" name="bTitle" value=${content_view.bTitle}></td>
+	 				<td><input type="text" class="form-control" name="bTitle" value=${content_view.bTitle}></td>
 	 			</tr>
 	 			<tr>
 	 				<td>내용</td>
@@ -91,7 +91,5 @@
 		</div>
 		
 	</body>
-	
-	<%@ include file="footer.jsp" %>
-	
+		
 </html>

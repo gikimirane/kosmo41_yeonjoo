@@ -1,37 +1,48 @@
+<%@page import="com.study.jsp.*" %>	
+<%@page import="com.study.jsp.command.*" %>	
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Insert title here</title>
-</head>
-<body>
-<% 
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-	
-		if(id == null) { 
-%>
-		<jsp:forward page="login.jsp" />
-<% 
-		} else {
+		<title>chat</title>
 		
-			session.setAttribute("uid",id);
-		}
+		<!-- Required meta tags -->
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<style>
+			a:link { color:#000000; text-decoration:none;}
+			a:visited { color:#000000; text-decoration:none;}
+			a:active { color:#0000000; text-decoration:none;}
+ 			a:hover { color:#000000; text-decoration:none;}
 		
-%>
-		<div>				
-			사용자 아이디 : <%= id %>
+			div.col-sm-10 { 
+			width:100%;
+			height:90%;
+			margin:10%;
+			}
+			
+		</style>
+	</head>
+		<%@ include file="header.jsp" %>
+	<body>
+		<div class="container">
+ 		<div class="col-sm-10">
+ 		
+ 		<img src="./img/chatting.png" width="128px" alt="loginpage" class="img-responsive center-block" />
+ 		<hr style="border:dashed 1px; color:#007BFF;">
+ 	
+		 <div style="text-align:right;">
+			<button type="button" class="btn btn-primary btn-sm" onclick="openSocket();">채팅시작</button>
+			<button type="button" class="btn btn-dark btn-sm" onclick="closeSocket();">끝내기</button>
+		</div>				
+		<div>	<%= id %> : <input type="text" class="form-control" id="messageinput"> </div>
+			<div style="text-align:right;">
+			<button type="button" class="btn btn-primary btn-sm" onclick="send();">보내기</button>
 		</div>
-		<div>				
-			<input type="text" id="messageinput">
-		</div>
-		<div>	
-			<button type="button" onclick="openSocket();">Open</button>
-			<button type="button" onclick="send();">Send</button>
-			<button type="button" onclick="closeSocket();">Close</button>
-		</div>	
 		<!-- Server resuponses get written here -->
 		<div id="messages"></div>
 		<!-- Script to utilise the WebSocket -->
@@ -49,7 +60,7 @@
 				
 				// Create a new instance of the websocket
 				// webSocket = new WebSocket("ws://localhost/  *ProjectName*  /echo");
-				webSocket = new WebSocket("ws://localhost:8081/WebSocketEx/websocketendpoint2");
+				webSocket = new WebSocket("ws://localhost:8081/Project_shop/websocketendpoint3");
 											//  ㄴ 다른 곳으로 붙고싶을 경우 localhost 부분에 아이피를 적으면 됨 
 				/*
 				* Binds functions to the listeners for the websocket.
@@ -76,6 +87,7 @@
 				
 				webSocket.onclose = function(event) {
 					writeResponse("Connection closed");
+					location.href="./main.jsp";
 				};
 			}
 			
@@ -97,6 +109,7 @@
 			}
 			
 		</script>
-
-</body>
+		
+		<hr style="border:dashed 1px; color:#007BFF;">
+	</body>
 </html>

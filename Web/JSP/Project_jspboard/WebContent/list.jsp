@@ -24,6 +24,18 @@
 	
 	<%@ include file="header.jsp" %>
 		
+	<script>	
+		function logincheck(){
+			var id='null';
+		
+			if(id!="null"){
+				document.location.href="write_view.do";
+			}else if(id == "null"){
+				alert("로그인 후에 글 작성이 가능합니다.");
+			}
+		}
+		</script>	
+		
 	<body>
 		<p></p>		
  		
@@ -59,7 +71,7 @@
  			
  			<tr>
  				<td colspan="5" style="text-align:center;" > 
- 				<button type="submit" class="btn btn-Light"> <a href="write_view.do"> 글작성 </a></button>
+ 				<button type="submit" class="btn btn-Light" onclick="logincheck()"> <a href="write_view.do"> 글작성 </a></button>
  				</td>
  			</tr>
  			
@@ -226,6 +238,22 @@
 	  
 	   <% } %>
 	   
+	   <tr>
+				<td colspan="5" align="right">
+					<a href="#" class="btn btn-outline-secondary btn-sm" onclick="logincheck()">글작성</a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="5" align="right">
+				<input type="radio" name="sear_check" id="sear_check" value="bTitle" checked="checked"/>제목 &nbsp;
+				<input type="radio" name="sear_check" id="sear_check" value="bContent"/>내용
+				<input type="text" name="input" id="input">&nbsp;&nbsp; 
+			
+				<input type="button" value="검색" class="btn btn-outline-secondary btn-sm" onclick="javascript:radio_chk()">
+				
+		
+				</td>		
+			</tr>
 	   
  <!--	totalCount : ${page.curPage}<br>
  		listCount : ${page.listCount}<br>

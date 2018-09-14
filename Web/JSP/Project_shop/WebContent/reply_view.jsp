@@ -46,13 +46,17 @@
  					<td> 히트 </td>
  					<td>${reply_view.bHit} </td>
  				</tr>
- 				<tr>
- 					<td> 이름 </td>
- 					<td><input type="text" name="bName" value=""> </td>
- 				</tr>
+ 		 <%	request.setCharacterEncoding("UTF-8");
+  			String Id =(String)session.getAttribute("id");	
+			if(Id != null) { %>	
+				<tr>
+					<td> 아이디 </td>
+					<td><input type="text" class="form-control" name="bName" size="50" value="<%= Id %>" readonly></td>
+				</tr>
+	  	 <%	} %>	
  				<tr>
  					<td> 제목 </td>
- 					<td><input type="text" name="bTitle" value="${reply_view.bTitle}" - > </td>
+ 					<td><input type="text" class="form-control" name="bTitle" value="${reply_view.bTitle}" - > </td>
  				</tr>
  				<tr>
  					<td> 원문내용 </td>
@@ -62,7 +66,7 @@
  					<td> 내용 </td>
 					<td>
  					<textarea name="bContent" id="editor1" rows="10" cols="80">
-               				This is my textarea to be replaced with CKEditor.
+               				내용을 입력 하세요
            				</textarea>
             		<script>
               	  		// Replace the <textarea id="editor1"> with a CKEditor
@@ -84,7 +88,5 @@
  		</div>
 	
 	</body>
-
-	<%@ include file="footer.jsp" %>
 	
 </html>
