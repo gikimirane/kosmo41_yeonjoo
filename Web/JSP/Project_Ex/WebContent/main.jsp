@@ -20,10 +20,30 @@
 		<style>
 		.#slider { margin:0 auto; width:1000px; height:592px;}		
 		</style>
-			
-		</head>
+		
+		<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i}; // 숫자가 10보다 작을 경우 앞에 0을 붙여줌
+    return i;
+}
+</script>
+</head>
+		
 		<%@ include file="header.jsp" %>
-	<body>
+
+<body onload="startTime()">
+<div id="clock"></div>
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		  <ol class="carousel-indicators">
 		    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

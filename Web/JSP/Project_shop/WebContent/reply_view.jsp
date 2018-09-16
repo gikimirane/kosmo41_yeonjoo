@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title> JAM#1♥ REPLY </title>
+		<title> REPLY </title>
 		
 		<script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
 		
@@ -16,9 +16,9 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<style>
 			div.col-sm-10 { 
-			width:60%;
-			height: 90%;
-			margin: auto;	 
+			width:70%;
+			height:90%;
+			margin:10%;	 
 		}
 		</style>
 	</head>
@@ -30,6 +30,10 @@
 		<p></p>
 
  		<div class="container">
+ 		<div class="col-sm-10">
+
+			<img src="./img/board_p.png" width="128px" alt="loginpage" class="img-responsive center-block" />
+			<hr style="border:dashed 1px; color:#007BFF;">
  		<table class="table" width=auto">
  		
  		<form action="reply.do" method="post">
@@ -78,15 +82,38 @@
  				
  				<tr>
  					<td colspan="2" style="text-align:center;" > 
- 					<button type="submit" value="답변" class="btn btn-outline-warning">답변</button>
- 					<button type="submit" value="목록보기" class="btn btn-outline-warning"> 
+ 					<button type="submit" value="답변" class="btn btn-outline-primary">답변</button>
+ 					<button type="submit" value="목록보기" class="btn btn-outline-dark"> 
  					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a> 
  					</button></td>
  				</tr>
  			</form>
  		</table>
+ 		
+ 		<hr style="border:dashed 1px; color:#007BFF;">
  		</div>
 	
 	</body>
+	
+	 <footer class="text-muted">
+      <div class="container">
+    <% request.setCharacterEncoding("UTF-8");
+			if(id != null) { %>		
+		<p class="float-left">
+     	 <form name="login_form" action="chat.jsp" method="post">
+    		<input type="hidden" name="id" value="<%= id %>" >
+   		<a href="#" onclick="submit();"> <img src="./img/chat.png"></a>
+			</form>
+		
+	   <% } %>	
+		
+        </p>
+        <p class="float-right">
+          <a href="main.jsp">Back to Main</a>
+        </p>
+        <p>Name of company: Shooting Star|Name of representative: OH YEON JOO|KOSMO41 </p>
+      
+      </div>
+    </footer>
 	
 </html>

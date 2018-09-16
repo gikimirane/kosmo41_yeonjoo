@@ -39,7 +39,7 @@
 		
 	  	    <div class="col-md-10 col-md-offset-3 col-sm-8 col-sm-offset-2">
 	        
-	        <img src="./img/resume.png" width="128px" alt="loginpage" class="img-responsive center-block" />
+	        <img src="./img/modify.png" width="128px" alt="loginpage" class="img-responsive center-block" />
 	        <div class="panel panel-success">
 	            <div class="panel-heading">
 	            <p></p>
@@ -94,5 +94,26 @@
 		</div>
 		
 </body>
+
+ <footer class="text-muted">
+      <div class="container">
+    <% request.setCharacterEncoding("UTF-8");
+			if(id != null) { %>		
+		<p class="float-left">
+     	 <form name="login_form" action="chat.jsp" method="post">
+    		<input type="hidden" name="id" value="<%= id %>" >
+   		<a href="#" onclick="submit();"> <img src="./img/chat.png"></a>
+			</form>
+		
+	   <% } %>	
+		
+        </p>
+        <p class="float-right">
+          <a href="main.jsp">Back to Main</a>
+        </p>
+        <p>Name of company: Shooting Star|Name of representative: OH YEON JOO|KOSMO41 </p>
+      
+      </div>
+    </footer>
 
 </html>

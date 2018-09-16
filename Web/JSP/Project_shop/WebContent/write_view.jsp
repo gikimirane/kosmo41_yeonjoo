@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  	<title> JAM#1♥ WRITE </title>
+  	<title> WRITE </title>
 		<script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     	<meta charset="utf-8">
     
@@ -31,6 +31,8 @@
 	<div class="container"> 
 	<div class="col-sm-10">
 
+			<img src="./img/board_p.png" width="128px" alt="loginpage" class="img-responsive center-block" />
+			<hr style="border:dashed 1px; color:#007BFF;">
 		<table class="table" width=auto">
 		
 			<form action ="write.do" method="post"  enctype="multipart/form-data">
@@ -73,13 +75,15 @@
 					<td colspan="2" style="text-align:center;" > 
 					<button type="submit" value="입력" class="btn btn-outline-primary">입력</button>
 				
-					<button type="submit" value="목록보기" class="btn btn-outline-primary"> 
+					<button type="submit" value="목록보기" class="btn btn-outline-dark"> 
 					<a href="list.do?page=<%= session.getAttribute("cpage")%>">목록보기</a></button>
 					</td>
 				</tr>
 		
  			</form>
  		</table>
+ 		
+ 		<hr style="border:dashed 1px; color:#007BFF;">
  		
  	</div>
  	</div>
@@ -89,6 +93,25 @@
  		
 	</body>
 		
-	<%--@ include file="footer.jsp" --%>
+ <footer class="text-muted">
+      <div class="container">
+    <% request.setCharacterEncoding("UTF-8");
+			if(id != null) { %>		
+		<p class="float-left">
+     	 <form name="login_form" action="chat.jsp" method="post">
+    		<input type="hidden" name="id" value="<%= id %>" >
+   		<a href="#" onclick="submit();"> <img src="./img/chat.png"></a>
+			</form>
+		
+	   <% } %>	
+		
+        </p>
+        <p class="float-right">
+          <a href="main.jsp">Back to Main</a>
+        </p>
+        <p>Name of company: Shooting Star|Name of representative: OH YEON JOO|KOSMO41 </p>
+      
+      </div>
+    </footer>
 		
 </html>

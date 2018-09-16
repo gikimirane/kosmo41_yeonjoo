@@ -35,6 +35,7 @@
  		
  		<div class="container">
  		<div class="col-sm-10">
+ 		
  		<hr style="border:dashed 1px; color:#007BFF;">
  		<table class="table">
  		  		
@@ -77,11 +78,8 @@
  				<td>내용</td>
  				<td>${content_view.bContent}</td>
  			</tr>
- 			 
- 				</table>
  			
- 		
- 			
+ 			 <tr>
  		 <%	request.setCharacterEncoding("UTF-8");
   			String mdId =(String)session.getAttribute("id");
   			String mdbName = request.getParameter("bName");
@@ -90,8 +88,9 @@
   			%>		
  			<c:choose>
  				<c:when test="${content_view.bName == id}">	
- 					<tr>
- 				<td colspan="2" align="center">	
+ 					
+ 				<td colspan="2" style="text-align:center">	
+ 				
  				<button type="submit" value="수정" class="btn btn-outline-primary" > 
 					<a href="modify_view.do?bId=${content_view.bId}">수정</a></button>
 		
@@ -99,30 +98,56 @@
 					<a href="delete.do?bId=${content_view.bId}">삭제</a></button>
 			    <button type="submit" value="답변" class="btn btn-outline-primary"> 
 					<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
+				<button type="submit" value="목록보기" class="btn btn-outline-primary"> 
+					<a href="list.do?page=<%= session.getAttribute("cpage")%>">리스트</a></button>	
+ 				
+ 				</td> 
 				</c:when>
+				
+				<c:when test="${id != null}">
 					
-				<c:when test="${id != null}">	
+				<td colspan="2" style="text-align:center">	
 					<button type="submit" value="답변" class="btn btn-outline-primary"> 
 					<a href="reply_view.do?bId=${content_view.bId}">답변</a></button>
+ 				
+ 				<button type="submit" value="목록보기" class="btn btn-outline-primary"> 
+					<a href="list.do?page=<%= session.getAttribute("cpage")%>">리스트</a></button>	
+ 				</td> 
  					</c:when>
-				</c:choose>
+				<c:otherwise>
+				<td colspan="2" style="text-align:center">	
 				<button type="submit" value="목록보기" class="btn btn-outline-primary"> 
 					<a href="list.do?page=<%= session.getAttribute("cpage")%>">리스트</a></button>	
  				</td> 
+ 				</c:otherwise>
+ 			
+ 			</c:choose>
  			</tr>
- 				
- 	
- 		<hr style="border:dashed 1px; color:#007BFF;">
+ 			</table>
+ 			<hr style="border:dashed 1px; color:#007BFF;">
+ 	</div>
+ 		
 		</div>    		
 	</body>
 	
-	
-    <footer class="text-muted">
+   <footer class="text-muted">
       <div class="container">
+    <% request.setCharacterEncoding("UTF-8");
+			if(id != null) { %>		
+		<p class="float-left">
+     	 <form name="login_form" action="chat.jsp" method="post">
+    		<input type="hidden" name="id" value="<%= id %>" >
+   		<a href="#" onclick="submit();"> <img src="./img/chat.png"></a>
+			</form>
+		
+	   <% } %>	
+		
+        </p>
         <p class="float-right">
           <a href="main.jsp">Back to Main</a>
         </p>
         <p>Name of company: Shooting Star|Name of representative: OH YEON JOO|KOSMO41 </p>
+      
       </div>
     </footer>
 

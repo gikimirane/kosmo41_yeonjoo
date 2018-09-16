@@ -37,13 +37,10 @@
 		    window.open("./chat.jsp", 'blank', "width=500, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
 		}  
 
-		</script>
-		
+		</script>	
 	<body>
-	
-	 <main role="main">
-	 
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<main role="main">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
 		  <ol class="carousel-indicators">
 		    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 		    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -51,13 +48,13 @@
 		  </ol>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img class="d-block w-100" src="./img/jj.jpg"  alt="첫번째 슬라이드">
+		      <img class="d-block w-100" src="./img/main3.jpg"  alt="첫번째 슬라이드">
 		    </div>
 		    <div class="carousel-item">
-		      <img class="d-block w-100" src="./img/jj.jpg" alt="두번째 슬라이드">
+		      <img class="d-block w-100" src="./img/main1.jpg" alt="두번째 슬라이드">
 		    </div>
 		    <div class="carousel-item">
-		      <img class="d-block w-100" src="./img/jj.jpg" alt="세번째 슬라이드">
+		      <img class="d-block w-100" src="./img/main2.png" alt="세번째 슬라이드">
 		    </div>
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -70,59 +67,32 @@
 		  </a>
 		</div>
 		
-		 <div class="album py-5 bg-light">
-        <div class="container">
-
+		<br />
+		
+		 <iframe width="990" height="557" src="https://www.youtube.com/embed/LxVlNoJ94Oc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          
           <div class="row">
             <div class="col-md-12">
+          
               <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="./img/junjin.jpg" alt="junjin">
+            </div>
+            
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="./img/imgmain.jpg" alt="shinhwa">
+            </div>
+            
+             <div class="card mb-4 shadow-sm">
                 <img class="card-img-top" src="./img/dw.jpg" alt="dongwan">
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
             </div>
-            <div class="col-md-12">
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="./img/junjin.jpg" alt="dongwan">
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
+            
+           
+            
             </div>
-            <div class="col-md-12">
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="./img/dw2.jpg" alt="dongwan">
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+           </div>
  	 </main>
- 	 
- 	 <footer class="text-muted">
-      <div class="container">
+ 	 <footer class="text-muted bg-light">
+      <div class="container" style="background-color:#F8F9FA;">
     <% request.setCharacterEncoding("UTF-8");
 			if(id != null) { %>		
 		<p class="float-left">
@@ -141,6 +111,5 @@
       
       </div>
     </footer>
- 	  	 
 	</body>
 </html>

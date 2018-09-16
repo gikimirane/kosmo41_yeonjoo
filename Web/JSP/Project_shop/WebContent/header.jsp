@@ -37,22 +37,23 @@
 		       <li class="nav-item active">
 		        <a class="nav-link" href="list.do"><img src="./img/board.png" title="board" /></a>	      
 		  	  </li>
+		  	   <li class="nav-item active">
+		        <a class="nav-link" href="imgboard.jsp"><img src="./img/goods.png" title="goods" /></a>	      
+		  	  </li>
 		    </ul>
 		    
-		     
-    
+
 	   <%	request.setCharacterEncoding("UTF-8");
   			String id =(String)session.getAttribute("id");	
 			if(id == null) { %>		
-			<a class="nav-link" href="login.jsp"><img src="./img/login.png" title="login" /></a><a class="nav-link" href="join.jsp"><img src="./img/join.png" title="join" /></a>
+			<a class="nav-link" href="login.jsp"><button class="btn btn-primary btn-sm" type="submit">로그인</button></a>
+			<a class="nav-link" href="join.jsp"><button class="btn btn-dark btn-sm" type="submit">회원가입</button></a>
 	   <%	} else { %>	
 			<%= id %> 님, 신화산 ♥
 			<a class="nav-link" href="modify.jsp"><button class="btn btn-primary btn-sm" type="submit">정보수정</button></a>	
 			 <form class="form-inline my-2 my-lg-0" name="logout" action="logout.do" method="post">
 			 <button class="btn btn-dark btn-sm" type="submit">로그아웃</button>
-			 &nbsp;&nbsp;
-			 </form> 
-			 		 
+			 </form>  
 	   <%   } %>
  
   </div>
