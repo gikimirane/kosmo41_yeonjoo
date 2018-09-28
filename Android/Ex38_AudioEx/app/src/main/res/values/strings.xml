@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Ex38_AudioEx</string>
+    <string name="title_activity_record">RecordActivity</string>
+</resources>
