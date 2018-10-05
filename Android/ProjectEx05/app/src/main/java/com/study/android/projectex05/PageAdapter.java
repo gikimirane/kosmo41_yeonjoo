@@ -1,4 +1,4 @@
-package com.study.android.projectex04;
+package com.study.android.projectex05;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,8 +23,6 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                  return new Fragment2();
              case 2:
                  return new Fragment3();
-             case 3:
-                 return new Fragment4();
              default:
                  return null;
          }

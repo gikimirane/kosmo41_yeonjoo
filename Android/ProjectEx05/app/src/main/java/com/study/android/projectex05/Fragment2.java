@@ -1,10 +1,15 @@
-package com.study.android.projectex03;
+package com.study.android.projectex05;
 
 
+import android.content.Context;
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -14,7 +19,13 @@ import android.widget.Toast;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class MainActivity extends AppCompatActivity {
+import static android.content.Context.INPUT_METHOD_SERVICE;
+import static android.content.Context.MODE_NO_LOCALIZED_COLLATORS;
+
+public class Fragment2 extends Fragment {
+    private static final String TAG = "lecture";
+
+    InputMethodManager imm;
 
     DatePicker datePicker;
     TextView viewDatePick;  //  viewDatePick - 선택한 날짜를 보여주는 textView
@@ -22,20 +33,33 @@ public class MainActivity extends AppCompatActivity {
     Button btnSave;   //  btnSave - 선택한 날짜의 일기 저장 및 수정(덮어쓰기) 버튼
 
     String fileName;   //  fileName - 돌고 도는 선택된 날짜의 파일 이름
+    private Context context;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // 앱 첫 시작 시 돌아가는 메소드
+    public View onCreateView(LayoutInflater inflater,
+                            ViewGroup container, Bundle savedInstanceState) { // 앱 첫 시작 시 돌아가는 메소드
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-       // setTitle("연주의 작은 일기장"); //앱 제목 설정
+
+        imm = (InputMethodManager)context.getSystemService(INPUT_METHOD_SERVICE);
+
+        ViewGroup rootView =
+                (ViewGroup) inflater.inflate(R.layout.fragment2, container, false);
+
+        Button button = rootView.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Fragment2");
+            }
+        });
 
         // 뷰에 있는 위젯들 리턴 받아두기
-        datePicker = (DatePicker) findViewById(R.id.datePicker);
-        viewDatePick = (TextView) findViewById(R.id.viewDatePick);
-        edtDiary = (EditText) findViewById(R.id.edtDiary);
-        btnSave = (Button) findViewById(R.id.btnSave);
+        datePicker = rootView.findViewById(R.id.datePicker);
+        viewDatePick = rootView.findViewById(R.id.viewDatePick);
+        edtDiary = rootView.findViewById(R.id.edtDiary);
+        btnSave = rootView.findViewById(R.id.btnSave);
 
-        // 오늘 날짜를 받게해주는 Calender 친구들
+        // 오늘 날짜를 받게해주는 Calender
         Calendar c = Calendar.getInstance();
         int cYear = c.get(Calendar.YEAR);
         int cMonth = c.get(Calendar.MONTH);
@@ -62,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 saveDiary(fileName);
             }
         });
+
     }
 
     // 일기 파일 읽기
@@ -72,8 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
         // 파일 이름을 만들어준다. 파일 이름은 "20170318.txt" 이런식으로 나옴
         fileName = year + "" + monthOfYear + "" + dayOfMonth + ".txt";
-
+        
         FileInputStream fis = null;
+        Context context;
+
         try {
             fis = openFileInput(fileName);
 
@@ -83,18 +110,19 @@ public class MainActivity extends AppCompatActivity {
 
             String str = new String(fileData, "EUC-KR");
             // 읽어서 토스트 메시지로 보여줌
-            Toast.makeText(getApplicationContext(), "일기 있는 날", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "일기 있는 날", Toast.LENGTH_SHORT).show();
             edtDiary.setText(str);
             btnSave.setText("일기 수정");
         } catch (Exception e) { // UnsupportedEncodingException , FileNotFoundException , IOException
             // 없어서 오류가 나면 일기가 없는 것 -> 일기를 쓰게 한다.
-            Toast.makeText(getApplicationContext(), "일기 없는 날", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "일기 없는 날", Toast.LENGTH_SHORT).show();
             edtDiary.setText("");
             btnSave.setText("새일기 저장");
             e.printStackTrace();
         }
 
     }
+
 
     // 일기 저장하는 메소드
     private void saveDiary(String readDay) {
@@ -111,12 +139,17 @@ public class MainActivity extends AppCompatActivity {
             fos.close();
 
             // getApplicationContext() = 현재 클래스.this ?
-            Toast.makeText(getApplicationContext(), "일기 저장됨", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "일기 저장됨", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) { // Exception - 에러 종류 제일 상위 // FileNotFoundException , IOException
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "오류오류", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "오류오류", Toast.LENGTH_SHORT).show();
         }
     }
 
+        return;
+
+    public void linearOnClick(View v) {
+        imm.hideSoftInputFromWindow(edtDiary.getWindowToken(), 0);
+    }
 }

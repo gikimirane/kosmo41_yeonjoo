@@ -1,9 +1,9 @@
-package com.study.android.tabbar2;
+package com.study.android.projectex05;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "lecture";
@@ -19,8 +19,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.container);
         tabLayout = findViewById(R.id.tabMenu);
 
+        Fragment1 class = new Fragment1(this);
+
         PageAdapter adapter = new PageAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
+
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(
                 new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -42,7 +45,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
 }
