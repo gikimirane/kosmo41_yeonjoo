@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.PowerManager;
@@ -56,10 +57,14 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent intent = new Intent();
 
         // 알람 사운드 설정
-        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+       // Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Ringtone r = RingtoneManager.getRingtone(context.getApplicationContext(), notification);
+        r.play();
 
         //큰 아이콘 설정 (기본 아이콘 ic_menu_gallert를 뜨워주는 형태)
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),android.R.drawable.ic_menu_gallery);;
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),android.R.drawable.ic_menu_gallery);
 
         //노티피케이션을 생성할때 매개변수는 PendingIntent이므로 Intent를 PendingIntent로 만들어 주어야 함.
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
@@ -71,7 +76,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentTitle("알람")
                 .setContentText("저는 알람 이에욧!")
                 .setAutoCancel(true)
-                .setSound(soundUri)
+               // .setSound(soundUri)
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =

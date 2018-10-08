@@ -13,69 +13,105 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.File;
 
-
 public class MainActivity extends AppCompatActivity {
-    private static final String BASE_PATH = Environment.getExternalStorageDirectory() + "/myapp";
-    private static final String NORMAL_PATH = BASE_PATH + "/normal";
 
-    private AlarmManager _am;
+    public static final String ALARM_TYPE = "ALARM_TYPE";
 
-    private ToggleButton _toggleSun, _toggleMon, _toggleTue, _toggleWed, _toggleThu, _toggleFri, _toggleSat;
+    public static final String ALARM_TYPE_ONE_TIME = "ALARM_TYPE_ONE_TIME";
+
+    public static final String ALARM_TYPE_REPEAT = "ALARM_TYPE_REPEAT";
+
+    public static final String ALARM_DESCRIPTION = "ALARM_DESCRIPTION";
+
+    private AlarmManager alarmManager = null;
+
+    private PendingIntent pendingIntent = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        _am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        _toggleSun = (ToggleButton) findViewById(R.id.toggle_sun);
-        _toggleMon = (ToggleButton) findViewById(R.id.toggle_mon);
-        _toggleTue = (ToggleButton) findViewById(R.id.toggle_tue);
-        _toggleWed = (ToggleButton) findViewById(R.id.toggle_wed);
-        _toggleThu = (ToggleButton) findViewById(R.id.toggle_thu);
-        _toggleFri = (ToggleButton) findViewById(R.id.toggle_fri);
-        _toggleSat = (ToggleButton) findViewById(R.id.toggle_sat);
-    }
+        // setTitle("타이틀"); 타이틀 작성
 
-    public void onRegist(View v)
-    {
-        Log.i("MainActivity.java | onRegist", "|" + "========= regist" + "|");
+        // 알람 매니저 객체를 가져옴
+        alarmManager = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
 
-        File file = new File(NORMAL_PATH + "/drop_1235.m4a");
-        Log.i("MainActivity.java | onRegist", "| file exists? : " + file.exists() + "|" + file.hashCode());
+        // 클릭 후 5초 후에 알람이 울리도록 설정
+        Button startOneTimeAlarmButton = (Button)findViewById(R.id.alarm_start_one_time_button);
+        startOneTimeAlarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        boolean[] week = { false, _toggleSun.isChecked(), _toggleMon.isChecked(), _toggleTue.isChecked(), _toggleWed.isChecked(),
-                _toggleThu.isChecked(), _toggleFri.isChecked(), _toggleSat.isChecked() }; // sunday=1 이라서 0의 자리에는 아무 값이나 넣었음
+                // 오픈 인텐트를 만들고
+                Intent intent = new Intent(getApplicationContext(), AlarmTriggerActivity.class);
+                // 알람 타입을 만들고
+                intent.putExtra(ALARM_TYPE, ALARM_TYPE_ONE_TIME);
+                // 부가설명 문자열을 만듬
+                intent.putExtra(ALARM_DESCRIPTION, "단일 알람을 시작합니다.");
+                // 나중에 사용할 수 있도록 Intent 객체를 래핑하여 MainActivity를 시작
+                pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+                // 5초 후에 알람이 울리도록 설정
+                long alarmTriggerTime = System.currentTimeMillis() + 5000;
+                alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTriggerTime, pendingIntent);
 
-        Intent intent = new Intent(this, AlarmReceiver.class);
-        intent.putExtra("file", file.toString());
-        intent.putExtra("weekday", week);
-        PendingIntent pIntent = PendingIntent.getBroadcast(this, file.hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                Toast.makeText(getApplicationContext(), "A one time alarm has been created, it will be triggered after 5 seconds. This alarm will open another activity.", Toast.LENGTH_LONG).show();
+            }
+        });
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.SECOND, cal.get(Calendar.SECOND) + 10); // 10초 뒤
+        // Click this button to start a repeated alarm, it will execute every interval seconds to invoke a service.
+        Button startRepeatServiceAlarmButton = (Button)findViewById(R.id.alarm_start_repeat_service_button);
+        startRepeatServiceAlarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AlarmTriggerService.class);
+                intent.putExtra(ALARM_TYPE, ALARM_TYPE_REPEAT);
+                intent.putExtra(ALARM_DESCRIPTION, "Repeat alarm start this service.");
+                pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        long oneday = 24 * 60 * 60 * 1000;// 24시간
+                long alarmStartTime = System.currentTimeMillis();
+                long alarmExecuteInterval = 90*1000;
 
-        // 10초 뒤에 시작해서 매일 같은 시간에 반복하기
-        _am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), oneday, pIntent);
-    }
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmExecuteInterval, pendingIntent);
 
-    public void onUnregist(View v)
-    {
-        Log.i("MainActivity.java | onUnregist", "|" + "========= unregist" + "|");
+                Toast.makeText(getApplicationContext(), "A repeat alarm has been created. This alarm will open a service.", Toast.LENGTH_LONG).show();
+            }
+        });
 
-        File file = new File(NORMAL_PATH + "/drop_1235.m4a");
-        Log.i("MainActivity.java | onRegist", "| file exists? : " + file.exists() + "|" + file.hashCode());
+        // Click this button to start a repeated alarm, it will execute every interval seconds to send a broadcast.
+        Button startRepeatBroadcastAlarmButton = (Button)findViewById(R.id.alarm_start_repeat_broadcast_button);
+        startRepeatBroadcastAlarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+                intent.putExtra(ALARM_TYPE, ALARM_TYPE_REPEAT);
+                intent.putExtra(ALARM_DESCRIPTION, "Repeat alarm start this broadcast.");
+                pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pIntent = PendingIntent.getBroadcast(this, file.hashCode(), intent, 0);
+                long alarmStartTime = System.currentTimeMillis();
+                // This is too short, it will be expanded by android os to 60 seconds by default.
+                long alarmExecuteInterval = 10*1000;
+                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmExecuteInterval, pendingIntent);
 
-        _am.cancel(pIntent);
+                Toast.makeText(getApplicationContext(), "A repeat alarm has been created. This alarm will send to a broadcast receiver.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Click this button to cancel current pendingIntent related alarm.
+        Button cancelRepeatAlarmButton = (Button)findViewById(R.id.alarm_cancel_repeat_button);
+        cancelRepeatAlarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alarmManager.cancel(pendingIntent);
+                Toast.makeText(MainActivity.this, "Cancel current alarm.", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 }

@@ -15,31 +15,29 @@
         <!-- 스플래시 액티비티 -->
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
-
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".removeActivity">
             <intent-filter>
                 <action android:name="AlarmRemove" />
             </intent-filter>
         </activity>
 
-        <receiver android:name="AutoRun" android:enabled="true" android:exported="false">
+        <receiver
+            android:name=".AutoRun"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".AlarmReceiver"
             android:exported="true">
@@ -48,6 +46,7 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".VolumeTest"></activity>
     </application>
 
 </manifest>

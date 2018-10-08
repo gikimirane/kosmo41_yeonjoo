@@ -24,7 +24,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(final Context context, Intent intent)
     {
        this.context = context;
-        // PowerManager는 Device의 전원 상태를 제어할수 잇게 도와준다.
+        // 파워매니저를 쓰면 전원제어가 가능
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"");
         wakeLock.acquire();

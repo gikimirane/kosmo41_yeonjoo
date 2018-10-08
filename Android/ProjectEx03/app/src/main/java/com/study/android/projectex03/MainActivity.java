@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             fis.read(fileData);
             fis.close();
 
-            String str = new String(fileData, "EUC-KR");
+            String str = new String(fileData, "utf-8");
             // 읽어서 토스트 메시지로 보여줌
             Toast.makeText(getApplicationContext(), "일기 있는 날", Toast.LENGTH_SHORT).show();
             edtDiary.setText(str);
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             // getApplicationContext() = 현재 클래스.this ?
             Toast.makeText(getApplicationContext(), "일기 저장됨", Toast.LENGTH_SHORT).show();
 
-        } catch (Exception e) { // Exception - 에러 종류 제일 상위 // FileNotFoundException , IOException
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "오류오류", Toast.LENGTH_SHORT).show();
         }
