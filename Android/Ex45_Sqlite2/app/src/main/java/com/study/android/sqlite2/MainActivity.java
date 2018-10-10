@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tname = "customer";
+        tname = "customer1";
 
         adapter = new SingerAdapter(this);
 
@@ -52,16 +52,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtn1Clicked(View v) {
-        String sql1 = "insert into customor " +
-                " (name,age, mobile) values ('정필교', 40, '010-1111-2222') ";
-        String sql2 = "insert into customor " +
-                " (name,age, mobile) values ('이선호', 39, '010-0324-2222') ";
+        String sql1 = "insert into customer1 " +
+                " (name, age, mobile) values ('정필교', 40, '010-1111-2222') ";
+        String sql2 = "insert into customer1 " +
+                " (name, age, mobile) values ('이선호', 39, '010-0324-2222') ";
         try{
             database.execSQL(sql1);
-            printInfo("데이터 추가 : 1");
+            printInfo("데이터 추가: 1");
 
             database.execSQL(sql2);
-            printInfo("데이터 추가 : 2");
+            printInfo("데이터 추가: 2");
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -78,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
     private void createMyDatabase() {
 
         try {
-            database = openOrCreateDatabase("customer.sqlite", Activity.MODE_PRIVATE, null);
+            database = openOrCreateDatabase("customer1.sqlite", Activity.MODE_PRIVATE, null);
 
-            printInfo("데이터베이스 만듬 : customer.sqlite");
+            printInfo("데이터베이스 만듬 : customer1.sqlite");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,11 +89,11 @@ public class MainActivity extends AppCompatActivity {
     private void createMyTable() {
 
         String sql =
-                "create table if not exists customer (name text, age integerm mobile text) ";
+                "create table if not exists customer1 (name text, age integer, mobile text) ";
         try {
             database.execSQL(sql);
 
-            printInfo("테이블 만듬 : customer");
+            printInfo("테이블 만듬 : customer1");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,12 +101,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectAllData() {
 
-        String sql = "select name, age, mobile from customer ";
+        String sql = "select name, age, mobile from customer1 ";
         try {
             Cursor cursor = database.rawQuery(sql, null);
 
             int count = cursor.getCount();
-            printInfo("데이어 갯수 : " + count);
+            printInfo("데이터 갯수 : " + count);
 
             int i = 0;
             while(i < count) {

@@ -13,52 +13,61 @@
     btnSave - 선택한 날짜의 일기 저장 및 수정(덮어쓰기) 버튼
      -->
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="0"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_weight="0">
 
-        <DatePicker
-            android:id="@+id/datePicker"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15sp" />
-    </LinearLayout>
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-    <LinearLayout
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="5sp">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-
-        <TextView
-            android:id="@+id/viewDatePick"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#DDDDDD"
-            android:gravity="center"
-            android:text=""
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtDiary"
-            android:layout_width="match_parent"
-            android:layout_height="80sp"
-            android:background="#DDDDDD"
-            android:ems="10"
-            android:gravity="start|center_vertical"
-            android:inputType="text|textMultiLine|textCapSentences"
-            android:padding="7sp"
-            android:text="" />
+            <TextView
+                android:id="@+id/viewDatePick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#DDDDDD"
+                android:gravity="center"
+                android:text=""
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="새 일기 저장" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/edtDiary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#DDDDDD"
+                android:ems="10"
+                android:gravity="start|center_vertical"
+                android:inputType="text|textMultiLine|textCapSentences"
+                android:padding="7sp"
+                android:text="" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="새 일기 저장" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.study.android.projectex1;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -12,7 +11,6 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.PowerManager;
-import android.renderscript.RenderScript;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Gravity;
@@ -59,9 +57,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         // 알람 사운드 설정
        // Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        Ringtone r = RingtoneManager.getRingtone(context.getApplicationContext(), notification);
-        r.play();
+        Uri ringtoneUri = intent.getParcelableExtra("링톤울려라");
+        final Ringtone ringtone = RingtoneManager.getRingtone(this, ringtoneUri);  //받은 Uri로 링톤 생성
+        ringtone.play();
 
         //큰 아이콘 설정 (기본 아이콘 ic_menu_gallert를 뜨워주는 형태)
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),android.R.drawable.ic_menu_gallery);

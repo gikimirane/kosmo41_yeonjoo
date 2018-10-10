@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             Cursor cursor = database.rawQuery(sql, null);
 
             int count = cursor.getCount();
-            printInfo("데이어 갯수 : " + count);
+            printInfo("데이터 갯수 : " + count);
 
             int i = 0;
             while(i < count) {

@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     //시간 설정을 위한 객체
     Calendar Time;
+    Context context;
 
     //알람 설정을 위한 객체
     private Intent intent;
@@ -69,12 +71,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-                | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+        //잠금화면에서 알람띄우기
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+                                                     // 폰이 LOCK상태면 보여줌
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+                                // 폰이 LOCK상태면 보여주지 않음(LOCK해제후 보여짐)
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+                                                    // 화면을 on시키겠다
+
+        setContentView(R.layout.activity_main);
+        ((TextView)findViewById(R.id.textView)).setText("알림이 울립니다.");
 
         //타임 피커, 데이트 피커 리스너 및 아이디 등록
         Time = Calendar.getInstance();
@@ -128,16 +136,15 @@ public class MainActivity extends AppCompatActivity {
 
     void setAlarm() {
         //Receiver로 보내기 위한 인텐트
-        //intent = new Intent(this, AlarmReceiver.class);
+       // intent = new Intent(this, AlarmReceiver.class);
         intent = new Intent("AlarmReceiver");
-        //PendingIntent.getBroadcast(Context context, int requestCod, Intent intent int flag);
+        PendingIntent.getBroadcast(Context context, int requestCod, Intent intent int flag);
 
         ServicePending = PendingIntent.getBroadcast(
                 MainActivity.this, 111, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //정해진 시간에 알람 설정
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, Time.getTimeInMillis(), 1000, ServicePending);
-        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, Time.getTimeInMillis(), 1000, ServicePending);
 
         //Millis * Second * Minute
 
@@ -159,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
     void setRepeatAlarm() {
         //Receiver로 보내기 위한 인텐트
-        //intent = new Intent(this, AlarmReceiver.class);
+        intent = new Intent(this, AlarmReceiver.class);
         intent = new Intent("AlarmReceiver");
         //PendingIntent.getBroadcast(Context context, int requestCod, Intent intent int flag);
 
@@ -168,8 +175,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ServicePending : ", "" + ServicePending.toString());
 
         //정해진 시간에 알림 설정
-        // alarmManager.set(AlarmManager.RTC_WAKEUP,Time.getTimeInMillis(),servicePending);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, Time.getTimeInMillis(), 20000, ServicePending);
+       // alarmManager.set(AlarmManager.RTC_WAKEUP,Time.getTimeInMillis(),servicePending);
+       alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, Time.getTimeInMillis(), 20000, ServicePending);
         //Millis * Second * Minute
 
         Toast.makeText(getBaseContext(), "알람 설정" + Time.getTime(), Toast.LENGTH_SHORT).show();

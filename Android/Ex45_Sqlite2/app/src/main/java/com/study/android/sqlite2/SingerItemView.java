@@ -16,7 +16,7 @@ public class SingerItemView extends LinearLayout {
 
         LayoutInflater inflater =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                inflater.inflate(R.layout.singer_item_view, this,true);
+                inflater.inflate(R.layout.singer_item_view, this, true);
 
                 textView1 = findViewById(R.id.textView1);
                 textView2 = findViewById(R.id.textView2);
