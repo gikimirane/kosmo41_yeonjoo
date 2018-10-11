@@ -80,7 +80,7 @@ public class Fragment2 extends Fragment {
     private void checkedDay(int year, int monthOfYear, int dayOfMonth) {
 
         // 받은 날짜로 날짜 보여주는
-        viewDatePick.setText(year + " - " + monthOfYear + " - " + dayOfMonth);
+        viewDatePick.setText(year + "년 " + (monthOfYear+1) + "월 " + dayOfMonth + "일 ");
 
         // 파일 이름을 만들어준다. 파일 이름은 "20170318.txt" 이런식으로 나옴
         fileName = year + "" + monthOfYear + "" + dayOfMonth + ".txt";

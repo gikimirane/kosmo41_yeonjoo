@@ -6,9 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "lecture";
 
@@ -19,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      ;
+
         viewPager = findViewById(R.id.container);
         tabLayout = findViewById(R.id.tabMenu);
 
