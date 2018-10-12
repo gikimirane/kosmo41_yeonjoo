@@ -4,10 +4,10 @@ import android.content.Context;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -17,7 +17,6 @@ import android.widget.Toast;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import static android.content.Context.MODE_NO_LOCALIZED_COLLATORS;
 
 public class Fragment2 extends Fragment {
     private static final String TAG = "lecture";
@@ -70,6 +69,8 @@ public class Fragment2 extends Fragment {
             public void onClick(View v) {
                 // fileName을 넣고 저장 시키는 메소드를 호출
                 saveDiary(fileName);
+                downKeyboard(context,edtDiary); //키보드내리기
+
             }
         });
 
@@ -95,13 +96,16 @@ public class Fragment2 extends Fragment {
             fis.close();
 
             String str = new String(fileData, "utf-8");
-            // 읽어서 토스트 메시지로 보여줌
+
             Toast.makeText(context, "일기 있는 날", Toast.LENGTH_SHORT).show();
+
             edtDiary.setText(str);
             btnSave.setText("일기 수정");
+
         } catch (Exception e) { // UnsupportedEncodingException , FileNotFoundException , IOException
             // 없어서 오류가 나면 일기가 없는 것 -> 일기를 쓰게 한다.
             Toast.makeText(context, "일기 없는 날", Toast.LENGTH_SHORT).show();
+
             edtDiary.setText("");
             btnSave.setText("새일기 저장");
             e.printStackTrace();
@@ -119,9 +123,7 @@ public class Fragment2 extends Fragment {
             fos = ((MainActivity)getActivity()).openFileOutput(readDay,getContext().MODE_NO_LOCALIZED_COLLATORS);
             String content = edtDiary.getText().toString();
 
-            // String.getBytes() = 스트링을 배열형으로 변환?
             fos.write(content.getBytes());
-            //fos.flush();
             fos.close();
 
             Toast.makeText(context, "일기 저장됨", Toast.LENGTH_SHORT).show();
@@ -130,6 +132,14 @@ public class Fragment2 extends Fragment {
             e.printStackTrace();
             Toast.makeText(context, "오류오류", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // 키보드 내리기를 위한 메소드
+    public static void downKeyboard(Context context, EditText edtDiary) {
+
+        InputMethodManager mInputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        mInputMethodManager.hideSoftInputFromWindow(edtDiary.getWindowToken(), 0);
+
     }
 
 }

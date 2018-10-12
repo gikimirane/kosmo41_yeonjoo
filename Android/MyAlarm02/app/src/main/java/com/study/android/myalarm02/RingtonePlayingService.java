@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -20,7 +19,6 @@ public class RingtonePlayingService extends Service {
     int startId;
     boolean isRunning;
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -37,13 +35,15 @@ public class RingtonePlayingService extends Service {
                     NotificationManager.IMPORTANCE_DEFAULT);
 
             ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
-            Log.d(TAG, "여기까지 실행돼");
-            Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setContentTitle("알람시작")
-                    .setContentText("알람음이 재생돼요")
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                        .setContentTitle("알람실행")
+                        .setContentText("알람이 실행되었습니다.")
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setAutoCancel(true)
+                        .setVibrate(new long[]{1000, 2000, 1000, 3000, 1000, 4000})
+                        .build();
 
-                    .build();
+            Log.d(TAG, "노티 실행 완료");
 
             startForeground(1, notification);
         }
@@ -58,6 +58,12 @@ public class RingtonePlayingService extends Service {
         switch (getState) {
             case "alarm on":
                 startId = 1;
+
+                Intent quiz_intent;
+                quiz_intent = new Intent(this, QuizDialogActivity.class);
+                quiz_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(quiz_intent);
+
                 break;
             case "alarm off":
                 startId = 0;
@@ -66,6 +72,7 @@ public class RingtonePlayingService extends Service {
                 startId = 0;
                 break;
         }
+
 
         // 알람음 재생 X , 알람음 시작 클릭
         if(!this.isRunning && startId == 1) {
@@ -101,11 +108,14 @@ public class RingtonePlayingService extends Service {
 
             this.isRunning = true;
             this.startId = 1;
+
         }
 
         else {
         }
-        return START_NOT_STICKY;
+
+        return START_STICKY;
+
     }
 
     @Override
@@ -115,4 +125,5 @@ public class RingtonePlayingService extends Service {
         Log.d("onDestory() 실행", "서비스 종료");
 
     }
+
 }

@@ -24,14 +24,14 @@ public class Fragment1 extends Fragment {
 
     AlarmManager alarm_manager;
     TimePicker alarm_timepicker;
-    private  Context context;
+    Context context;
     PendingIntent pendingIntent;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView =
-                (ViewGroup) inflater.inflate(R.layout.fragment1,container, false);
+                (ViewGroup) inflater.inflate(R.layout.fragment1, container, false);
 
         context = container.getContext();
 
@@ -58,27 +58,28 @@ public class Fragment1 extends Fragment {
                 // 캘린더에 시간을 셋팅
                 calendar.set(Calendar.HOUR_OF_DAY, alarm_timepicker.getHour());
                 calendar.set(Calendar.MINUTE, alarm_timepicker.getMinute());
+                calendar.set(Calendar.SECOND, 0);
 
                 // 시간을 가져온다
                 int hour = alarm_timepicker.getHour();
                 int minute = alarm_timepicker.getMinute();
-                Toast.makeText(context,"Alarm 예정 " + hour + "시 " + minute + "분",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Alarm 예정 " + hour + "시 " + minute + "분", Toast.LENGTH_SHORT).show();
 
                 // 리시버에 값을 넘겨준다
-                my_intent.putExtra("state","alarm on");
+                my_intent.putExtra("state", "alarm on");
 
                 pendingIntent = PendingIntent.getBroadcast(context, 0, my_intent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
 
-                // 알람을 세팅 (정확한시간에 울리려면 setAndAllowwhileidle을 사용하면 됨)
+                // 알람을 세팅한다
                 alarm_manager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                         pendingIntent);
-               // alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                //        pendingIntent);
             }
         });
 
-        // 알람을 정지하는 버튼
+
+
+        // 알람 끄기 버튼
         Button alarm_off = rootView.findViewById(R.id.btn_finish);
         alarm_off.setOnClickListener(new View.OnClickListener() {
             @Override
