@@ -1,46 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#eeeeee"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/autolayout"
     android:layout_width="300dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#eeeeee"
+    android:orientation="vertical">
 
     <!-- 타이틀바 -->
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
-            android:text="QUIZ TIME"
-            android:textSize="20sp"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:background="#ff7a00"
+            android:id="@+id/txtTitle"
             android:layout_width="match_parent"
-            android:layout_height="53dp" />
+            android:layout_height="53dp"
+            android:background="#ff7a00"
+            android:gravity="center"
+            android:text="QUIZ TIME"
+            android:textColor="#fff"
+            android:textSize="20sp" />
     </LinearLayout>
     <!-- //end 타이틀바 -->
 
     <!-- Notice -->
     <LinearLayout
-        android:padding="24dp"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/conan" />
 
         <TextView
-            android:id="@+id/txtText"
+            android:id="@+id/txtQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
             android:alpha="0.87"
             android:gravity="center"
-            android:text="넌 정체가 뭐야?"
+            android:text="도대체 넌 정체가 뭐야?"
             android:textColor="#000"
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/edtAnswer"
+            android:id="@+id/tv_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
@@ -57,16 +68,16 @@
     <!-- Notice -->
 
     <View
-        android:background="#66bdbdbd"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        android:background="#66bdbdbd" />
 
     <!-- 닫기 버튼 -->
     <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnAnswer"
@@ -77,7 +88,7 @@
             android:gravity="center"
             android:onClick="onClick"
             android:padding="16dp"
-            android:text="정답확인"
+            android:text="음성인식"
             android:textColor="#ff7a00"
             android:textSize="15sp" />
 
@@ -90,7 +101,7 @@
             android:gravity="center"
             android:onClick="onClick"
             android:padding="16dp"
-            android:text="강제종료"
+            android:text="정답확인"
             android:textColor="#ff7a00"
             android:textSize="15sp" />
 

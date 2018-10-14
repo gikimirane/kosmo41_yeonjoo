@@ -1,6 +1,5 @@
 package com.study.android.myalarm02;
 
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -26,6 +25,7 @@ public class Fragment1 extends Fragment {
     TimePicker alarm_timepicker;
     Context context;
     PendingIntent pendingIntent;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -74,6 +74,7 @@ public class Fragment1 extends Fragment {
                 // 알람을 세팅한다
                 alarm_manager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                         pendingIntent);
+
             }
         });
 
