@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+		<bean id="hello" class="com.study.spring.Hello">
+	
+			<property name = "names">
+				<list>
+					<value>신혜성</value>
+					<value>김동완</value>
+					<value>문정혁</value>
+				</list>
+			</property>
+			<property name = "nums">
+				<list>
+					<value>1000</value>
+					<value>2000</value>
+					<value>3000</value>
+				</list>
+			</property>
+			<property name = "ages">
+				<map>
+					<entry key="신혜성" value="40" />
+					<entry key="김동완" value="40" />
+					<entry key="문정혁" value="40" />
+				</map>
+			</property>
+	</bean>
+
+</beans>
