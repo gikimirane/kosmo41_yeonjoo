@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Hello {
 	
-	@Value("홍길동")
+	@Value("이민우")
 	private String name;
 	@Value("전우치")
 	private String nickname;
