@@ -11,15 +11,12 @@ import com.study.spring.dao.BDao;
 public class BDeleteCommand implements BCommand {
 
 	@Override
-	public void execute(Model model) 
-	{
-		Map<String,Object> map = model.asMap();
+	public void execute(Model model) {
+		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		String bId =request.getParameter("bId");
-		
-		BDao dao = new BDao();
+		String bId = request.getParameter("bId");
+		BDao dao = BDao.getInstance();
 		dao.delete(bId);
-		
 	}
 
 }

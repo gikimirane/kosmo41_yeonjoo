@@ -17,84 +17,74 @@ import com.study.spring.command.BWriteCommand;
 
 @Controller
 public class BController {
-	
-	BCommand command = null;
+	BCommand command;
 	
 	@RequestMapping("/list")
 	public String list(Model model) {
-		System.out.println("list()");
 		command = new BListCommand();
 		command.execute(model);
-		
-		return "list";
+		return "list"; 
 	}
 	
 	@RequestMapping("/content_view")
-	public String content_view(HttpServletRequest request, Model model) {
-		
-		System.out.println("content_view()");
-
-		model.addAttribute("request",request);
+	public String contentView(Model model,HttpServletRequest request) {
+		model.addAttribute("request", request);
 		command = new BContentCommand();
 		command.execute(model);
-		
 		return "content_view";
 	}
-	
-	@RequestMapping("/delete")
-	public String delete(HttpServletRequest request, Model model) {
+	@RequestMapping("/modify_view")
+	public String modifyView(Model model,HttpServletRequest request) {
 		
-		System.out.println("delete()");
-		
-		model.addAttribute("request",request);
-		command = new BDeleteCommand();
+		model.addAttribute("request", request);
+		command = new BContentCommand();
 		command.execute(model);
-		
-		return "list";
+		return "modify_view";
 	}
 	
 	@RequestMapping("/modify")
-	public String modify(HttpServletRequest request, Model model) {
-		System.out.println("modify()");
-		
-		model.addAttribute("request",request);
+	public String modify(Model model,HttpServletRequest request) {
+		model.addAttribute("request", request);
 		command = new BModifyCommand();
 		command.execute(model);
-	
-		return "content_view";
+		return "redirect:list";
 	}
 	
-	@RequestMapping("/reply")
-	public String reply(HttpServletRequest request, Model model) {
-		System.out.println("reply()");
-		
-		model.addAttribute("request",request);
-		command = new BReplyCommand();
-		command.execute(model);
-	
-		return "list";
-	}
-	
-	@RequestMapping("/reply_view")
-	public String reply_view(HttpServletRequest request, Model model) {
-		System.out.println("reply_view()");
-		
-		model.addAttribute("request",request);
-		command = new BReplyViewCommand();
-		command.execute(model);
-	
-		return "reply_view";
+	@RequestMapping("/write_view")
+	public String writeView(Model model,HttpServletRequest request) {
+				
+		return "write_view";
 	}
 	
 	@RequestMapping("/write")
-	public String write(HttpServletRequest request, Model model) {
-		System.out.println("reply_view()");
-		
-		model.addAttribute("request",request);
+	public String write(Model model,HttpServletRequest request) {
+		System.out.println("write()");
+		model.addAttribute("request", request);
 		command = new BWriteCommand();
 		command.execute(model);
-	
-		return "list";
+		return "redirect:list";
+	}
+	@RequestMapping("/delete")
+	public String delete(Model model,HttpServletRequest request) {
+		model.addAttribute("request", request);
+		command = new BDeleteCommand();
+		command.execute(model);
+		return "redirect:list";
 	}
 	
+	@RequestMapping("/reply_view")
+	public String replyView(Model model,HttpServletRequest request) {
+		model.addAttribute("request", request);
+		command = new BReplyViewCommand();
+		command.execute(model);
+		return "reply_view";
+	}
+	
+	@RequestMapping("/reply")
+	public String reply(Model model,HttpServletRequest request) {
+		model.addAttribute("request", request);
+		command = new BReplyCommand();
+		command.execute(model);
+		return "redirect:list";
+	}
 }

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.study</groupId>
 	<artifactId>spring</artifactId>
-	<name>Ex12-3-FileUpload</name>
+	<name>Ex12-3-FileUpload1</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -116,7 +116,6 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>   
-		
 		<!-- 파일업로드를 위한 의존설정 -->
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -127,8 +126,7 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.2</version>
-		</dependency>
-		     
+		</dependency>     
 	</dependencies>
     <build>
         <plugins>

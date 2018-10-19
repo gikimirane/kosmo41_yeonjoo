@@ -1,7 +1,5 @@
 package com.study.spring.command;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,17 +14,15 @@ import com.study.spring.dto.BDto;
 public class BContentCommand implements BCommand {
 
 	@Override
-	public void execute(Model model) 
-	{
+	public void execute(Model model) {
 		
-		Map<String,Object> map = model.asMap();
+		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		String bId =request.getParameter("bId");
+		String bId = request.getParameter("bId");
+		System.out.println("BID : "+bId);
+		BDao dao = BDao.getInstance();
+		BDto dto = dao.contentView(bId);
 		
-		BDao dao = new BDao();
-		BDto dtos = dao.contentView(bId);
-	
-		model.addAttribute("content_view", dtos);
+		request.setAttribute("content_view", dto);
 	}
-
 }

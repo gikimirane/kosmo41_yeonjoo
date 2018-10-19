@@ -1,5 +1,4 @@
 package com.study.spring.command;
-
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
@@ -12,14 +11,10 @@ import com.study.spring.dto.BDto;
 public class BListCommand implements BCommand {
 
 	@Override
-	public void execute(Model model) 
-	{
+	public void execute(Model model) {
 		
-		BDao dao = new BDao();
+		BDao dao = BDao.getInstance();
 		ArrayList<BDto> dtos = dao.list();
 		model.addAttribute("list", dtos);
-		
-		
 	}
-
 }

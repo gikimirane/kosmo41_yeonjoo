@@ -11,21 +11,16 @@ import com.study.spring.dao.BDao;
 public class BWriteCommand implements BCommand {
 
 	@Override
-	public void execute(Model model) 
-	{
-
-		Map<String,Object> map = model.asMap();
+	public void execute(Model model) {
+		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
-		String bName = request.getParameter("bName");
-		String bTitle = request.getParameter("bTitle");
+		String bName=request.getParameter("bName");
+		String bTitle=request.getParameter("bTitle");
 		String bContent = request.getParameter("bContent");
-		
-		BDao dao = new BDao();
-		dao.write(bName, bTitle, bContent);
-		
-		System.out.println("작성자" + bName);
-		
+		System.out.println("bWrite!!");
+		BDao dao = BDao.getInstance();
+		dao.write(bName,bTitle,bContent);
 	}
 
 }
