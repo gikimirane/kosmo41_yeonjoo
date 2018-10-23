@@ -23,36 +23,28 @@ import com.study.spring.dto.ContentDto;
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = 
+								LoggerFactory.getLogger(HomeController.class);
 	
-//	ContentDao dao;
-
 	@Autowired
 	private SqlSession sqlSession;
-	
-//	@Autowired
-//	public void setDao(ContentDao dao) {
-//		this.dao = dao;
-//	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		DateFormat dateFormat = 
+				DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("serverTime", formattedDate);
 		
 		return "home";
 	}
 	
 	@RequestMapping("/list")
 	public String list(Model model) {
-//		ArrayList<ContentDto> dtos = dao.listDao();
-//		model.addAttribute("list",dtos);
 		IDao dao = sqlSession.getMapper(IDao.class);
 		model.addAttribute("list",dao.listDao());
 		
@@ -61,28 +53,48 @@ public class HomeController {
 	
 	@RequestMapping("/writeForm")
 	public String writeForm() {
-		
 		return "/writeForm";
 	}
 	
 	@RequestMapping("/write")
 	public String write(HttpServletRequest request, Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.writeDao(request.getParameter("mWriter"),request.getParameter("mContent"));
+		dao.writeDao(request.getParameter("bName"),
+					 request.getParameter("bTitle"),request.getParameter("bContent"));
 		return "redirect:list";
 	}
 	
-	@RequestMapping("/view")
-	public String view() {
+	@RequestMapping(value = "/contentview", method = RequestMethod.GET)
+	public String content_view(HttpServletRequest request, Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		int bId = Integer.parseInt(((String)request.getParameter("bId")));
 		
-		return "/view";
+		System.out.println("contentview" + bId);
+		
+		dao.upHit(bId);
+		model.addAttribute("contentview", dao.contentView(bId));
+		
+		return "/contentview";
+	}
+	
+	@RequestMapping("/modify")
+	public String modify(HttpServletRequest request, Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		dao.modifyDao(request.getParameter("bName"),request.getParameter("bTitle"),
+								request.getParameter("bContent"),request.getParameter("bId"));
+		return "redirect:list";
 	}
 	
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest request, Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.deleteDao(request.getParameter("mId"));
+		dao.deleteDao(request.getParameter("bId"));
 		return "redirect:list";
+	}
+	
+	@RequestMapping("/replyview")
+	public String replyview(HttpServletRequest request, Model model) {	
+			return "/replyview";
 	}
 	
 }

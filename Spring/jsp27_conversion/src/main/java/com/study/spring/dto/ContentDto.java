@@ -1,8 +1,8 @@
-package com.study.jsp1;
+package com.study.spring.dto;
 
 import java.sql.Timestamp;
 
-public class BDto {
+public class ContentDto {
 	int bId;
 	String bName;
 	String bTitle;
@@ -13,7 +13,13 @@ public class BDto {
 	int bStep;
 	int bIndent;
 	
-	public BDto(int bId,String bName,String bTitle,String bContent,Timestamp bDate,int bHit,int bGroup,int bStep,int bIndent) {
+	public ContentDto() {
+		
+	}
+	
+	public ContentDto(int bId, String bName, String bTitle, String bContent, Timestamp bDate, int bHit, int bGroup, int bStep,
+			int bIndent) {
+		super();
 		this.bId = bId;
 		this.bName = bName;
 		this.bTitle = bTitle;
@@ -23,6 +29,14 @@ public class BDto {
 		this.bGroup = bGroup;
 		this.bStep = bStep;
 		this.bIndent = bIndent;
+	}
+
+	public String getbTitle() {
+		return bTitle;
+	}
+
+	public void setbTitle(String bTitle) {
+		this.bTitle = bTitle;
 	}
 
 	public int getbId() {
@@ -39,14 +53,6 @@ public class BDto {
 
 	public void setbName(String bName) {
 		this.bName = bName;
-	}
-
-	public String getbTitle() {
-		return bTitle;
-	}
-
-	public void setbTitle(String bTitle) {
-		this.bTitle = bTitle;
 	}
 
 	public String getbContent() {
@@ -96,4 +102,5 @@ public class BDto {
 	public void setbIndent(int bIndent) {
 		this.bIndent = bIndent;
 	}
+
 }
