@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.study</groupId>
 	<artifactId>spring</artifactId>
-	<name>Ex11-2-Mybatis-List</name>
+	<name>Ex11-2-1-MyBatis-JSP27</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -115,8 +115,8 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
-
+		</dependency>  
+		
 			<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -133,9 +133,8 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.1.4.RELEASE</version>
 		</dependency>
-		
+		      
 	</dependencies>
-	
     <build>
         <plugins>
             <plugin>
